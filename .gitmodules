@@ -1,6 +1,0 @@
-[submodule "blacklist"]
-	path = blacklist
-	url = https://github.com/CryptoScamDB/blacklist
-[submodule "whitelist"]
-	path = whitelist
-	url = https://github.com/CryptoScamDB/whitelist

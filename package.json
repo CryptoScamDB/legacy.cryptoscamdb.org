@@ -1,27 +1,21 @@
 {
   "name": "@CryptoScamDB/web",
   "version": "1.0.0",
-  "description": "Keeping track of all current ethereum scams in a large open-source database",
-  "keywords": "crypto, cryptocurrency, ethereum, ether, scam, scamming, phishing, database",
+  "description": "Keeping track of all current cryptocurrency scams in an open-source database",
+  "keywords": "crypto, cryptocurrency, ethereum, scam, scamming, ether, eth, tracking, track, db, database, phishing, info, fake, ico",
   "homepage": "https://cryptoscamdb.org",
   "license": "MIT",
   "author": "Luit",
-  "main": "./src/scripts/electron.js",
+  "main": "./src/app.js",
   "scripts": {
     "start": "node src/app.js",
     "start:dev": "cross-env NODE_ENV=development DEBUG=* node src/app.js --trace-sync-io",
     "start:prod": "cross-env NODE_ENV=production DEBUG=-* node src/app.js",
-    "electron": "cross-env NODE_ENV=development DEBUG=* electron ./src/scripts/electron.js",
-    "build": "cross-env DEBUG=electron-builder node src/scripts/build.js",
-    "build:windows": "cross-env DEBUG=electron-builder ELECTRON_OS=windows node src/scripts/build.js",
-    "build:linux": "cross-env DEBUG=electron-builder ELECTRON_OS=linux node src/scripts/build.js",
-    "build:osx": "cross-env DEBUG=electron-builder ELECTRON_OS=osx node src/scripts/build.js",
-    "test": "mocha tests --recursive",
     "clean": "rimraf cache.db node_modules dist config.json"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/CryptoScamDB/cryptoscamdb.git"
+    "url": "git://github.com/CryptoScamDB/cryptoscamdb.org.git"
   },
   "build": {
     "appId": "org.cryptoscamdb",

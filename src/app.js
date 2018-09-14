@@ -11,10 +11,6 @@ const config = require('./utils/config');
 const writeConfig = require('./utils/writeConfig');
 const app = express();
 
-module.exports.check = (input) => {
-	/* TODO: add isMalicious check */
-}
-
 module.exports.update = async () => {
 	if(config.lookups.DNS.IP.enabled || config.lookups.DNS.NS.enabled || config.lookups.HTTP.enabled) {
 		debug("Spawning update process...");

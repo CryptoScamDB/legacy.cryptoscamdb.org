@@ -27,8 +27,8 @@ const db = {
 
 const readEntries = async () => {
 	debug("Reading entries...");
-	const scamsFile = await fs.readFile(path.join(__dirname, '../../_data/scams.yaml'),'utf8');
-	const verifiedFile = await fs.readFile(path.join(__dirname, '../../_data/legit_urls.yaml'),'utf8');
+	const scamsFile = await fs.readFile(path.join(__dirname, '../../blacklist/data/urls.yaml'),'utf8');
+	const verifiedFile = await fs.readFile(path.join(__dirname, '../../whitelist/data/urls.yaml'),'utf8');
 	const cacheExists = await fs.pathExists('./cache.db');
 	if(!cacheExists) {
 		yaml.safeLoad(scamsFile).map(entry => new Scam(entry)).forEach(entry => db.scams.push(entry));

@@ -1,0 +1,36 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.ui.body.container {
+  flex: 1;
+  padding-top: 7em;
+  padding-bottom: 7em;
+}
+
+.ui.fixed.inverted.menu {
+  height: 55px;
+}
+
+.item {
+  padding-top: .2em;
+  margin-left: .1em;
+}
+
+.ui.footer {
+  text-align: center;
+  width: 100%;
+}
+
+#footer-item-img {
+  height: 75px;
+  width: 178px;
+}
+
+.footer-cont:nth-child(odd) > p {
+  padding-top: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
+}

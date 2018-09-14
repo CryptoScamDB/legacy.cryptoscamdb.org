@@ -1,0 +1,34 @@
+.center {
+  text-align: center !important;
+}
+
+#info {
+  width: 10px;
+}
+
+.activ {
+	color: green;
+	font-weight: bold;
+}
+
+.offline {
+	color: red;
+	font-weight: bold;
+}
+
+.suspended {
+	color: orange;
+	font-weight: bold;
+}
+
+.unknown {
+	color: gray;
+	font-weight: bold;
+}
+
+.subcategoryicon {
+	vertical-align: middle;
+	margin-right: 6px;
+	width: 16px;
+	height: 16px;
+}

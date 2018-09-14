@@ -1,0 +1,29 @@
+<div class="ui fixed inverted menu">
+	<div class="ui container">
+		<a href="/" class="item">
+			<i class="home icon"></i> Home
+		</a>
+		<a href="/scams" class="item">
+			<i class="protect icon"></i> Active scams
+		</a>
+		<a href="/search" class="ui item">
+			<i class="search icon"></i> Search
+		</a>
+		<a href="/api" class="item">
+			<i class="settings icon"></i> API
+		</a>
+		<a href="/faq" class="item">
+			<i class="help circle icon"></i> FAQ
+		</a>
+		<div class="right menu">
+			<a href="/report" class="ui item">
+				<i class="flag icon"></i> Report
+			</a>
+		</div>
+	</div>
+</div>
+<% if(environment === "production" && announcement) { %>
+<div class="ui container" style="background-color: #db2828; padding-top: 7px; padding-bottom: 7px; color: white; position: relative; margin-top: 55px; margin-bottom: -70px; width:100%; text-align: center;">
+	<%- announcement %>
+</div>
+<% } %>

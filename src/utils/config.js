@@ -1,5 +1,5 @@
 const fs = require('fs');
-const dns = require('graceful-dns');
+const dns = require('@cryptoscamdb/graceful-dns');
 const debug = require('debug')('config');
 
 if (!fs.existsSync('./config.json')) {

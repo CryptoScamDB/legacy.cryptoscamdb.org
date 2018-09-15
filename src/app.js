@@ -4,6 +4,7 @@ const debug = require('debug')('app');
 const {fork} = require('child_process');
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const helmet = require('helmet');
 const db = require('./utils/db');
 const github = require('./utils/github');
@@ -21,6 +22,10 @@ module.exports.update = async () => {
 }
 
 module.exports.serve = async (electronApp) => {
+	
+	/* Download datafiles if they aren't found yet */
+	if(!fs.existsSync('data')) await github.pullRaw();
+	
 	/* Initiate database */
 	await db.init();
 

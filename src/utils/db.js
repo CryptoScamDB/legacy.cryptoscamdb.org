@@ -4,7 +4,7 @@ const url = require('url');
 const path = require('path');
 const config = require('./config');
 const serialijse = require("serialijse");
-const createDictionary = require('array-object-dictionary');
+const createDictionary = require('@cryptoscamdb/array-object-dictionary');
 const Scam = require('../classes/scam.class');
 const debug = require('debug')('db');
 
@@ -27,8 +27,8 @@ const db = {
 
 const readEntries = async () => {
 	debug("Reading entries...");
-	const scamsFile = await fs.readFile(path.join(__dirname, '../../blacklist/data/urls.yaml'),'utf8');
-	const verifiedFile = await fs.readFile(path.join(__dirname, '../../whitelist/data/urls.yaml'),'utf8');
+	const scamsFile = await fs.readFile(path.join(__dirname, '../../data/blacklist_urls.yaml'),'utf8');
+	const verifiedFile = await fs.readFile(path.join(__dirname, '../../data/whitelist_urls.yaml'),'utf8');
 	const cacheExists = await fs.pathExists('./cache.db');
 	if(!cacheExists) {
 		yaml.safeLoad(scamsFile).map(entry => new Scam(entry)).forEach(entry => db.scams.push(entry));

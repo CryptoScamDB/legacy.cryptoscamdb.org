@@ -1,5 +1,5 @@
 const {parse} = require('url');
-const dns = require('graceful-dns');
+const dns = require('@cryptoscamdb/graceful-dns');
 const {lookup,getURLScan} = require('../utils/lookup');
 
 module.exports = class Scam {

@@ -7,9 +7,8 @@ const debug = require('debug')('github');
 
 const pullDataFiles = async () => {
 	debug("Pulling data files...");
-	await download("https://raw.githubusercontent.com/" + config.autoPull.repository.author + "/" + config.autoPull.repository.name + "/" + config.autoPull.repository.branch + "/_data/scams.yaml", "_data");
-	await download("https://raw.githubusercontent.com/" + config.autoPull.repository.author + "/" + config.autoPull.repository.name + "/" + config.autoPull.repository.branch + "/_data/legit_urls.yaml", "_data");
-	await download("https://raw.githubusercontent.com/" + config.autoPull.repository.author + "/" + config.autoPull.repository.name + "/" + config.autoPull.repository.branch + "/_data/twitter.json", "_data");
+	await download("https://raw.githubusercontent.com/CryptoScamDB/whitelist/master/data/urls.yaml", "data", { filename: "whitelist_urls.yaml" });
+	await download("https://raw.githubusercontent.com/CryptoScamDB/blacklist/master/data/urls.yaml", "data", { filename: "blacklist_urls.yaml" });
 	debug("Done");
 }
 
@@ -36,6 +35,8 @@ module.exports.webhook = async (req,res) => {
 		}
 	}
 }
+
+module.exports.pullRaw = pullDataFiles;
 
 module.exports.pullData = async () => {
 	await pullDataFiles();

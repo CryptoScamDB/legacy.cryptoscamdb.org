@@ -11,7 +11,7 @@
     "start": "node src/app.js",
     "start:dev": "cross-env NODE_ENV=development DEBUG=* node src/app.js --trace-sync-io",
     "start:prod": "cross-env NODE_ENV=production DEBUG=-* node src/app.js",
-    "clean": "rimraf cache.db node_modules dist config.json"
+    "clean": "rimraf cache.db node_modules data config.json"
   },
   "repository": {
     "type": "git",

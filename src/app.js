@@ -48,6 +48,12 @@ module.exports.serve = async (electronApp) => {
 
 	/* Serve static content*/
 	app.use(express.static(path.join(__dirname,'views/static')));
+	
+	/* Seperately re-serve various other brand logos to flatten nested paths */
+	app.use('/assets', express.static(path.join(__dirname,'views/static/assets/coins')));
+	app.use('/assets', express.static(path.join(__dirname,'views/static/assets/exchanges')));
+	app.use('/assets', express.static(path.join(__dirname,'views/static/assets/explorers')));
+	app.use('/assets', express.static(path.join(__dirname,'views/static/assets/wallets')));
 
 	/* Configuration middleware */
 	app.use(async (req,res,next) => {

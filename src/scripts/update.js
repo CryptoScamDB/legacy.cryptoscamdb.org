@@ -7,9 +7,9 @@ const fs = require('fs-extra');
 const config = require('../utils/config');
 
 serialijse.declarePersistable(Scam);
-if(!process.send) throw new Error("This script can only run as a child process");
+if(!process.send) throw new Error("This script can only run as a child process");	/* Script must be called from another process */
 
-process.once('close', () => process.exit(1));
+process.once('close', () => process.exit(1));	/* Close if parent process exits */
 
 (async () => {
 	const cacheExists = await fs.pathExists('./cache.db');
@@ -18,11 +18,13 @@ process.once('close', () => process.exit(1));
 
 	debug("Updating scams...");
 
+	/* Update all scams which weren't updated recently */
 	await Promise.all(serialijse.deserialize(cacheFile).scams.reverse().filter(scam => scam.howRecent() > config.interval.cacheExpiration).map(async scam => {
-		if(config.lookups.HTTP.enabled) await scam.getStatus();
-		if(config.lookups.DNS.IP.enabled) await scam.getIP();
-		if(config.lookups.DNS.NS.enabled) await scam.getNameservers();
+		if(config.lookups.HTTP.enabled) await scam.getStatus();			/* Update status */
+		if(config.lookups.DNS.IP.enabled) await scam.getIP();			/* Update IP */
+		if(config.lookups.DNS.NS.enabled) await scam.getNameservers();	/* Update nameservers */
 
+		/* Return updated data to parent process */
 		process.send({
 			url: scam.url,
 			name: scam.name,

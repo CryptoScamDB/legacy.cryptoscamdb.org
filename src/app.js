@@ -73,7 +73,7 @@ module.exports.serve = async (electronApp) => {
 		else next();
 	});
 
-	/* Serve all routes (see src/utils/router.js) */
+	/* Serve all other routes (see src/utils/router.js) */
 	app.use(require('./utils/router'));
 
 	/* Serve all other pages as 404 */

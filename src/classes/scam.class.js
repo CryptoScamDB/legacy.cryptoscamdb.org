@@ -3,6 +3,7 @@ const dns = require('@cryptoscamdb/graceful-dns');
 const {lookup,getURLScan} = require('../utils/lookup');
 
 module.exports = class Scam {
+	/* Create new Scam instance */
 	constructor(scamObject = {}) {
 		if(scamObject.url) {
 			this.name = parse(scamObject.url).hostname.replace("www.", "");
@@ -14,24 +15,29 @@ module.exports = class Scam {
 		if(scamObject.addresses) this.addresses = scamObject.addresses;
 	}
 
+	/* Returns either `false` or a request response */
 	async lookup() {
 		return lookup(this.url);
 	}
 
+	/* Returns URL hostname (domain.example) */
 	getHostname() {
 		return parse(this.url).hostname;
 	}
 
+	/* Returns IP from URL */
 	async getIP() {
 		this.ip = await dns.getIP(this.url);
 		return this.ip;
 	}
 
+	/* Returns nameservers from URL */
 	async getNameservers() {
 		this.nameservers = await dns.getNS(this.url);
 		return this.nameservers;
 	}
 
+	/* Get URL status */
 	async getStatus() {
 		const result = await this.lookup();
 
@@ -39,36 +45,38 @@ module.exports = class Scam {
 		else this.statusCode = -1;
 
 		if(!result) {
-			this.status = 'Offline';
+			this.status = 'Offline';		/* No response; server is offline */
 		} else if(result && result.request && result.request.uri && result.request.uri.path && result.request.uri.path == '/cgi-sys/suspendedpage.cgi') {
-            this.status = 'Suspended';
+            this.status = 'Suspended';		/* URL redirects to /cgi-sys/suspendedpage.cgi; server is likely suspended */
 		} else if(result && (result.body == '' || (result.request && result.request.uri && result.request.uri.path && result.request.uri.path == '/cgi-sys/defaultwebpage.cgi'))) {
-			this.status = 'Inactive';
+			this.status = 'Inactive';		/* URL redirects to /cgi-sys/defaultwebpage.cgi; domain is likely parked or not set up yet */
 		} else if (result && this.subcategory && this.subcategory == 'MyEtherWallet') {
 			const isMEW = await lookup('http://' + parse(this.url).hostname.replace("www.", "") + '/js/etherwallet-static.min.js');
 			if(isMEW) {
-				this.status = 'Active';
+				this.status = 'Active';		/* /js/etherwallet-static.min.js can be reached; server is active */
 			} else {
-				this.status = 'Inactive';
+				this.status = 'Inactive';	/* /js/etherwallet-static.min.js can't be reached; server is likely inactive */
 			}
 		}  else if (result && this.subcategory && this.subcategory == 'MyCrypto') {
 			const isMYC = await lookup('http://' + parse(this.url).hostname.replace("www.", "") + '/js/mycrypto-static.min.js');
 			if(isMYC) {
-				this.status = 'Active';
+				this.status = 'Active';		/* /js/mycrypto-static.min.js can't be reached; server is likely inactive */
 			} else {
-				this.status = 'Inactive';
+				this.status = 'Inactive';	/* /js/mycrypto-static.min.js can't be reached; server is likely inactive */
 			}
 		} else {
-			this.status = 'Active';
+			this.status = 'Active';			/* URL can be reached; server is possibly active */
 		}
 
 		return this.status;
 	}
 
+	/* Retrieve URLScan results */
 	getURLScan() {
 		return getURLScan(this.getHostname());
 	}
 
+	/* Look up how recent domain status was updated */
 	howRecent() {
 		return Date.now()-(this.updated || 0);
 	}

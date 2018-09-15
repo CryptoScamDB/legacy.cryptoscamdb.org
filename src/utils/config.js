@@ -3,6 +3,7 @@ const dns = require('@cryptoscamdb/graceful-dns');
 const debug = require('debug')('config');
 
 if (!fs.existsSync('./config.json')) {
+	/* Config wasn't found; return default config and show configuration page */
 	module.exports = {
 		manual: false,
 		announcement: null,
@@ -27,6 +28,7 @@ if (!fs.existsSync('./config.json')) {
 		}
 	}
 } else {
+	/* Config was found */
 	const config = JSON.parse(fs.readFileSync('./config.json','utf8'));
 	config.manual = true;
 	if(!config.apiKeys.Google_SafeBrowsing) debug("Warning: No Google SafeBrowsing API key found");

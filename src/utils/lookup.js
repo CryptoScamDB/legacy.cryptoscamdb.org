@@ -76,7 +76,8 @@ module.exports.getGoogleSafeBrowsing = (url) => {
 module.exports.getVirusTotal = (url) => {
 	return new Promise((resolve,reject) => {
 		request({
-			uri: 'https://www.virustotal.com/vtapi/v2/url/report?apikey=' + config.VirusTotal_API_Key + '&resource=http://' + url,
+			uri: 'https://www.virustotal.com/vtapi/v2/url/report?apikey=' + encodeURIComponent(config.apiKeys.VirusTotal) + '&resource=' + url,
+			method: 'GET',
 			json: true
 		}, (err, response, body) => {
 			if(err) {

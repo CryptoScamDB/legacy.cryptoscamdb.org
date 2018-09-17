@@ -8,7 +8,7 @@ const config = require('./config');
 const github = require('./github');
 const router = express.Router();
 const isIpPrivate = require('private-ip');
-const {getGoogleSafeBrowsing,getURLScan} = require('./lookup');
+const {getGoogleSafeBrowsing,getURLScan, getVirusTotal} = require('./lookup');
 const debug = require('debug')('router')
 
 /* Homepage */
@@ -87,7 +87,7 @@ router.get('/domain/:url', async (req, res) => {
 	let virusTotal = undefined;
 
 	if((scamEntry || !verifiedEntry) && config.apiKeys.Google_SafeBrowsing) googleSafeBrowsing = await getGoogleSafeBrowsing(hostname);
-	if((scamEntry || !verifiedEntry) && config.apiKeys.VirusTotal) virusTotal = await virusTotal(hostname);
+	if((scamEntry || !verifiedEntry) && config.apiKeys.VirusTotal) virusTotal = await getVirusTotal(hostname);
 
 	if(verifiedEntry) res.render('domain', { type: 'verified', result: verifiedEntry, domain: hostname, urlScan: urlScan, metamask: false, googleSafeBrowsing: googleSafeBrowsing, virusTotal: virusTotal, startTime: startTime, dateFormat: dateFormat });
 	else if(scamEntry) res.render('domain', { type: 'scam', result: scamEntry, domain: hostname, urlScan: urlScan, metamask: checkForPhishing(hostname), googleSafeBrowsing: googleSafeBrowsing, virusTotal: virusTotal, startTime: startTime, dateFormat: dateFormat, abuseReport: generateAbuseReport(scamEntry) });

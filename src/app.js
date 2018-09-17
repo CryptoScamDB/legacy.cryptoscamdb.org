@@ -54,6 +54,8 @@ module.exports.serve = async (electronApp) => {
 	app.use('/assets', express.static(path.join(__dirname,'views/static/assets/exchanges')));
 	app.use('/assets', express.static(path.join(__dirname,'views/static/assets/explorers')));
 	app.use('/assets', express.static(path.join(__dirname,'views/static/assets/wallets')));
+	app.use('/assets', express.static(path.join(__dirname,'views/static/assets/favicon')));
+	app.use('/assets', express.static(path.join(__dirname,'views/static/assets/branding')));
 
 	/* Configuration middleware */
 	app.use(async (req,res,next) => {

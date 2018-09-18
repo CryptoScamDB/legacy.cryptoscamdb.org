@@ -1,0 +1,168 @@
+.footer-container {
+    width: 100%;
+    height: 215px;
+    font-family: Lato;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    background-color: #163150;
+    color: #ffffff;
+}
+
+.divider-grid {
+    grid-column-start: subdivider-two;
+    display: grid;
+    grid-template-columns: [full] 100%;
+    grid-template-rows: [top] 15% [middle] 70% [bottom] 15%;
+}
+
+.divider {
+    margin-top: 15%;
+    margin-bottom: 15%;
+    border-left: 1px solid #9b9b9b;
+    height: 100%;
+    left: 50%;
+    grid-row-start: middle;
+}
+
+.divider-grid-two {
+    grid-column-start: subdivider-four;
+    display: grid;
+    grid-template-columns: [full] 100%;
+    grid-template-rows: [top] 15% [middle] 70% [bottom] 15%;
+}
+
+.divider-two {
+    margin-top: 15%;
+    margin-bottom: 15%;
+    border-left: 1px solid #9b9b9b;
+    height: 100%;
+    left: 50%;
+    grid-row-start: middle;
+}
+
+.footer-grid-container {
+    display: grid;
+    grid-template-columns: [left-side] 31.3% [subdivider] 
+        1% [subdivider-two] 1% [center] 31.3% [subdivider-three] 
+        1% [subdivider-four] 1% [right-side] 31.3%;
+    grid-template-rows: [full] 100%;
+}
+
+.left-side {
+    grid-column-start: left-side;
+}
+
+.right-side {
+    grid-column-start: right-side;
+}
+
+.subdivider {
+    grid-column-start: subdivider;
+}
+
+.subdivider-two {
+    grid-column-start: subdivider-two;
+}
+
+.subdivider-three {
+    grid-column-start: subdivider-three;
+}
+
+.subdivider-four {
+    grid-column-start: subdivider-four;
+}
+
+.donate-text {
+    font-weight: 400;
+    float: left;
+    font-size: 16px;
+}
+
+.donate-grid {
+    display: grid;
+    grid-template-columns: [empty] 20% [content] 65% [empty] 15%;
+    grid-template-rows: [full] 100%;
+}
+
+.donate-btn {
+    display: float;
+    float: left;
+    width: 30%;
+    margin: 5px 5px 5px 0px;
+    height: 32px;
+    opacity: 0.25;
+    border-radius: 6px;
+    box-shadow: 0 1px 1px 0 rgba(232, 234, 237, 0.5),
+        inset 0 1px 3px 0 rgba(232, 234, 237, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: solid 1px #e8eaed;
+}
+
+.donate-btn-text {
+    color: white;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    vertical-align: center;
+    opacity: 0;
+}
+
+.donate-content {
+    grid-column-start: content;
+}
+
+.powered-by-grid {
+    display: grid;
+    grid-template-columns: [empty] 30% [content] 65% [empty] 5%;
+    grid-template-rows: [full] 100%;
+}
+
+.powered-by-content {
+    grid-column-start: content;
+}
+
+.float-right {
+    display: block;
+    align-content: right;
+    text-align: left;
+}
+
+.align-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.center {
+    display: grid;
+    grid-template-columns: [left-border] 10% [cont] 80% [right-border] 10%;
+    grid-template-rows: [top-border] 35% [cont] 10% [empty] 5% [cont-two] 10% [bottom-border] 35%;
+}
+
+.footer-nav {
+    grid-column-start: cont;
+    grid-row-start: cont;
+}
+
+.footer-nav-two {
+    grid-column-start: cont;
+    grid-row-start: cont-two;
+}
+
+.footer-nav-item {
+    height: 100%;
+    width: 50%;
+    display:  flex;
+    float: left;
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+}
+
+.accent-color:hover {
+    color: #ffd166;
+}

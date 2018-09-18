@@ -1,29 +1,29 @@
-<div class="ui fixed inverted menu">
-	<div class="ui container">
-		<a href="/" class="item">
-			<i class="home icon"></i> Home
+<div class="navbar nav-grid-container">
+	<div class="nav-icon">
+		<img src="/assets/logo/logotype-d.svg" style="height: 100%; width: 100%; display: grid;"/>
+	</div>
+	<div class="inner-nav-grid-container">
+		<a href="/scams" class="active-scams inner-nav-item">
+			<div class="active-scams-text">ACTIVE SCAMS</div>
 		</a>
-		<a href="/scams" class="item">
-			<i class="protect icon"></i> Active scams
+		<a href="/api" class="api inner-nav-item">
+			<div class="api-text">API</div>
 		</a>
-		<a href="/search" class="ui item">
-			<i class="search icon"></i> Search
+		<a href="/faq" class="about inner-nav-item">
+			<div class="about-text">ABOUT</div>
 		</a>
-		<a href="/api" class="item">
-			<i class="settings icon"></i> API
+		<a href="/search" class="domain-checker inner-nav-item">
+			<div class="domain-checker-text">DOMAIN CHECKER</div>
 		</a>
-		<a href="/faq" class="item">
-			<i class="help circle icon"></i> FAQ
+	</div>
+	<div class="report-inner-grid">
+		<a href="/report" class="report-rect inner-nav-item">
+			<i class="report-text"></i> <div class="report-text">REPORT</div>
 		</a>
-		<div class="right menu">
-			<a href="/report" class="ui item">
-				<i class="flag icon"></i> Report
-			</a>
-		</div>
 	</div>
 </div>
 <% if(environment === "production" && announcement) { %>
-<div class="ui container" style="background-color: #db2828; padding-top: 7px; padding-bottom: 7px; color: red; position: relative; margin-top: 55px; margin-bottom: -70px; width:100%; text-align: center;">
+<div class="ui container" style="background-color: #db2828; padding-top: 7px; padding-bottom: 7px; color: white; position: relative; margin-top: 55px; margin-bottom: -70px; width:100%; text-align: center;">
 	<%- announcement %>
 </div>
 <% } %>

@@ -25,6 +25,7 @@ module.exports = async (options) => {
 	else if(options['http-timeout'] == 'accurate') httpTimeoutAfter = 15*1000;
 	else if(options['http-timeout'] == 'less-accurate') httpTimeoutAfter = 5*1000;
 	
+	/* Define config */
 	const config = {
 		port: parseInt(options.port),
 		announcement: null,
@@ -65,5 +66,7 @@ module.exports = async (options) => {
 			}
 		}
 	}
+	
+	/* Write config to file */
 	await fs.writeJson('./config.json',config,{ spaces: 4 });
 }

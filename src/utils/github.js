@@ -5,6 +5,7 @@ const config = require('./config');
 const db = require('./db');
 const debug = require('debug')('github');
 
+/* Pull yaml files from Github repos to data/whitelist_urls.yaml and data/blacklist_urls.yaml */
 const pullDataFiles = async () => {
 	debug("Pulling data files...");
 	await download("https://raw.githubusercontent.com/CryptoScamDB/whitelist/master/data/urls.yaml", "data", { filename: "whitelist_urls.yaml" });
@@ -12,9 +13,10 @@ const pullDataFiles = async () => {
 	debug("Done");
 }
 
+/* What to do on incoming Github webhook (new commit pushed) */
 module.exports.webhook = async (req,res) => {
 	if(!config.apiKeys.Github_WebHook) {
-		debug("Warning: Incoming Github Webhook attempt - no secret found in config");
+		debug("Warning: Incoming Github Webhook attempt - but no secret was found in config");
 		res.status(403).end();
 	} else if(!('x-hub-signature' in req.headers)) {
 		debug("Warning: Incoming Github Webhook attempt without x-hub-signature header");

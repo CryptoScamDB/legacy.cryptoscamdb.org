@@ -8,8 +8,10 @@ const createDictionary = require('@cryptoscamdb/array-object-dictionary');
 const Scam = require('../classes/scam.class');
 const debug = require('debug')('db');
 
+/* Declare Scam class for serialijse */
 serialijse.declarePersistable(Scam);
 
+/* Define empty database structure */
 const db = {
 	scams: [],
 	verified: [],
@@ -25,6 +27,7 @@ const db = {
 	}
 };
 
+/* Read entries from yaml files and load them into DB object */
 const readEntries = async () => {
 	debug("Reading entries...");
 	const scamsFile = await fs.readFile(path.join(__dirname, '../../data/blacklist_urls.yaml'),'utf8');
@@ -41,6 +44,7 @@ const readEntries = async () => {
 	}
 }
 
+/* Create indexes for DB object */
 const updateIndex = async () => {
 	debug("Updating index...");
 	const scamDictionary = createDictionary(db.scams);
@@ -56,6 +60,7 @@ const updateIndex = async () => {
 	db.index.actives = db.scams.filter(scam => scam.status === 'Active');
 }
 
+/* Write DB on exit */
 const exitHandler = () => {
 	console.log("Cleaning up...");
 	fs.writeFileSync('./cache.db',serialijse.serialize(db));

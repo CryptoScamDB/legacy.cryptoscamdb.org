@@ -3,11 +3,13 @@ const config = require('./config');
 const debug = require('debug')('lookup');
 const Bottleneck = require('bottleneck');
 
+/* Create Bottleneck limiter for HTTP lookups with limits defined in config */
 const limiter = new Bottleneck({
 	minTime: config.lookups.HTTP.minTime,
 	maxConcurrent: config.lookups.HTTP.maxConcurrent
 });
 
+/* Do a URL lookup */
 module.exports.lookup = limiter.wrap(url => {
 	return new Promise(resolve => {
 		debug('Requesting ' + url + '...');
@@ -23,6 +25,7 @@ module.exports.lookup = limiter.wrap(url => {
 	});
 });
 
+/* Retrieve latest VirusTotal report (no API key required) */
 module.exports.getURLScan = (url) => {
 	return new Promise((resolve, reject) => {
 		request('https://urlscan.io/api/v1/search/?q=domain%3A' + url, { json: true }, (err, response, body) => {
@@ -35,6 +38,7 @@ module.exports.getURLScan = (url) => {
 	});
 }
 
+/* Retrieve Google SafeBrowsing status for URL */
 module.exports.getGoogleSafeBrowsing = (url) => {
 	return new Promise((resolve,reject) => {
 		debug("Google SafeBrowsing: %o",url);
@@ -73,6 +77,7 @@ module.exports.getGoogleSafeBrowsing = (url) => {
 	});
 }
 
+/* Retrieve latest VirusTotal report */
 module.exports.getVirusTotal = (url) => {
 	return new Promise((resolve,reject) => {
 		request({

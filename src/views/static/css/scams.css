@@ -2,13 +2,45 @@
   text-align: center !important;
 }
 
-#info {
-  width: 10px;
-}
-
 .activ {
 	color: green;
 	font-weight: bold;
+}
+
+.container-grid {
+	font-family: Lato;
+	display: grid;
+	height: 100%;
+	grid-template-columns: [left-buffer] 5% [page-content] 90% [right-buffer] 5%;
+	grid-template-rows: [navbar] 7% [stats] 15% [search] 12% [scams-table] 58% [footer] 8%;
+}
+
+.navbar-grid-frame {
+	grid-row-start: navbar;
+	grid-column-start: left-buffer;
+	grid-column-end: -1;
+}
+
+.stats-grid-frame {
+	grid-row-start: stats;
+	grid-column-start: left-buffer;
+	grid-column-end: -1;
+}
+
+.search-grid-frame {
+	grid-row-start: search;
+	grid-column-start: page-content;
+}
+
+.scams-table-grid-frame {
+	grid-row-start: scams-table;
+	grid-column-start: page-content;
+}
+
+.footer-grid-frame {
+	grid-row-start: footer;
+	grid-column-start: left-buffer;
+	grid-column-end: -1;
 }
 
 .offline {
@@ -31,4 +63,68 @@
 	margin-right: 6px;
 	width: 16px;
 	height: 16px;
+}
+
+thead tr { 
+	font-family: Lato;
+	font-weight: 800;
+}
+
+table {
+	-webkit-border-vertical-spacing: 0px;
+	-webkit-border-horizontal-spacing: 0px;
+	width: 100%;
+}
+
+tbody tr:nth-child(even) {
+	background-color: #ffffff;
+	box-shadow: inset 0 -1px 0 0 rgba(187, 199, 222, 0.5);
+}
+
+tbody tr:nth-child(even):hover {
+	box-shadow: 0 0 10px 0 rgba(190, 192, 197, 0.7), inset 0 -1px 0 0 rgba(187, 199, 222, 0.5);
+}
+
+tbody tr:nth-child(odd) {
+	background-color: #f4f8ff;
+	box-shadow: inset 0 -1px 0 0 rgba(187, 199, 222, 0.5);
+}
+
+tbody tr:nth-child(odd):hover {
+  	box-shadow: 0 0 10px 0 rgba(190, 192, 197, 0.7), inset 0 -1px 0 0 rgba(187, 199, 222, 0.5);
+}
+
+table td {
+	padding: 12px 12px 12px 12px;
+	font-family: Lato;
+	text-align: center;
+	font-size: 16px;
+	color: #163150;
+}
+
+tbody tr {
+	font-family: Lato;
+	text-align: center;
+	height: 61px;
+	font-size: 16px;
+	color: #163150;
+	font-weight: 500;
+}
+
+tbody tr:hover {
+	height: 75px;
+	font-weight: 600;
+}
+
+table thead th{
+	padding: 14px 14px 14px 14px;
+	color: #f4f8ff;
+	font-weight: 500;
+	letter-spacing: 2px;
+}
+
+thead th {
+	width: 25%;
+	height: 61px;
+	background-color: #697685;
 }

@@ -1,0 +1,34 @@
+<div class="search-content">
+    <div class="search-field">
+        <input type="text" placeholder="Search for a domain, ETH address, or IP address" onkeydown="if(event.keyCode==13)$('.search-btn').trigger('click');" />
+        <button class="search-btn">Search</button>
+    </div><br><br>  
+    <div id='verified' class="message ">
+        <i class="checkmark icon"></i>
+        <div class="content message-grid">
+            <div class="header message-label">
+                VERIFIED
+            </div>
+            <p id='verifiedmessage' class="message-content">This domain is a verified domain. You can trust the contents.</p>
+        </div>
+    </div>
+    <div id='blocked' class="message message-grid">
+        <i class="warning sign icon"></i>
+        <div class="content message-grid">
+            <div class="header message-label">
+                BLOCKED
+            </div>
+            <p id='blacklistmessage' class="message-content">This domain was put on the blacklist.</p>
+        </div>
+    </div>
+    <div id='neutral' class="message message-grid">
+        <i class="info circle icon"></i>
+        <div class="content message-grid">
+            <div class="message-label header">
+                NEUTRAL
+            </div>
+            <p id='neutralmessage' class="message-content">This domain wasn't recognized as a malicious domain, nor as verified. Be careful!</p>
+        </div>
+    </div>
+</div>  
+<script src="/js/search.js"></script>

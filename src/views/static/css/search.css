@@ -53,6 +53,7 @@
 }
 
 .search-field {
+    width: 65%;
     display: inline-flex;
     border-radius: 3px;
     box-shadow: inset 0 0 5px 0 rgba(124, 131, 141, 0.28);
@@ -177,7 +178,7 @@ input {
     transition-duration:0.1s, 0.1s;
     transition-property:box-shadow, border-color;
     transition-timing-function:ease, ease;
-    width:450.797px;
+    width: 65%;;
     word-spacing:0px;
     writing-mode:horizontal-tb;    
 }

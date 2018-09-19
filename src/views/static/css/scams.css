@@ -2,9 +2,15 @@
   text-align: center !important;
 }
 
-.activ {
-	color: green;
+.active {
+	color: white;
 	font-weight: bold;
+	width: 120px;
+	height: 30px;
+	border-radius: 13px;
+	background-color: red;
+	display: block;
+	padding: 0px 0px 0px 0px;
 }
 
 .container-grid {
@@ -34,7 +40,8 @@
 
 .scams-table-grid-frame {
 	grid-row-start: scams-table;
-	grid-column-start: page-content;
+	grid-column-start: left-buffer;
+	grid-column-end: -1;
 }
 
 .footer-grid-frame {
@@ -44,13 +51,37 @@
 }
 
 .offline {
-	color: red;
+	color: white;
 	font-weight: bold;
+	width: 120px;
+	height: 30px;
+	border-radius: 13px;
+	background-color: #5fae0f;
+	display: block;
+	padding: 0px 0px 0px 0px;
 }
 
 .suspended {
-	color: orange;
+	color: white;
 	font-weight: bold;
+	width: 120px;
+	height: 30px;
+	border-radius: 13px;
+	background-color: orange;
+	display: block;
+	padding: 0px 0px 0px 0px;
+}
+
+.statusicon {
+	width: 13.9px;
+	height: 13.9px;
+	align-items: center;
+	vertical-align: center;
+	justify-content: center;
+}
+
+.margin-12 {
+	margin: 12px 12px 12px 12px;
 }
 
 .unknown {

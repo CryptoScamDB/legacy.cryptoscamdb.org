@@ -43,59 +43,62 @@
 					</tr></thead>
 					<tbody>
 						<% scams.forEach(scam => { %>
-							
+		
 							<tr id="table-row" onclick="location.href='/domain/<%= scam.getHostname() %>'">
 									<% if(scam.getHostname().length > 40) { %>
-										<td width="35%"><%= scam.getHostname().substring(0, 40) %>...</td>
+										<td><%= scam.getHostname().substring(0, 40) %>...</td>
 									<% } else { %>
-										<td width="35%"><%= scam.getHostname() %></td>
+										<td><%= scam.getHostname() %></td>
 									<% } %>
 									<% if("category" in scam && scam.category) { %>
 										<% if(scam.category == "Phishing") { %>
-											<td width="20%"><i class="address book icon"></i> Phishing</td>
+											<td><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' class='categoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Phishing</td>
 										<% } else if(scam.category == "Scamming") { %>
-											<td width="20%"><i class="address book icon"></i> Scamming</td>
+											<td><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' class='categoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Scamming</td>
 										<% } else if(scam.category == "Fake ICO") { %>
-											<td width="20%"><i class="address book icon"></i> Fake ICO</td>
+											<td><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' class='categoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Fake ICO</td>
 										<% } else { %>
-											<td width="20%"><i class="address book icon"></i> <%= scam.category %></td>
+											<td><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' class='categoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <%= scam.category %></td>
 										<% } %>
 									<% } else { %>
-										<td width="20%"><i class="remove icon"></i> None</td>
+										<td><i class="remove icon"></i> None</td>
 									<% } %>
 									
 									<% if("subcategory" in scam && scam.subcategory) { %>
 										<% if(scam.subcategory == "Wallets") { %>
-											<td width="25%"><i class="credit card alternative icon"></i> Wallets</td>
+											<td><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Wallets</td>
 										<% } else if(scam.subcategory == "Trust-Trading") { %>
-											<td width="25%"><i class="handshake outline icon"></i> Trust-Trading</td>
+											<td><img src='/assets/symbols/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Trust-Trading</td>
+										<% } else if(scam.subcategory == "Ponzi") { %>
+											<td><img src='/assets/symbols/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Ponzi</td>
 										<% } else { %>
-											<td width="25%"><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.png' class='subcategoryicon' onerror="this.style.display='none'"> <%= scam.subcategory %></td>
+											<td><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.png' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <%= scam.subcategory %></td>
 										<% } %>
 									<% } else { %>
-										<td width="25%"><i class="remove icon"></i> None</td>
+										<td><i class="remove icon"></i> None</td>
 									<% } %>
 									
 									<% if("status" in scam && scam.status) { %>
 										<% if(scam.status == "Active") { %>
-											<td width="20%" class='offline'><i class='warning sign icon'></i> Active</td>
+											<td class='active margin-12' id="center-content"><img src='/assets/symbols/exclamation.svg' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span> Active </span></td>
 										<% } else if(scam.status == "Inactive") { %>
-											<td width="20%" class='suspended'><i class='remove icon'></i> Inactive</td>
+											<td class='suspended margin-12' id="center-content"><img src='/assets/symbols/check.svg' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span> Suspended</span></td>
 										<% } else if(scam.status == "Suspended") { %>
-											<td width="20%" class='suspended'><i class='remove icon'></i> Suspended</td>
+											<td class='suspended margin-12' id="center-content"><img src='/assets/symbols/x.svg' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span> Suspended</span></td>
 										<% } else if(scam.status == "Offline") { %>
-											<td width="20%" class='activ'><i class='checkmark icon'></i> Offline</td>
+											<td class='offline margin-12' id="center-content"><img src='/assets/symbols/check.svg' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span> Offline</span></td>
 										<% } %>
 									<% } else { %>
-										<td width="20%">Unknown</td>
+										<td>Unknown</td>
 									<% } %>	
 							</tr>
 							
 						<% }); %>
 					</tbody>
 				</table>
+				<br>
 				<% if(page !== "all") { %>
-					<div class="ui pagination menu">
+					<div class="">
 						<% 
 						let strPagination = "";
 						let intCurrentPage = parseInt(page || 0);

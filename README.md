@@ -14,7 +14,7 @@
 #### Our data
 ###### Blacklists: https://github.com/cryptoscamdb/blacklist
 ###### Whitelists: https://github.com/cryptoscamdb/whitelist
-###### Assets & Images: https://github.com/cryptoscamdb/blacklist
+###### Assets & Images: https://github.com/cryptoscamdb/assets
 -----
 #### Core Contributors:
 - [MrLuit](https://github.com/mrluit)

@@ -3,7 +3,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: [one] 25% [two] 25% [three] 25% [four] 25%;
-    grid-template-rows: [buffer] 20% [one] 35% [two] 25% [buffer] 20%;
+    grid-template-rows: [buffer] auto [one] auto [two] auto [buffer] auto;
 }
 
 .bordered {
@@ -11,25 +11,26 @@
 }
 
 .total-scams-value {
-    margin-top: 10%;
+    padding: 10% 10% 3% 10%;
+    height: 100%;
     text-align: center;
     grid-column-start: one;
     grid-row-start: one;
 }
 .active-scams-value {
-    margin-top: 10%;
+    padding: 10% 10% 3% 10%;
     text-align: center;
     grid-column-start: two;
     grid-row-start: one;
 }
 .addresses-value {
-    margin-top: 10%;
+    padding: 10% 10% 3% 10%;
     text-align: center;
     grid-column-start: three;
     grid-row-start: one;
 }
 .inactive-scams-value {
-    margin-top: 10%;
+    padding: 10% 10% 3% 10%;
     text-align: center;
     grid-column-start: four;
     grid-row-start: one;
@@ -80,10 +81,10 @@
     color: #163150;
 }
 
-.active-scams {
+.actives {
 	color: #ef4747
 }
 
-.inactive-scams {
+.inactives {
 	color: #6bf26b
 }

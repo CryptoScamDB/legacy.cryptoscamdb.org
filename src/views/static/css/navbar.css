@@ -127,7 +127,7 @@
     text-align: center;
 }
 
-a:-webkit-any-link {
+a {
     color: #ffffff;
     cursor: pointer;
     text-decoration: none;

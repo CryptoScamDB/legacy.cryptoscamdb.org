@@ -1,15 +1,3 @@
-.project {
-    margin-right: 5px;
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-}
-.ui.action.input {
-    width: 40%;
-}
-.ui.message {
-    padding: 3em 1.5em !important;
-}
 .chevron.right.small.icon {
     margin-left: 3px;
 }
@@ -106,9 +94,6 @@ a#details:hover {
     grid-row-start: center-two;
 }
 
-.message content {
-    width: 100%;
-}
 
 input {
     background-clip:border-box;

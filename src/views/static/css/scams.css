@@ -2,46 +2,56 @@
   text-align: center !important;
 }
 
+.status-container {
+	width: 150px;
+	height: 32px;
+}
+
 .active {
 	color: white;
 	font-weight: bold;
-	width: 120px;
-	height: 30px;
 	border-radius: 13px;
 	background-color: red;
 	display: block;
 	padding: 0px 0px 0px 0px;
 }
 
-.container-grid {
+.scams-container-grid {
 	font-family: Lato;
 	display: grid;
-	height: 100%;
 	grid-template-columns: [left-buffer] 5% [page-content] 90% [right-buffer] 5%;
-	grid-template-rows: [navbar] 7% [stats] 15% [search] 12% [scams-table] 58% [footer] 8%;
+	grid-template-rows: [navbar] auto [stats] auto [search] auto [scams-table] auto [footer] auto;
+}
+
+.center-content {
+    display: inline-block;
 }
 
 .navbar-grid-frame {
 	grid-row-start: navbar;
 	grid-column-start: left-buffer;
 	grid-column-end: -1;
+	height: auto;
 }
 
 .stats-grid-frame {
 	grid-row-start: stats;
 	grid-column-start: left-buffer;
 	grid-column-end: -1;
+	height: auto;
 }
 
 .search-grid-frame {
 	grid-row-start: search;
 	grid-column-start: page-content;
+	height: auto;
 }
 
 .scams-table-grid-frame {
 	grid-row-start: scams-table;
 	grid-column-start: left-buffer;
 	grid-column-end: -1;
+	height: auto;
 }
 
 .footer-grid-frame {
@@ -53,22 +63,18 @@
 .offline {
 	color: white;
 	font-weight: bold;
-	width: 120px;
-	height: 30px;
 	border-radius: 13px;
 	background-color: #5fae0f;
-	display: block;
+	display: inline-block;
 	padding: 0px 0px 0px 0px;
 }
 
 .suspended {
 	color: white;
 	font-weight: bold;
-	width: 120px;
-	height: 30px;
 	border-radius: 13px;
 	background-color: orange;
-	display: block;
+	display: inline-block;
 	padding: 0px 0px 0px 0px;
 }
 
@@ -82,11 +88,6 @@
 
 .margin-12 {
 	margin: 12px 12px 12px 12px;
-}
-
-.unknown {
-	color: gray;
-	font-weight: bold;
 }
 
 .subcategoryicon {
@@ -158,4 +159,8 @@ thead th {
 	width: 25%;
 	height: 61px;
 	background-color: #697685;
+}
+
+.next-page {
+	height: 400px;
 }

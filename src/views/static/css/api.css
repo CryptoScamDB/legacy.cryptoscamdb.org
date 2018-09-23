@@ -54,6 +54,7 @@ body {
 }
 
 .footer-container {
+    margin-top: 2%;
 	grid-column: one / -1;
 	grid-row-start: footer;
 }
@@ -63,6 +64,10 @@ body {
 	color: #f4f8ff;
 	max-height: 250px;
 	border-radius: 3px;
+}
+
+.margin-textbox {
+    margin-left: 1em;
 }
 
 .indexed-url {
@@ -99,7 +104,6 @@ body {
 	display:block;
 	font-family:Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
 	font-size:14px;
-	height:49px;
 	line-height:19.999px;
 	margin-bottom:14px;
 	margin-left:0px;

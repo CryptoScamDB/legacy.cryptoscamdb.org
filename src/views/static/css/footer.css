@@ -1,15 +1,20 @@
 .footer-container {
     width: 100%;
-    height: 215px;
+    height: 100%;
     font-family: Lato;
     font-weight: 500;
     font-size: 14px;
     background-color: #163150;
+    color: #ffffff !important;
+}
+
+a:-webkit-link {
     color: #ffffff;
 }
 
 .divider-grid {
     grid-column-start: subdivider-two;
+    grid-row: full / -1;
     display: grid;
     grid-template-columns: [full] 100%;
     grid-template-rows: [top] 15% [middle] 70% [bottom] 15%;
@@ -26,6 +31,7 @@
 
 .divider-grid-two {
     grid-column-start: subdivider-four;
+    grid-row: full / -1;
     display: grid;
     grid-template-columns: [full] 100%;
     grid-template-rows: [top] 15% [middle] 70% [bottom] 15%;
@@ -45,31 +51,37 @@
     grid-template-columns: [left-side] 31.3% [subdivider] 
         1% [subdivider-two] 1% [center] 31.3% [subdivider-three] 
         1% [subdivider-four] 1% [right-side] 31.3%;
-    grid-template-rows: [full] 100%;
+    grid-template-rows: [full] auto [mobile-one] auto [mobile-two] auto;
 }
 
 .left-side {
     grid-column-start: left-side;
+    grid-row: full / -1;
 }
 
 .right-side {
     grid-column-start: right-side;
+    grid-row: full / -1;
 }
 
 .subdivider {
     grid-column-start: subdivider;
+    grid-row: full / -1;
 }
 
 .subdivider-two {
     grid-column-start: subdivider-two;
+    grid-row: full / -1;
 }
 
 .subdivider-three {
     grid-column-start: subdivider-three;
+    grid-row: full / -1;
 }
 
 .subdivider-four {
     grid-column-start: subdivider-four;
+    grid-row: full / -1;
 }
 
 .donate-text {
@@ -86,8 +98,10 @@
 
 .donate-btn {
     display: flex;
-    float: left;
-    width: 30%;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
     margin: 5px 5px 5px 0px;
     height: 32px;
     border-radius: 6px;
@@ -97,14 +111,25 @@
     border: solid 1px #e8eaed;
     /*background: rgb(204, 204, 204);  Fallback for older browsers without RGBA-support */
     background: rgba(138, 138, 138, 0.5);
-    vertical-align: center;
 }
 .donate-btn:hover {
     color: #ffd166;
 }
 
+.accent-color {
+    color: #ffffff;
+}
+
+.accent-color:hover {
+    color: #ffd166;
+}
+
 .donate-content {
     grid-column-start: content;
+}
+
+.donate-buttons {
+    display: flex;
 }
 
 .powered-by-grid {
@@ -127,10 +152,13 @@
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+    margin-bottom: 2%;
 }
 
 .center {
     display: grid;
+    grid-column: center;
+    grid-row: full / -1;
     grid-template-columns: [left-border] 10% [cont] 80% [right-border] 10%;
     grid-template-rows: [top-border] 35% [cont] 10% [empty] 5% [cont-two] 10% [bottom-border] 35%;
 }
@@ -161,13 +189,77 @@ span {
 
 .donate-btn-text {
     color: white;
-    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
 }
 
 .donate-icon {
     vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#center-content {
-    display: inline-block;
+#footer-item-img {
+    height: 70%;
+    width: 55%;
+}
+
+.powered-by-txt{
+    display: block;
+    align-content: right;
+    text-align: left;
+    height: 30%;
+}
+
+/* Mobile/Tablet view */
+
+@media only screen and (max-width: 768px) {
+
+    .footer-container {
+        height: 100%;
+    }
+
+    /* stacks footer content */
+    .left-side {
+        grid-row: full;
+        height: 100%;
+        grid-column: left-side / -1;
+    }
+    .center {
+        grid-row: mobile-two;
+        height: 125px;        
+        grid-column: left-side / -1;    
+    }
+    .right-side {
+        grid-row: mobile-one;
+        height: 100%;
+        grid-column: left-side / -1;
+    }
+
+    .footer-nav {
+        grid-row: top-border / empty;
+
+    }
+    .footer-nav-two {
+        grid-row: cont-two / -1; 
+    }
+
+    /* gets rid of separating borders */
+    .divider {
+        border-left: none;
+    }
+    .divider-two {
+        border-left: none;
+    }
+
+    /* aligns  */
+
+    .footer-nav-item {
+        display:  flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

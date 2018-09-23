@@ -1,3 +1,57 @@
+body {
+    font-family: Lato;
+    font-weight: 400;
+    color: #282138 !important;
+}
+
+.domain-container-grid {
+  display: grid;
+  grid-template-columns: [left-buffer] 10% [page-content] 80% [right-buffer] 10%;
+  grid-template-rows: [navbar] auto [content] auto [footer] auto;
+}
+
+.navbar-container-grid {
+  grid-column: left-buffer / -1;
+  grid-row-start: navbar;
+}
+
+.content-container-grid {
+  grid-column-start: page-content;
+  grid-row-start: content;
+}
+
+.footer-container-grid {
+  grid-column: left-buffer / -1;
+  grid-row-start: footer;
+  margin-top: 2%;
+}
+
+.domain-content-grid {
+    display: grid;
+    grid-template-columns: [left-content] 60% [middle] 10% [right-content] 30%;
+    grid-template-rows: [header] auto [top] auto [bottom] auto;
+}
+
+.header-content {
+    grid-column: left-content / -1;
+    grid-row: header;
+    color: #282138;
+}
+
+.left-content {
+    grid-column: left-content;
+    grid-row: top;
+}
+.right-content {
+    grid-column: right-content;
+    grid-row: top;
+}
+.bottom-content {
+    grid-column: left-content / -1;
+    grid-row: bottom;
+}
+
+
 .ui.bulleted.list {
   margin-top: 4px;
   margin-bottom: 0;
@@ -35,8 +89,9 @@
     filter: gray;
     -webkit-filter: grayscale(1);
     filter: grayscale(1);
-    border: 2px solid #000;
+    margin-top: 25px;
 }
+
 #scam-screenshot:hover {
     cursor: -moz-zoom-in;
     cursor: -webkit-zoom-in;
@@ -49,4 +104,45 @@
 	font-size: 8pt;
 	font-style: italic;
 	margin-top: 7%;
+}
+
+.malicious-domain-msg {
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 25px 0px 25px 0px;
+    background-color: #ffe8e6;
+    color: #db2828;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px #db2828 inset, 0 0 0 0 transparent;
+}
+
+.verified-domain-msg {
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 25px 0px 25px 0px;
+    background-color: #e5f9e7;
+    color: #1ebc30;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px #1ebc30 inset, 0 0 0 0 transparent;
+}
+
+.neutral-domain-msg {
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 25px 0px 25px 0px;
+    background-color: #f1e2d3;
+    color: #a5673f;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px #a5673f inset, 0 0 0 0 transparent;
+}
+
+.domain-msg-text {
+    padding: 5px;
+}
+
+.urlscan-img {
+    border-radius: 3px;
 }

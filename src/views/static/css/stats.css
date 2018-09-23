@@ -88,3 +88,43 @@
 .inactives {
 	color: #6bf26b
 }
+
+@media only screen and (max-width: 768px) {
+    .total-scams-value {
+        grid-column: one / three;
+        grid-row: buffer;
+    }
+    .total-scams-label {
+        grid-column: one / three;
+        grid-row: one;
+    }
+    .active-scams-value {
+        grid-column: three / -1;
+        grid-row: buffer;
+    }
+    .active-scams-label {
+        grid-column: three / -1;
+        grid-row: one;
+    }
+    .addresses-value {
+        grid-column: one / three;
+        grid-row: two;
+    }
+    .addresses-label {
+        grid-column: one / three;
+        grid-row: three;
+    }
+    .inactive-scams-value {
+        grid-column: three / -1;
+        grid-row: two;
+    }
+    .inactive-scams-label {
+        grid-column: three / -1;
+        grid-row: three;
+    }
+
+    .scams-value {
+        font-weight: 600;
+        font-size: 48px;
+    }
+}

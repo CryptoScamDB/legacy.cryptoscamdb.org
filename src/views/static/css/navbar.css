@@ -6,7 +6,6 @@
     font-weight: 900;
     font-size: 14px;
     font-style: normal;
-    font-stretch: normal;
     line-height: normal;
     background-color: #163150;
     color: #ffffff;
@@ -17,23 +16,23 @@
     width: 100%;
     grid-template-columns: [empty-left] 10% [nav-icon] 10% [inner-nav-grid-container] 
         55% [report-inner-grid] 15% [empty-right] 10%;
-    grid-template-rows: [top-buffer] 12px [icon-size] 50px [bot-buffer] 12px;
+    grid-template-rows: [top-buffer] auto [icon-size] auto [bot-buffer] auto;
 }
 
 .inner-nav-grid-container {
     grid-column-start: inner-nav-grid-container;
     grid-row-start: icon-size;
     display: inline-grid;
-    grid-template-columns: [empty] 11% [active-scams] 18% [empty] 3% [api] 
-        9% [empty] 3% [about] 14% [empty] 3% [domain-checker] 21% [empty] 18%;
-    grid-template-rows: [full] 100%;
+    grid-template-columns: [empty] auto [active-scams] auto [empty-one] 3% [api] 
+        auto [empty-two] auto [about] auto [empty-three] auto [domain-checker] auto [empty-four] auto;
+    grid-template-rows: [full] auto [full-two] auto;
 }
 
 .report-inner-grid {
     grid-column-start: report-inner-grid;
     grid-row-start: icon-size;
     display: inline-grid;
-    grid-template-columns: [full] 100%;
+    grid-template-columns: [full] auto;
 }
 
 .nav-item {
@@ -42,23 +41,25 @@
 
 .nav-icon {
     display: grid;
-    grid-column-start: nav-icon;
-    grid-row-start: icon-size;
+    grid-column: nav-icon;
+    grid-row: top-buffer / -1;
     width: 100%;
     height: 100%;
 }
 
 .inner-nav-item {
-    display: grid;
-    height: 100%;
     font-family: Lato;
     font-size: 14px;
     font-weight: 800;
     font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
     letter-spacing: 2px;
     color: #ffffff;
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box; /* OLD - Firefox 19- */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Chrome */
+    display: flex;
+    align-items: center;
 }
 
 .inner-nav-item:hover {
@@ -66,19 +67,13 @@
     background-color: #ffd166; 
 }
 
-.active-scams {
-    grid-column-start: active-scams;
-}
-
-.active-scams-text {
-    grid-row-start: text-size;
-    text-align: center;
-}
-
 .report-rect {
     border-radius: 3px;
     background-color: #027796;
     grid-column-start: full;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .report-text {
@@ -86,49 +81,120 @@
     font-family: Lato;
     font-size: 14px;
     font-weight: 900;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
     letter-spacing: 2px;
     text-align: right;
-    color: #ffffff;
-    vertical-align: center;
+}
+
+.report-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.report-rect:hover #path-2 {
+    fill: #282138;
+}
+.report-rect:hover {
+    color: #282138;
+}
+
+.active-scams {
+    grid-column-start: active-scams;
+    grid-row: full / -1;
     text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    display: flex;
 }
 
 .api {
     grid-column-start: api;
-}
-
-.api-text {
-    grid-row-start: text-size;
-    vertical-align: center;
+    grid-row: full / -1;
     text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    display: flex;
 }
 
 .about {
     grid-column-start: about;
-}
-
-.about-text {
-    grid-row-start: text-size;
-    vertical-align: center;
-    text-align: center;  
+    grid-row: full / -1;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    display: flex;
 }
 
 .domain-checker {
     grid-column-start: domain-checker;
-    
-}
-
-.domain-checker-text {
-    grid-row-start: text-size;
-    vertical-align: center;
+    grid-row: full / -1;
     text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    display: flex;
 }
 
-a {
+.navbar a {
     color: #ffffff;
     cursor: pointer;
     text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .nav-icon {
+        grid-column: empty-left / inner-nav-grid-container;
+        grid-row: top-buffer / -1;
+    }
+
+    .active-scams {
+        grid-column: about / empty-four;
+        grid-row: full;
+    }
+    .about {
+        grid-column: active-scams / empty-two;
+        grid-row: full;
+    }
+    .domain-checker {
+        grid-column: about / empty-four;
+        grid-row: full-two;
+    }
+    .api {
+        grid-column: active-scams / empty-two;
+        grid-row: full-two;
+    }
+
+    .navbar {
+        height: 125px;
+    }
+
+    .report-inner-grid {
+        grid-column: report-inner-grid / -1;
+        grid-row: top-buffer / -1;
+    }
+
+    .inner-nav-grid-container {
+        grid-row: top-buffer / -1;
+    }
+
+    .inner-nav-item {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0px;
+    }
+    .report-text {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0px;
+    }
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .nav-icon {
+        grid-column: empty-left / inner-nav-grid-container;
+        grid-row: top-buffer / -1;
+    }
 }

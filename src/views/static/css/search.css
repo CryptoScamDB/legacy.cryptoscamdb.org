@@ -73,8 +73,8 @@
     display: grid;
     height: 100%;
     width: 100%;
-    grid-template-columns: [buffer] 20% [center] 60% [buffer] 20%;
-    grid-template-rows: [buffer] 15% [center] 35% [center-two] 35% [buffer] 20%;
+    grid-template-columns: [buffer] 20% [center] 60% [buffer-two] 20%;
+    grid-template-rows: [buffer] 15% [center] 35% [center-two] 35% [buffer-two] 20%;
 }
 
 a#details {
@@ -168,3 +168,21 @@ input {
     writing-mode:horizontal-tb;    
 }
 
+@media only screen and (max-width: 768px) {
+    .search-content {
+        margin-top: 15%;
+        margin-bottom: 15%;
+    }
+
+    .message-label {
+        grid-column: buffer / -1;
+        grid-row: buffer / center-two;
+        padding-top: 5%;
+    }
+    .message-content {
+        grid-column: buffer / -1;
+        grid-row: center-two / buffer-one;
+        padding-bottom: 5%;
+    }
+
+}

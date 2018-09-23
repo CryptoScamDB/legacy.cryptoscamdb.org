@@ -3,6 +3,7 @@ body {
   min-height: 100vh;
   flex-direction: column;
   margin: 0px 0px 0px 0px;
+  width: 100%;
 }
 
 .item {
@@ -13,11 +14,6 @@ body {
 .ui.footer {
   text-align: center;
   width: 100%;
-}
-
-#footer-item-img {
-  height: 75px;
-  width: 178px;
 }
 
 .footer-cont:nth-child(odd) > p {

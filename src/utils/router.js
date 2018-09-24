@@ -133,7 +133,7 @@ router.get('/scams/:page?/:sorting?/', (req, res) => {
 });
 
 /* Search pages */
-router.get('/search/', (req, res) => res.render('search', { featured: db.read().index.featured }));
+router.get('/verified/', (req, res) => res.render('verified', { featured: db.read().index.featured }));
 
 /* RSS */
 router.get('/rss/', (req, res) => res.render('rss', { scams: db.read().scams }));

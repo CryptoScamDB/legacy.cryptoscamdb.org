@@ -164,6 +164,7 @@
                     <div class=""><%= nameserver %></div>
                     <% }); %>
                 </div>
+                <br>
                 <% } %>
                 <% if(result && result.addresses && result.addresses.length > 0) { %>
                     <b>Related addresses</b>:
@@ -172,9 +173,10 @@
                         <div class="""><a href="/address/<%= address %>"><%= address %></a></div>
                         <% }); %>
                     </div>
+                    <br>
                 <% } %>                        
             </div>
-
+            <br>
             <div class="bottom-content">
                 <% if(urlScan && urlScan.results && urlScan.results.length > 0) { %>
                     <b>Urlscan Screenshot</b>: <br>

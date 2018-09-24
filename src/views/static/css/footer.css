@@ -112,8 +112,9 @@ a:-webkit-link {
     /*background: rgb(204, 204, 204);  Fallback for older browsers without RGBA-support */
     background: rgba(138, 138, 138, 0.5);
 }
+.donate-btn:hover .donate-btn-text {color: #282138;}
 .donate-btn:hover {
-    color: #ffd166;
+    background-color: #ffd166;
 }
 
 .accent-color {

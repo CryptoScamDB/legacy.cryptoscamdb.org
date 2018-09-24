@@ -14,17 +14,17 @@
 }
 .nav-grid-container {
     width: 100%;
-    grid-template-columns: [empty-left] 10% [nav-icon] 10% [inner-nav-grid-container] 
+    grid-template-columns: [empty-left] 8% [nav-icon] 12% [inner-nav-grid-container] 
         55% [report-inner-grid] 15% [empty-right] 10%;
-    grid-template-rows: [top-buffer] auto [icon-size] auto [bot-buffer] auto;
+    grid-template-rows: [top-buffer] 10px [icon-size] auto [bot-buffer] 10px;
 }
 
 .inner-nav-grid-container {
     grid-column-start: inner-nav-grid-container;
     grid-row-start: icon-size;
     display: inline-grid;
-    grid-template-columns: [empty] auto [active-scams] auto [empty-one] 3% [api] 
-        auto [empty-two] auto [about] auto [empty-three] auto [domain-checker] auto [empty-four] auto;
+    grid-template-columns: [empty] auto [scams] auto [empty-one] 3% [api] 
+        auto [empty-two] auto [faq] auto [empty-three] auto [domain-checker] auto [empty-four] auto;
     grid-template-rows: [full] auto [full-two] auto;
 }
 
@@ -101,8 +101,8 @@
     color: #282138;
 }
 
-.active-scams {
-    grid-column-start: active-scams;
+.scams {
+    grid-column-start: scams;
     grid-row: full / -1;
     text-align: center;
     vertical-align: middle;
@@ -119,8 +119,8 @@
     display: flex;
 }
 
-.about {
-    grid-column-start: about;
+.faq {
+    grid-column-start: faq;
     grid-row: full / -1;
     text-align: center;
     vertical-align: middle;
@@ -149,20 +149,20 @@
         grid-row: top-buffer / -1;
     }
 
-    .active-scams {
-        grid-column: about / empty-four;
+    .scams {
+        grid-column: faq / empty-four;
         grid-row: full;
     }
-    .about {
-        grid-column: active-scams / empty-two;
+    .faq {
+        grid-column: scams / empty-two;
         grid-row: full;
     }
     .domain-checker {
-        grid-column: about / empty-four;
+        grid-column: faq / empty-four;
         grid-row: full-two;
     }
     .api {
-        grid-column: active-scams / empty-two;
+        grid-column: scams / empty-two;
         grid-row: full-two;
     }
 

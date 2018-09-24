@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<% include ../partials/header.ejs %>
+		<link rel="stylesheet" href="/css/verified.css">
+	</head>
+	<body class="verified-container-grid">
+        <div class="nav-container">
+            <% include ../partials/navbar %>
+        </div>
+
+        <div class="header-container">Trusted domains</div>
+            
+        <div class="content-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>URL</th>
+                        <th>Description</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <% featured.forEach(entry => { %>
+                        <tr>
+                            <td>
+                                <div class="featured-name">
+                                    <img class='project-icon' src='/assets/<%= entry.name.toLowerCase().replace(/ /g, "") %>.png'><%= entry.name %>
+                                </div>
+                            </td>
+                            <td class="featured-url">
+                                <a target='_blank' href='<%= entry.url %>'><%= entry.url %></a>
+                            </td>
+                            <td class="featured-description">
+                                <%= entry.description %>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer-container">
+            <% include ../partials/footer.ejs %>
+        </div>   
+    
+    </body>
+</html>

@@ -1,13 +1,8 @@
-.ui.bulleted.list {
-  margin-top: 4px;
-  margin-bottom: 0;
-}
-
-.address-container {
+.ip-container {
     display: grid;
     grid-template-columns: [left-buffer] 10% [page-content] 80% [right-buffer] 10%;
     grid-template-rows: [navbar] auto [content] auto [footer] auto;
-}
+  }
   
 .nav-container{
     grid-column: left-buffer / -1;

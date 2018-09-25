@@ -8,6 +8,16 @@ body {
   font-family: Lato;
 }
 
+a {
+    text-decoration: none;
+}
+
+a img {
+    height: 18px;
+    width: 18px;
+    fill: white;
+}
+
 .item {
   padding-top: .2em;
   margin-left: .1em;
@@ -107,6 +117,26 @@ body {
 .inner-nav-item:hover {
     color: #163150;
     background-color: #ffd166; 
+}
+
+.inner-nav-item:hover #gear-icon {
+    fill: #163150;   
+}
+
+.inner-nav-item:hover #sword-icon {
+    fill: #163150;   
+}
+
+.inner-nav-item:hover #shield-icon {
+    fill: #163150;   
+}
+
+.inner-nav-item:hover #question-mark-icon {
+    fill: #163150;   
+}
+
+a svg {
+    padding-right: 5px;
 }
 
 .report-rect {

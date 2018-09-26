@@ -20,33 +20,21 @@
             </div>
 
             <div class="right-content">
-                <div id="" class="">
+                <div id="" class="hide">
                     <i class=""></i>
                     <div class="">
                         Share
                     </div>
-                    <div class="">
-                        <p>Copy the following url to share with other people:</p>
-                        <div class=""><input id="shr" readonly="readonly" type="text"></div>
-                    </div>
-                    <div class="">
-                        <div class="">
-                            <i class=""></i> Cancel
-                        </div>
-                        <div onclick="copyshr()" class="">
-                            <i class=""></i> Copy
-                        </div>
-                    </div>
                 </div>
                 <% if(typeof abuseReport !== "undefined") { %>
-                <div id="abusemodal" class="">
+                <div id="abusemodal" class="hide">
                     <i class=""></i>
                     <div class="">
                         Abuse Report
                     </div>
                     <div class="">
                         <div class="">
-                            <div class="feld">
+                            <div class="">
                                 <textarea id="abuse"><%= abuseReport %></textarea>
                             </div>
                         </div>
@@ -64,13 +52,20 @@
                 <div class="">
                     <div id="actions" class="">
                         <% if(typeof abuseReport !== "undefined") { %>
-                        <button id="" class=""><i class=""></i> Abuse Report</button>
+                        <button id="" class="domain-page"><i class=""></i> Abuse Report</button>
                         <% } %>
-                        <a target="_blank" href="http://web.archive.org/web/*/<%= result.url %>" class=""><i class=""></i> Archive</a>
-                        <a target="_blank" href="https://github.com/MrLuit/EtherScamDB/tree/master/_data" class="">
-                            <i class=""></i> Improve
-                        </a>
-                        <button id="" class="">
+                        
+                        <button id="" class="domain-page">
+                            <a class="button-link" target="_blank" href="http://web.archive.org/web/*/<%= result.url %>" class=""><i class=""></i> Archive</a>
+                        </button>
+                        
+                        <button id="" class="domain-page">
+                            <a class="button-link" target="_blank" href="https://github.com/MrLuit/EtherScamDB/tree/master/_data" class="">
+                                <i class=""></i> Improve
+                            </a>
+                        </button>
+                        
+                        <button id="" class="domain-page">
                             <i class=""></i> Share
                         </button>
                     </div>

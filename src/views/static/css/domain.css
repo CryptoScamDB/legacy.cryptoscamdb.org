@@ -4,7 +4,7 @@ body {
     color: #282138 !important;
 }
 
-a {
+div a {
     color: #4183c4;
     text-decoration: none;
 }
@@ -60,7 +60,11 @@ a:hover {
 }
 .right-content {
     grid-column: right-content;
-    grid-row: top;
+    grid-row: header;
+}
+.security-content {
+    grid-column: right-content;
+    grid-row: top;    
 }
 .bottom-content {
     grid-column: left-content / -1;
@@ -162,4 +166,27 @@ a:hover {
     border-radius: 3px;
     padding: 5px;
     box-shadow: 0 0 0 1px #000000 inset, 0 0 0 0 transparent;
+}
+
+.hide {
+    display: none;
+    overflow: hidden;
+}
+
+button.domain-page {
+    background-color: #282138;
+    color: #FFFFFF;
+    border-radius: 4px;
+    padding: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+button.domain-page a {
+    color: #FFFFFF !important;
+}
+
+button.domain-page:hover {
+    color: #282138;
+    background-color: #ffd166;
+    border: 1px solid #000000;
 }

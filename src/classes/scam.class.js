@@ -12,7 +12,9 @@ module.exports = class Scam {
 		if(scamObject.category) this.category = scamObject.category;
 		if(scamObject.subcategory) this.subcategory = scamObject.subcategory;
 		if(scamObject.description) this.description = scamObject.description;
-		if(scamObject.addresses) this.addresses = scamObject.addresses;
+        if(scamObject.addresses) this.addresses = scamObject.addresses;
+        if(scamObject.reporter) this.reporter = scamObject.reporter;
+        if(scamObject.coin) this.coin = scamObject.coin;
 	}
 
 	/* Returns either `false` or a request response */

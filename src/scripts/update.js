@@ -28,13 +28,17 @@ process.once('close', () => process.exit(1));	/* Close if parent process exits *
 		process.send({
 			url: scam.url,
 			name: scam.name,
-			ip: scam.ip,
+            ip: scam.ip,
+            category: scam.category,
+			subcategory: scam.subcategory,
 			nameservers: scam.nameservers,
-			status: scam.status,
+            status: scam.status,
+            reporter: scam.reporter,
+            coin: scam.coin,
 			statusCode: scam.statusCode,
 			updated: Date.now()
 		});
-	}));
-
-	debug("Done updating!");
+    }));
+	debug("Updating scams completed!")
+	process.exit(1)
 })();

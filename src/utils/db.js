@@ -46,7 +46,7 @@ const readEntries = async () => {
 			db.scams[index].category = entry.category;
 			db.scams[index].subcategory = entry.subcategory;
             db.scams[index].description = entry.description;
-            db.scams[index].reportedby = entry.reportedby;
+            db.scams[index].reporter = entry.reporter;
             db.scams[index].coin = entry.coin;
 		});
 		yaml.safeLoad(verifiedFile).forEach(entry => {

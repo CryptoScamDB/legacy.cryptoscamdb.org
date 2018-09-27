@@ -33,7 +33,7 @@ process.once('close', () => process.exit(1));	/* Close if parent process exits *
 			subcategory: scam.subcategory,
 			nameservers: scam.nameservers,
             status: scam.status,
-            reportedby: scam.reportedby,
+            reporter: scam.reporter,
             coin: scam.coin,
 			statusCode: scam.statusCode,
 			updated: Date.now()

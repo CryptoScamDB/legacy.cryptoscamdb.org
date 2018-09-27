@@ -19,7 +19,7 @@ process.once('close', () => process.exit(1));	/* Close if parent process exits *
 	debug("Updating scams...");
 
 	/* Update all scams which weren't updated recently */
-	Promise.all(serialijse.deserialize(cacheFile).scams.reverse().filter(scam => scam.howRecent() > config.interval.cacheExpiration).map(async scam => {
+	await Promise.all(serialijse.deserialize(cacheFile).scams.reverse().filter(scam => scam.howRecent() > config.interval.cacheExpiration).map(async scam => {
 		if(config.lookups.HTTP.enabled) await scam.getStatus();			/* Update status */
 		if(config.lookups.DNS.IP.enabled) await scam.getIP();			/* Update IP */
 		if(config.lookups.DNS.NS.enabled) await scam.getNameservers();	/* Update nameservers */
@@ -38,8 +38,7 @@ process.once('close', () => process.exit(1));	/* Close if parent process exits *
 			statusCode: scam.statusCode,
 			updated: Date.now()
 		});
-    })).then(() => {
-		debug("Updating scams completed!")
-		process.exit(1)
-	})
+    }));
+	debug("Updating scams completed!")
+	process.exit(1)
 })();

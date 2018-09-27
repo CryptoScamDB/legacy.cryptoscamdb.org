@@ -9,7 +9,7 @@ const debug = require('debug')('github');
 const pullDataFiles = async () => {
 	debug("Pulling data files...");
 	await download("https://raw.githubusercontent.com/CryptoScamDB/whitelist/master/data/urls.yaml", "data", { filename: "whitelist_urls.yaml" });
-	await download("https://raw.githubusercontent.com/CryptoScamDB/blacklist/master/data/urls.yaml", "data", { filename: "blacklist_urls.yaml" });
+	await download("https://gist.githubusercontent.com/hahnmichaelf/43eb34ebbc88d9b7bf23748469f7bf8e/raw/urls.yaml", "data", { filename: "blacklist_urls.yaml" });
 	debug("Done");
 }
 

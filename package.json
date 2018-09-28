@@ -11,7 +11,12 @@
     "start": "ts-node src/app.ts",
     "start:dev": "cross-env NODE_ENV=development DEBUG=* nodemon --trace-sync-io",
     "start:prod": "cross-env NODE_ENV=production DEBUG=-* node src/app.ts",
-    "clean": "rimraf cache.db node_modules data config.json"
+    "clean": "rimraf cache.db node_modules data config.json",
+    "prettier:diff": "prettier --write --config ./.prettierrc --list-different 'src/**/*.ts'",
+    "tscheck": "tsc --noEmit --project tsconfig.json",
+    "tslint": "tslint --project .",
+    "precommit": "lint-staged",
+    "postcommit": "git update-index --again"
   },
   "repository": {
     "type": "git",
@@ -46,7 +51,19 @@
   },
   "devDependencies": {
     "@types/node": "^10.11.2",
+    "husky": "^1.0.1",
+    "lint-staged": "^7.3.0",
     "nodemon": "^1.18.4",
-    "rimraf": "^2.6.2"
+    "prettier": "^1.14.3",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-microsoft-contrib": "^5.2.1"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write --config ./.prettierrc --config-precedence file-override",
+      "git add"
+    ]
   }
 }

@@ -57,8 +57,7 @@ export default class Scam implements Entry {
 
     /* Get URL status */
     async getStatus(): Promise<'Active' | 'Inactive' | 'Offline' | 'Suspended'> {
-        // TODO: Replace 'any' with proper type
-        const result: any = await this.lookup();
+        const result = await this.lookup();
 
         if (result && result.statusCode) {
             this.statusCode = result.statusCode;

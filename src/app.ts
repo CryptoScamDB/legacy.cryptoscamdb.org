@@ -10,6 +10,7 @@ import * as db from './utils/db';
 import * as github from './utils/github';
 import config from './utils/config';
 import writeConfig from './utils/writeConfig';
+import router from './utils/router';
 
 const debug = Debug('app');
 const app = express();
@@ -17,7 +18,7 @@ const app = express();
 export const update = async (): Promise<void> => {
     /* Create and write to cache.db */
     debug('Spawning update process...');
-    const updateProcess = fork(path.join(__dirname, 'scripts/update.js'));
+    const updateProcess = fork(path.join(__dirname, 'scripts/update.ts'));
     debug('Writing to cache.db');
     updateProcess.on('message', data => db.write(data.url, data));
 
@@ -97,7 +98,7 @@ export const serve = async (electronApp?: any): Promise<void> => {
     });
 
     /* Serve all other routes (see src/utils/router.js) */
-    app.use(require('./utils/router'));
+    app.use(router);
 
     /* Serve all other pages as 404 */
     app.get('*', (req, res) => res.status(404).render('404'));

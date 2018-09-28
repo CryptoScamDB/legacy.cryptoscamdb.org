@@ -2,7 +2,9 @@
   "name": "@cryptoscamdb/web",
   "version": "1.0.0",
   "description": "Keeping track of all current cryptocurrency scams in an open-source database",
-  "keywords": "crypto, cryptocurrency, ethereum, scam, scamming, ether, eth, tracking, track, db, database, phishing, info, fake, ico",
+  "keywords": [
+    "crypto", "cryptocurrency", "ethereum", "scam", "scamming", "ether", "eth", "tracking", "track", "db", "database", "phishing", "info", "fake", "ico"
+  ],
   "homepage": "https://cryptoscamdb.org",
   "license": "MIT",
   "author": "Luit",

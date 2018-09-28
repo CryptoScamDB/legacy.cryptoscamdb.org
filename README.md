@@ -7,8 +7,8 @@
 - Install npm modules with:
 `npm install`
 - Do one of the following:
-    - Start production webapp with: `npm start:prod`
-    - Start development webapp with: `npm start:dev`
+    - Start production webapp with: `npm run start:prod`
+    - Start development webapp with: `npm run start:dev`
 - Navigate to http://localhost:5111 in your browser
 -----
 #### Our data

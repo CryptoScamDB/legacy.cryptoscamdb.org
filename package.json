@@ -50,7 +50,14 @@
     "typescript": "^3.1.1"
   },
   "devDependencies": {
+    "@types/debug": "0.0.30",
+    "@types/download": "^6.2.2",
+    "@types/express": "^4.16.0",
+    "@types/fs-extra": "^5.0.4",
+    "@types/helmet": "0.0.42",
+    "@types/js-yaml": "^3.11.2",
     "@types/node": "^10.11.2",
+    "@types/request": "^2.47.1",
     "husky": "^1.0.1",
     "lint-staged": "^7.3.0",
     "nodemon": "^1.18.4",

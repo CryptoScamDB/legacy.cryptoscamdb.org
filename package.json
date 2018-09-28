@@ -6,11 +6,11 @@
   "homepage": "https://cryptoscamdb.org",
   "license": "MIT",
   "author": "Luit",
-  "main": "./src/app.js",
+  "main": "./src/app.ts",
   "scripts": {
-    "start": "node src/app.js",
-    "start:dev": "cross-env NODE_ENV=development DEBUG=* nodemon src/app.js --trace-sync-io --config nodemon.json",
-    "start:prod": "cross-env NODE_ENV=production DEBUG=-* node src/app.js",
+    "start": "ts-node src/app.ts",
+    "start:dev": "cross-env NODE_ENV=development DEBUG=* nodemon --trace-sync-io",
+    "start:prod": "cross-env NODE_ENV=production DEBUG=-* node src/app.ts",
     "clean": "rimraf cache.db node_modules data config.json"
   },
   "repository": {
@@ -45,7 +45,8 @@
     "typescript": "^3.1.1"
   },
   "devDependencies": {
-    "rimraf": "^2.6.2",
-    "nodemon": "^1.18.4"
+    "@types/node": "^10.11.2",
+    "nodemon": "^1.18.4",
+    "rimraf": "^2.6.2"
   }
 }

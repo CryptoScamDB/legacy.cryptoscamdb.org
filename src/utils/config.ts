@@ -4,38 +4,38 @@ import * as Debug from 'debug';
 
 const debug = Debug('config');
 
-interface Config {
-    manual;
-    announcement;
-    port;
+export interface Config {
+    manual: boolean;
+    announcement: string;
+    port: number;
     interval: {
-        cacheExpiration;
-        cacheRenewCheck;
-        databasePersist;
+        cacheExpiration: number;
+        cacheRenewCheck: number;
+        databasePersist: number;
     };
     apiKeys: {
-        Google_SafeBrowsing;
-        Github_WebHook;
-        VirusTotal;
+        Google_SafeBrowsing: string;
+        Github_WebHook: string;
+        VirusTotal: string;
     };
     autoPull: {
-        enabled;
-        interval?;
+        enabled: boolean;
+        interval?: number;
     };
     lookups: {
         DNS: {
             IP: {
-                enabled;
+                enabled: boolean;
             };
             NS: {
-                enabled;
+                enabled: boolean;
             };
         };
         HTTP: {
-            enabled;
-            minTime?;
-            maxConcurrent?;
-            timeoutAfter?;
+            enabled: boolean;
+            minTime?: number;
+            maxConcurrent?: number;
+            timeoutAfter?: number;
         };
     };
 }

@@ -14,7 +14,7 @@ import writeConfig from './utils/writeConfig';
 const debug = Debug('app');
 const app = express();
 
-export const update = async () => {
+export const update = async (): Promise<void> => {
     /* Create and write to cache.db */
     debug('Spawning update process...');
     const updateProcess = fork(path.join(__dirname, 'scripts/update.js'));
@@ -34,7 +34,7 @@ export const update = async () => {
     });
 };
 
-export const serve = async electronApp => {
+export const serve = async (electronApp?: any): Promise<void> => {
     /* Download datafiles if they aren't found yet */
     if (!fs.existsSync('data')) {
         await github.pullRaw();
@@ -115,5 +115,5 @@ export const serve = async electronApp => {
 };
 
 if (!module.parent) {
-    this.serve();
+    this.serve().catch(console.error);
 }

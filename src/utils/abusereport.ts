@@ -1,5 +1,10 @@
-/* Generate abuse report snippet for Scam instance */
-export default scam => {
+import Scam from '../classes/scam.class';
+
+/**
+ * Generate abuse report snippet for Scam instance
+ * @param scam
+ */
+export default (scam: Scam): string => {
     let abusereport = '';
 
     abusereport +=

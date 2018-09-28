@@ -206,7 +206,7 @@ router.get('/scams/:page?/:sorting?/', (req, res) => {
                 scams.filter(scam => scam.status === 'Inactive')
             ).length.toLocaleString('en-US'),
             scams: scamList,
-            MAX_RESULTS_PER_PAGE: MAX_RESULTS_PER_PAGE,
+            MAX_RESULTS_PER_PAGE,
             scamsLength: scams.length
         });
     }
@@ -371,4 +371,4 @@ router.post('/update/', (req, res) => {
 /* Safe redirect pages */
 router.get('/redirect/:url', (req, res) => res.render('redirect', { url: req.params.url }));
 
-module.exports = router;
+export default router;

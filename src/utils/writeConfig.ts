@@ -1,10 +1,24 @@
 import * as fs from 'fs-extra';
 
-export default async options => {
-    let httpMinTime = null;
-    let httpMaxConcurrent = null;
-    let httpTimeoutAfter = null;
-    let dnsServers = [];
+export interface ConfigOptions {
+    'http-bottleneck': 'fast' | 'regular' | 'slow';
+    'dns-servers': 'cloudflare' | 'google' | 'opendns';
+    'http-timeout': 'highly-accurate' | 'accurate' | 'less-accurate';
+    port: string;
+    'cache-expiration': string;
+    'cache-renewal': string;
+    'database-persist': string;
+    'google-safebrowsing': string;
+    virustotal: string;
+    pull: string;
+    mode: 'safe' | 'full';
+}
+
+export default async (options: ConfigOptions): Promise<void> => {
+    let httpMinTime: number | null = null;
+    let httpMaxConcurrent: number | null = null;
+    let httpTimeoutAfter: number | null = null;
+    let dnsServers: string[] = [];
 
     if (options['http-bottleneck'] === 'fast') {
         httpMinTime = 0;

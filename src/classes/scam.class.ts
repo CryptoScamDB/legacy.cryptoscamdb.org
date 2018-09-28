@@ -1,88 +1,62 @@
 import { parse } from 'url';
 import * as dns from '@cryptoscamdb/graceful-dns';
-import { lookup, getURLScan } from '../utils/lookup';
+import { lookup, getURLScan, URLScanResponse } from '../utils/lookup';
+import { Response } from 'request';
+import Entry from '../models/entry';
 
-export interface ScamData {
-    readonly url?;
-    readonly name?;
-    readonly category?;
-    readonly subcategory?;
-    readonly description?;
-    readonly addresses?;
-    readonly reporter?;
-    readonly coin?;
-    ip?;
-    nameservers?;
-    statusCode?;
-    status?;
-    updated?;
-}
-
-export default class Scam implements ScamData {
-    readonly url?;
-    readonly name?;
-    readonly category?;
-    readonly subcategory?;
-    readonly description?;
-    readonly addresses?;
-    readonly reporter?;
-    readonly coin?;
-    ip?;
-    nameservers?;
-    statusCode?;
-    status?;
-    updated?;
+export default class Scam implements Entry {
+    url?: string;
+    name?: string;
+    category?: string;
+    subcategory?: string;
+    description?: string;
+    addresses?: string[];
+    reporter?: string;
+    coin?: string;
+    ip?: string;
+    nameservers?: string[];
+    statusCode?: number;
+    status?: 'Active' | 'Inactive' | 'Offline' | 'Suspended';
+    updated?: number;
 
     /* Create new Scam instance */
-    constructor(scamObject: ScamData = {}) {
-        if (scamObject.url) {
-            this.name = parse(scamObject.url).hostname.replace('www.', '');
-            this.url = scamObject.url;
+    constructor(scamData: Entry = {}) {
+        if (scamData.url) {
+            this.name = parse(scamData.url).hostname.replace('www.', '');
+            this.url = scamData.url;
         }
-        if (scamObject.category) {
-            this.category = scamObject.category;
-        }
-        if (scamObject.subcategory) {
-            this.subcategory = scamObject.subcategory;
-        }
-        if (scamObject.description) {
-            this.description = scamObject.description;
-        }
-        if (scamObject.addresses) {
-            this.addresses = scamObject.addresses;
-        }
-        if (scamObject.reporter) {
-            this.reporter = scamObject.reporter;
-        }
-        if (scamObject.coin) {
-            this.coin = scamObject.coin;
-        }
+        this.category = scamData.category;
+        this.subcategory = scamData.subcategory;
+        this.description = scamData.description;
+        this.addresses = scamData.addresses;
+        this.reporter = scamData.reporter;
+        this.coin = scamData.coin;
     }
 
     /* Returns either `false` or a request response */
-    async lookup() {
+    async lookup(): Promise<Response | undefined> {
         return lookup(this.url);
     }
 
     /* Returns URL hostname (domain.example) */
-    getHostname() {
+    getHostname(): string {
         return parse(this.url).hostname;
     }
 
     /* Returns IP from URL */
-    async getIP() {
+    async getIP(): Promise<string> {
         this.ip = await dns.getIP(this.url);
         return this.ip;
     }
 
     /* Returns nameservers from URL */
-    async getNameservers() {
+    async getNameservers(): Promise<string[]> {
         this.nameservers = await dns.getNS(this.url);
         return this.nameservers;
     }
 
     /* Get URL status */
-    async getStatus() {
+    async getStatus(): Promise<'Active' | 'Inactive' | 'Offline' | 'Suspended'> {
         // TODO: Replace 'any' with proper type
         const result: any = await this.lookup();
 
@@ -147,12 +121,12 @@ export default class Scam implements ScamData {
     }
 
     /* Retrieve URLScan results */
-    getURLScan() {
+    getURLScan(): Promise<URLScanResponse> {
         return getURLScan(this.getHostname());
     }
 
     /* Look up how recent domain status was updated */
-    howRecent() {
+    howRecent(): number {
         return Date.now() - (this.updated || 0);
     }
 }

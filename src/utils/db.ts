@@ -7,14 +7,30 @@ import * as serialijse from 'serialijse';
 import createDictionary from '@cryptoscamdb/array-object-dictionary';
 import Scam from '../classes/scam.class';
 import * as Debug from 'debug';
+import Entry from '../models/entry';
 
 const debug = Debug('db');
 
 /* Declare Scam class for serialijse */
 serialijse.declarePersistable(Scam);
 
+interface Database {
+    scams: Scam[];
+    verified: Entry[];
+    index: {
+        featured: Entry[];
+        blacklist: string[];
+        whitelist: string[];
+        whitelistAddresses: string[];
+        addresses: string[];
+        ips: string[];
+        inactives: Scam[];
+        actives: Scam[];
+    };
+}
+
 /* Define empty database structure */
-const db = {
+const db: Database = {
     scams: [],
     verified: [],
     index: {
@@ -30,7 +46,7 @@ const db = {
 };
 
 /* Read entries from yaml files and load them into DB object */
-export const readEntries = async () => {
+export const readEntries = async (): Promise<void> => {
     debug('Reading entries...');
     const scamsFile = await fs.readFile(
         path.join(__dirname, '../../data/blacklist_urls.yaml'),
@@ -78,7 +94,7 @@ export const readEntries = async () => {
 };
 
 /* Create indexes for DB object */
-export const updateIndex = async () => {
+export const updateIndex = async (): Promise<void> => {
     //debug("Updating index...");
     const scamDictionary = createDictionary(db.scams);
     const verifiedDictionary = createDictionary(db.verified);
@@ -103,13 +119,13 @@ export const updateIndex = async () => {
 };
 
 /* Write DB on exit */
-export const exitHandler = () => {
+export const exitHandler = (): void => {
     console.log('Cleaning up...');
     fs.writeFileSync('./cache.db', serialijse.serialize(db));
     console.log('Exited.');
 };
 
-export const init = async () => {
+export const init = async (): Promise<void> => {
     await readEntries();
     await updateIndex();
     await module.exports.persist();
@@ -122,15 +138,15 @@ export const init = async () => {
     process.once('SIGTERM', exitHandler);
 };
 
-export const read = () => db;
+export const read = (): Database => db;
 
-export const write = (scamUrl, data) => {
+export const write = (scamUrl, data): void => {
     const scam = db.scams.find(dbScam => dbScam.url === scamUrl);
     Object.keys(data).forEach(key => (scam[key] = data[key]));
-    updateIndex();
+    updateIndex(); // TODO: Handle promise
 };
 
-export const persist = async () => {
+export const persist = async (): Promise<void> => {
     debug('Persisting cache...');
     await fs.writeFile('./cache.db', serialijse.serialize(db));
 };

@@ -7,6 +7,9 @@
     "target": "es2017",
     "allowJs": true,
     "noEmitOnError": true,
+    "lib": [
+      "es2017"
+    ]
   },
   "include": [
     "./src/**/*"

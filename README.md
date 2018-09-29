@@ -1,6 +1,6 @@
 # CryptoScamDB
 
-![GitHub package version](https://img.shields.io/github/package-json/v/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square) [![GitHub license](https://img.shields.io/github/license/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square)](https://github.com/CryptoScamDB/cryptoscamdb.org/blob/master/LICENSE)
+![GitHub package version](https://img.shields.io/github/package-json/v/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square) [![GitHub license](https://img.shields.io/github/license/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square)](https://github.com/CryptoScamDB/cryptoscamdb.org/blob/master/LICENSE) [![Greenkeeper badge](https://badges.greenkeeper.io/CryptoScamDB/cryptoscamdb.org.svg)](https://greenkeeper.io/)
 
 ---
 ### Usage

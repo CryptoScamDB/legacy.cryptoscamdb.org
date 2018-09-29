@@ -12,12 +12,12 @@
     "blacklist": {
       "symbol": "🏴",
       "description": "Contributed to blacklist",
-      "link": "[<%= symbol %>](https://github.com/CryptoScamDB/blacklist/commits?author=<%= contributor.login %>)"
+      "link": "https://github.com/CryptoScamDB/blacklist/commits?author=<%= contributor.login %>"
     },
 	"whitelist": {
       "symbol": "🏳️",
       "description": "Contributed to whitelist",
-      "link": "[<%= symbol %>](https://github.com/CryptoScamDB/whitelist/commits?author=<%= contributor.login %>)"
+      "link": "https://github.com/CryptoScamDB/whitelist/commits?author=<%= contributor.login %>"
     }
   },
   "contributors": [

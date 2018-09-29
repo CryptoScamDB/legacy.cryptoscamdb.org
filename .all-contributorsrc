@@ -8,10 +8,27 @@
   ],
   "imageSize": 100,
   "commit": false,
+  "types": {
+    "design": {
+      "symbol": "🎨",
+      "description": "Design",
+      "link": "https://github.com/CryptoScamDB/assets/commits?author=<%= contributor.login %>"
+    },
+    "blacklist": {
+      "symbol": "🏴",
+      "description": "Blacklist",
+      "link": "https://github.com/CryptoScamDB/blacklist/commits?author=<%= contributor.login %>"
+    },
+	"whitelist": {
+      "symbol": "🏳️",
+      "description": "Whitelist",
+      "link": "https://github.com/CryptoScamDB/whitelist/commits?author=<%= contributor.login %>"
+    }
+  },
   "contributors": [
     {
       "login": "MrLuit",
-      "name": "Luit Hollander",
+      "name": "Luit",
       "avatar_url": "https://avatars1.githubusercontent.com/u/12037024?v=4",
       "profile": "https://luit.me",
       "contributions": [
@@ -20,11 +37,12 @@
     },
     {
       "login": "409H",
-      "name": "H",
+      "name": "409H",
       "avatar_url": "https://avatars3.githubusercontent.com/u/2313704?v=4",
       "profile": "https://keybase.io/409H",
       "contributions": [
-        "code"
+        "blacklist",
+        "whitelist"
       ]
     },
     {
@@ -33,7 +51,8 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/29407814?v=4",
       "profile": "https://michaelhahntech.com",
       "contributions": [
-        "code"
+        "code",
+        "design"
       ]
     },
     {
@@ -43,6 +62,25 @@
       "profile": "https://morten.sh",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "Tobaloidee",
+      "name": "tobaloidee",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/36028424?v=4",
+      "profile": "https://github.com/Tobaloidee",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "Azarielle",
+      "name": "Sharon Manrique",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/25834495?v=4",
+      "profile": "https://github.com/Azarielle",
+      "contributions": [
+        "doc",
+        "test"
       ]
     }
   ]

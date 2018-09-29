@@ -27,6 +27,7 @@
     "start": "ts-node src/app.ts",
     "start:dev": "cross-env NODE_ENV=development DEBUG=* nodemon --trace-sync-io",
     "start:prod": "cross-env NODE_ENV=production DEBUG=-* ts-node src/app.ts",
+    "test": "tsc --noEmit --project tsconfig.json",
     "clean": "rimraf cache.db node_modules data config.json",
     "prettier:diff": "prettier --write --config ./.prettierrc --list-different 'src/**/*.ts'",
     "tscheck": "tsc --noEmit --project tsconfig.json",

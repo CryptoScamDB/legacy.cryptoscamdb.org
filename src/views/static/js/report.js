@@ -225,9 +225,9 @@ window.addEventListener("load", function() {
     });
     $("#10return").click(function() {
         $(".question10").fadeOut('', function() {
-            if (reportType == 'generalDomainReport') {
+            if (reportType === 'generalDomainReport') {
                 $(".question9a").fadeIn();
-            } else if (reportType == 'generalAddressReport') {
+            } else if (reportType === 'generalAddressReport') {
                 $(".question9b").fadeIn();
             }
         });

@@ -3,7 +3,21 @@
   "version": "1.0.0",
   "description": "Keeping track of all current cryptocurrency scams in an open-source database",
   "keywords": [
-    "crypto", "cryptocurrency", "ethereum", "scam", "scamming", "ether", "eth", "tracking", "track", "db", "database", "phishing", "info", "fake", "ico"
+    "crypto",
+    "cryptocurrency",
+    "ethereum",
+    "scam",
+    "scamming",
+    "ether",
+    "eth",
+    "tracking",
+    "track",
+    "db",
+    "database",
+    "phishing",
+    "info",
+    "fake",
+    "ico"
   ],
   "homepage": "https://cryptoscamdb.org",
   "license": "MIT",
@@ -18,7 +32,9 @@
     "tscheck": "tsc --noEmit --project tsconfig.json",
     "tslint": "tslint --project .",
     "precommit": "lint-staged",
-    "postcommit": "git update-index --again"
+    "postcommit": "git update-index --again",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "repository": {
     "type": "git",
@@ -60,6 +76,7 @@
     "@types/js-yaml": "^3.11.2",
     "@types/node": "^10.11.2",
     "@types/request": "^2.47.1",
+    "all-contributors-cli": "^5.4.0",
     "husky": "^1.0.1",
     "lint-staged": "^7.3.0",
     "nodemon": "^1.18.4",

@@ -1,0 +1,49 @@
+{
+  "projectName": "cryptoscamdb.org",
+  "projectOwner": "CryptoScamDB",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "MrLuit",
+      "name": "Luit Hollander",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/12037024?v=4",
+      "profile": "https://luit.me",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "409H",
+      "name": "H",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2313704?v=4",
+      "profile": "https://keybase.io/409H",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "hahnmichaelf",
+      "name": "Michael - Blurpesec",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/29407814?v=4",
+      "profile": "https://michaelhahntech.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Mrtenz",
+      "name": "Maarten Zuidhoorn",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7503723?v=4",
+      "profile": "https://morten.sh",
+      "contributions": [
+        "code"
+      ]
+    }
+  ]
+}

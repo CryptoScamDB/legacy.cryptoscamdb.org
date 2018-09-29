@@ -8,6 +8,16 @@
   ],
   "imageSize": 100,
   "commit": false,
+  "types": {
+    "blacklist": {
+      "symbol": "🏴",
+      "description": "Contributed to blacklist"
+    },
+	"whitelist": {
+      "symbol": "🏳️",
+      "description": "Contributed to whitelist"
+    }
+  },
   "contributors": [
     {
       "login": "MrLuit",
@@ -24,7 +34,9 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/2313704?v=4",
       "profile": "https://keybase.io/409H",
       "contributions": [
-        "code"
+        "code",
+        "blacklist",
+        "whitelist"
       ]
     },
     {
@@ -43,6 +55,24 @@
       "profile": "https://morten.sh",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "Tobaloidee",
+      "name": "tobaloidee",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/36028424?v=4",
+      "profile": "https://github.com/Tobaloidee",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "Azarielle",
+      "name": "Sharon Manrique",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/25834495?v=4",
+      "profile": "https://github.com/Azarielle",
+      "contributions": [
+        "doc"
       ]
     }
   ]

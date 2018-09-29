@@ -1,6 +1,6 @@
-# CryptoScamDB
+<img src="https://raw.githubusercontent.com/CryptoScamDB/assets/22b4b5431250d42b7c9dbed4bc59797338bc2bf7/logo/logotype-horizontal-main.png" width="80%">
 
-![GitHub package version](https://img.shields.io/github/package-json/v/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square) [![Greenkeeper badge](https://badges.greenkeeper.io/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square)](https://greenkeeper.io/) [![GitHub license](https://img.shields.io/github/license/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square)](https://github.com/CryptoScamDB/cryptoscamdb.org/blob/master/LICENSE)
+![Travis (.com)](https://img.shields.io/travis/com/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square) ![GitHub package version](https://img.shields.io/github/package-json/v/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square) [![David](https://img.shields.io/david/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square)](https://david-dm.org/CryptoScamDB/cryptoscamdb.org) [![GitHub license](https://img.shields.io/github/license/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square)](https://github.com/CryptoScamDB/cryptoscamdb.org/blob/master/LICENSE)
 
 ---
 ### Usage
@@ -14,9 +14,9 @@
 - Navigate to http://localhost:5111 in your browser
 ---
 ### Data
-- **Blacklists**: https://github.com/cryptoscamdb/blacklist
-- **Whitelists**: https://github.com/cryptoscamdb/whitelist
-- **Assets & Images**: https://github.com/cryptoscamdb/assets
+- **Blacklists**: https://github.com/CryptoScamDB/blacklist
+- **Whitelists**: https://github.com/CryptoScamDB/whitelist
+- **Assets & Images**: https://github.com/CryptoScamDB/assets
 ---
 ### Contributors
 

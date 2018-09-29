@@ -9,14 +9,19 @@
   "imageSize": 100,
   "commit": false,
   "types": {
+    "design": {
+      "symbol": "🎨",
+      "description": "Design",
+      "link": "https://github.com/CryptoScamDB/assets/commits?author=<%= contributor.login %>"
+    },
     "blacklist": {
       "symbol": "🏴",
-      "description": "Contributed to blacklist",
+      "description": "Blacklist",
       "link": "https://github.com/CryptoScamDB/blacklist/commits?author=<%= contributor.login %>"
     },
 	"whitelist": {
       "symbol": "🏳️",
-      "description": "Contributed to whitelist",
+      "description": "Whitelist",
       "link": "https://github.com/CryptoScamDB/whitelist/commits?author=<%= contributor.login %>"
     }
   },

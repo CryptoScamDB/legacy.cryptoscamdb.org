@@ -1,9 +1,22 @@
-![CryptoScamDB](https://raw.githubusercontent.com/CryptoScamDB/assets/master/logo/logotype-readme.png)
-
-![Travis (.com)](https://img.shields.io/travis/com/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square) ![GitHub package version](https://img.shields.io/github/package-json/v/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square) [![David](https://img.shields.io/david/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square)](https://david-dm.org/CryptoScamDB/cryptoscamdb.org) [![GitHub license](https://img.shields.io/github/license/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square)](https://github.com/CryptoScamDB/cryptoscamdb.org/blob/master/LICENSE)
+<p align="center">
+	<img src="https://raw.githubusercontent.com/CryptoScamDB/assets/master/logo/logotype-readme.png" alt="CryptoScamDB">
+	<br>
+	<a href="https://travis-ci.com/CryptoScamDB/cryptoscamdb.org">
+		<img src="https://img.shields.io/travis/com/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square" alt="Travis CI">
+	</a>
+	<a href="https://github.com/CryptoScamDB/cryptoscamdb.org/blob/master/package.json#L3">
+		<img src="https://img.shields.io/github/package-json/v/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square" alt="Version">
+	</a>
+	<a href="https://david-dm.org/CryptoScamDB/cryptoscamdb.org">
+		<img src="https://img.shields.io/david/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square" alt="Dependencies">
+	</a>
+	<a href="https://github.com/CryptoScamDB/cryptoscamdb.org/blob/master/LICENSE">
+		<img src="https://img.shields.io/github/license/CryptoScamDB/cryptoscamdb.org.svg?style=flat-square" alt="License">
+	</a>
+</p>
 
 ---
-### Usage
+## Usage
 
 - Clone the repo with: `git clone --recursive https://github.com/cryptoscamdb/cryptoscamdb.org.git`
 - Head into the newly created directory: `cd cryptoscamdb.org`
@@ -11,14 +24,14 @@
 - Do one of the following:
     - Start development web app with: `npm run start:dev` (recommended)
 	- Start production web app with: `npm run start:prod` (warning: please use a dev instance on first run, for configuration purposes)
-- Navigate to http://localhost:5111 in your browser
+- Navigate to http://localhost:5111 in your browser, and you should be shown a fresh instance of CryptoScamDB :sparkles:
 ---
-### Data
+## Data
 - **Blacklists**: https://github.com/CryptoScamDB/blacklist
 - **Whitelists**: https://github.com/CryptoScamDB/whitelist
 - **Assets & Images**: https://github.com/CryptoScamDB/assets
 ---
-### Contributors
+## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->

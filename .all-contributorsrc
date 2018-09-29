@@ -11,17 +11,19 @@
   "types": {
     "blacklist": {
       "symbol": "🏴",
-      "description": "Contributed to blacklist"
+      "description": "Contributed to blacklist",
+      "link": "[<%= symbol %>](https://github.com/CryptoScamDB/blacklist/commits?author=<%= contributor.login %>)"
     },
 	"whitelist": {
       "symbol": "🏳️",
-      "description": "Contributed to whitelist"
+      "description": "Contributed to whitelist",
+      "link": "[<%= symbol %>](https://github.com/CryptoScamDB/whitelist/commits?author=<%= contributor.login %>)"
     }
   },
   "contributors": [
     {
       "login": "MrLuit",
-      "name": "Luit Hollander",
+      "name": "Luit",
       "avatar_url": "https://avatars1.githubusercontent.com/u/12037024?v=4",
       "profile": "https://luit.me",
       "contributions": [
@@ -34,7 +36,6 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/2313704?v=4",
       "profile": "https://keybase.io/409H",
       "contributions": [
-        "code",
         "blacklist",
         "whitelist"
       ]
@@ -45,7 +46,8 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/29407814?v=4",
       "profile": "https://michaelhahntech.com",
       "contributions": [
-        "code"
+        "code",
+        "design"
       ]
     },
     {
@@ -72,7 +74,8 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/25834495?v=4",
       "profile": "https://github.com/Azarielle",
       "contributions": [
-        "doc"
+        "doc",
+        "test"
       ]
     }
   ]

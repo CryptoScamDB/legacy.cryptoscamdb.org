@@ -11,9 +11,9 @@ export default (scam: Scam): string => {
         'I would like to inform you of suspicious activities at the domain ' + scam.getHostname();
 
     if ('ip' in scam && scam.ip) {
-        abusereport += ' located at IP address ' + scam.ip + '.';
+        abusereport += ' located at IP address ' + scam.ip + '. ';
     } else {
-        abusereport += '.';
+        abusereport += '. ';
     }
 
     if ('subcategory' in scam && scam.subcategory === 'MyEtherWallet') {

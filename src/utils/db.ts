@@ -4,7 +4,7 @@ import * as url from 'url';
 import * as path from 'path';
 import config from './config';
 import * as serialijse from 'serialijse';
-import * as createDictionary from '@cryptoscamdb/array-object-dictionary';
+import createDictionary from '@cryptoscamdb/array-object-dictionary';
 import Scam from '../classes/scam.class';
 import * as Debug from 'debug';
 import Entry from '../models/entry';

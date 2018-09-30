@@ -324,9 +324,9 @@ router.get('/api/abusereport/:domain', (req, res) => {
                 scam.url.replace(/(^\w+:|^)\/\//, '') === req.params.domain
         );
     if (result) {
-        res.json({ success: false, message: "URL wasn't found" });
+        res.json({ success: true, result: generateAbuseReport(result) });
     } else {
-        res.send({ success: true, result: generateAbuseReport(result) });
+        res.json({ success: false, message: "URL wasn't found" });
     }
 });
 router.get('/api/check/:search', (req, res) => {

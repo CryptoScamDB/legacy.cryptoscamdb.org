@@ -212,8 +212,85 @@ router.get('/scams/:page?/:sorting?/', (req, res) => {
     }
 });
 
-/* Search pages */
-router.get('/search/', (req, res) => res.render('search', { featured: db.read().index.featured }));
+/* Coin pages */
+router.get('/coin/:coin/:page?/:sorting?/', (req, res) => {
+    const MAX_RESULTS_PER_PAGE = 30;
+    const scamList = [];
+    let scams = [...db.read().scams.filter(scam => scam.coin === req.params.coin)].reverse();
+    let index = [0, MAX_RESULTS_PER_PAGE];
+
+    if (
+        req.params.page &&
+        req.params.page !== 'all' &&
+        (!isFinite(parseInt(req.params.page, 10)) ||
+            isNaN(parseInt(req.params.page, 10)) ||
+            parseInt(req.params.page, 10) < 1)
+    ) {
+        res.status(404).render('404');
+    } else {
+        if (req.params.sorting === 'oldest') {
+            scams = db.read().scams.filter(scam => scam.coin === req.params.coin);
+        } else if (req.params.sorting === 'status') {
+            scams = [...db.read().scams.filter(scam => scam.coin === req.params.coin)].sort(
+                (a, b) => (a.status || '').localeCompare(b.status || '')
+            );
+        } else if (req.params.sorting === 'category') {
+            scams = [...db.read().scams.filter(scam => scam.coin === req.params.coin)].sort(
+                (a, b) => (a.category || '').localeCompare(b.category || '')
+            );
+        } else if (req.params.sorting === 'subcategory') {
+            scams = [...db.read().scams.filter(scam => scam.coin === req.params.coin)].sort(
+                (a, b) => (a.subcategory || '').localeCompare(b.subcategory || '')
+            );
+        } else if (req.params.sorting === 'name') {
+            scams = [...db.read().scams.filter(scam => scam.coin === req.params.coin)].sort(
+                (a, b) => a.getHostname().localeCompare(b.getHostname())
+            );
+        }
+
+        if (req.params.page === 'all') {
+            index = [0, scams.length - 1];
+        } else if (req.params.page) {
+            index = [
+                (req.params.page - 1) * MAX_RESULTS_PER_PAGE,
+                req.params.page * MAX_RESULTS_PER_PAGE
+            ];
+        }
+
+        for (let i = index[0]; i <= index[1]; i++) {
+            if (scams.hasOwnProperty(i) === false) {
+                continue;
+            }
+            scamList.push(scams[i]);
+        }
+
+        res.render('coin', {
+            coin: req.params.coin,
+            page: req.params.page,
+            sorting: req.params.sorting,
+            total: scams.length.toLocaleString('en-US'),
+            active: Object.keys(
+                scams.filter(scam => scam.status === 'Active')
+            ).length.toLocaleString('en-US'),
+            total_addresses: Object.keys(db.read().index.addresses)
+                .filter(address =>
+                    db.read().index.addresses[address].some(scam => scam.coin === req.params.coin)
+                )
+                .length.toLocaleString('en-US'),
+            inactive: Object.keys(
+                scams.filter(scam => scam.status === 'Inactive')
+            ).length.toLocaleString('en-US'),
+            scams: scamList,
+            MAX_RESULTS_PER_PAGE,
+            scamsLength: scams.length
+        });
+    }
+});
+
+/* Verified pages */
+router.get('/verified/', (req, res) =>
+    res.render('verified', { featured: db.read().index.featured })
+);
 
 /* RSS */
 router.get('/rss/', (req, res) => res.render('rss', { scams: db.read().scams }));

@@ -1,4 +1,4 @@
-const { version } = require('../../package.json');
+import { version } from '../../package.json';
 import * as express from 'express';
 import * as db from './db';
 import generateAbuseReport from './abusereport';

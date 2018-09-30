@@ -1,3 +1,4 @@
+import { version } from '../../package.json';
 import * as express from 'express';
 import * as db from './db';
 import generateAbuseReport from './abusereport';
@@ -10,6 +11,12 @@ import * as isIpPrivate from 'private-ip';
 import { getGoogleSafeBrowsing, getURLScan, getVirusTotal } from './lookup';
 
 const router = express.Router();
+
+/* Send CSDB-Version header */
+router.use((req, res, next) => {
+    res.header('CSDB-Version', version);
+    next();
+});
 
 /* Homepage */
 router.get('/(/|index.html)?', (req, res) => res.render('index'));

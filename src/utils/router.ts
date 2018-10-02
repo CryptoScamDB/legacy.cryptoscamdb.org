@@ -308,21 +308,23 @@ router.use('/api/:type?/:domain?/', (req, res, next) => {
     next();
 });
 
-router.get('/api/scams', (req, res) => res.json({ success: true, result: db.read().scams }));
-router.get('/api/addresses', (req, res) =>
+router.get('/api/v1/scams', (req, res) => res.json({ success: true, result: db.read().scams }));
+router.get('/api/v1/addresses', (req, res) =>
     res.json({ success: true, result: db.read().index.addresses })
 );
-router.get('/api/ips', (req, res) => res.json({ success: true, result: db.read().index.ips }));
-router.get('/api/verified', (req, res) => res.json({ success: true, result: db.read().verified }));
-router.get('/api/inactives', (req, res) =>
+router.get('/api/v1/ips', (req, res) => res.json({ success: true, result: db.read().index.ips }));
+router.get('/api/v1/verified', (req, res) =>
+    res.json({ success: true, result: db.read().verified })
+);
+router.get('/api/v1/inactives', (req, res) =>
     res.json({ success: true, result: db.read().index.inactives })
 );
-router.get('/api/actives', (req, res) =>
+router.get('/api/v1/actives', (req, res) =>
     res.json({ success: true, result: db.read().index.actives })
 );
-router.get('/api/blacklist', (req, res) => res.json(db.read().index.blacklist));
-router.get('/api/whitelist', (req, res) => res.json(db.read().index.whitelist));
-router.get('/api/abusereport/:domain', (req, res) => {
+router.get('/api/v1/blacklist', (req, res) => res.json(db.read().index.blacklist));
+router.get('/api/v1/whitelist', (req, res) => res.json(db.read().index.whitelist));
+router.get('/api/v1/abusereport/:domain', (req, res) => {
     const result = db
         .read()
         .scams.find(
@@ -336,7 +338,7 @@ router.get('/api/abusereport/:domain', (req, res) => {
         res.json({ success: false, message: "URL wasn't found" });
     }
 });
-router.get('/api/check/:search', (req, res) => {
+router.get('/api/v1/check/:search', (req, res) => {
     if (/^0x?[0-9A-Fa-f]{40,42}$/.test(req.params.search)) {
         /* Searched for an ethereum address */
         const whitelistAddresses = db.read().index.whitelistAddresses[
@@ -444,6 +446,9 @@ router.get('/api/check/:search', (req, res) => {
         });
     }
 });
+
+/* Redirect old API requests */
+router.get('/api/:all*?', (req, res) => res.redirect('/api/v1/' + req.params.all));
 
 /* Incoming Github webhook attempt */
 router.post('/update/', (req, res) => {

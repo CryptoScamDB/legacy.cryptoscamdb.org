@@ -19,7 +19,7 @@
       "description": "Blacklist",
       "link": "https://github.com/CryptoScamDB/blacklist/commits?author=<%= contributor.login %>"
     },
-	"whitelist": {
+    "whitelist": {
       "symbol": "🏳️",
       "description": "Whitelist",
       "link": "https://github.com/CryptoScamDB/whitelist/commits?author=<%= contributor.login %>"
@@ -41,6 +41,7 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/2313704?v=4",
       "profile": "https://keybase.io/409H",
       "contributions": [
+        "code",
         "blacklist",
         "whitelist"
       ]
@@ -81,6 +82,198 @@
       "contributions": [
         "doc",
         "test"
+      ]
+    },
+    {
+      "login": "wtzb",
+      "name": "Wietze Bronkema",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/11412480?v=4",
+      "profile": "https://wietzeb.nl",
+      "contributions": [
+        "blacklist"
+      ]
+    },
+    {
+      "login": "SegasecBot",
+      "name": "Segasec Labs LTD",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/32977696?v=4",
+      "profile": "https://segasec.com",
+      "contributions": [
+        "blacklist"
+      ]
+    },
+    {
+      "login": "Royram85",
+      "name": "Royram85",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/36642787?v=4",
+      "profile": "https://github.com/Royram85",
+      "contributions": [
+        "blacklist"
+      ]
+    },
+    {
+      "login": "andrelegault",
+      "name": "Andre Parsons-Legault",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/17802877?v=4",
+      "profile": "https://github.com/andrelegault",
+      "contributions": [
+        "doc",
+        "blacklist"
+      ]
+    },
+    {
+      "login": "Akuka",
+      "name": "Akuka",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3299903?v=4",
+      "profile": "https://github.com/Akuka",
+      "contributions": [
+        "blacklist"
+      ]
+    },
+    {
+      "login": "sekisanchi",
+      "name": "Kazunori Seki",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1669550?v=4",
+      "profile": "http://www.litmas.me",
+      "contributions": [
+        "blacklist"
+      ]
+    },
+    {
+      "login": "tayvano",
+      "name": "Taylor Monahan",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7924827?v=4",
+      "profile": "https://www.mycrypto.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "HackenRescue",
+      "name": "HackenRescue",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/35976693?v=4",
+      "profile": "https://github.com/HackenRescue",
+      "contributions": [
+        "blacklist",
+        "whitelist"
+      ]
+    },
+    {
+      "login": "kvhnuke",
+      "name": "Kosala Hemachandra",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/10602065?v=4",
+      "profile": "https://www.myetherwallet.com",
+      "contributions": [
+        "blacklist",
+        "whitelist"
+      ]
+    },
+    {
+      "login": "amadeobrands",
+      "name": "Amadeo Brands",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6133031?v=4",
+      "profile": "https://cyber.capital/",
+      "contributions": [
+        "whitelist"
+      ]
+    },
+    {
+      "login": "drinkyouroj",
+      "name": "Justin Hearn",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6480134?v=4",
+      "profile": "http://justin.hearn.me",
+      "contributions": [
+        "whitelist"
+      ]
+    },
+    {
+      "login": "winkom",
+      "name": "winkom",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/34282485?v=4",
+      "profile": "https://github.com/winkom",
+      "contributions": [
+        "whitelist"
+      ]
+    },
+    {
+      "login": "Neologist",
+      "name": "David Skodawessely",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/260280?v=4",
+      "profile": "http://www.ecocode.de",
+      "contributions": [
+        "whitelist"
+      ]
+    },
+    {
+      "login": "maciejhirsz",
+      "name": "Maciej Hirsz",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1096222?v=4",
+      "profile": "https://github.com/maciejhirsz",
+      "contributions": [
+        "whitelist"
+      ]
+    },
+    {
+      "login": "cloudonshore",
+      "name": "cloudonshore",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1197232?v=4",
+      "profile": "http://www.cloudonshore.com",
+      "contributions": [
+        "whitelist"
+      ]
+    },
+    {
+      "login": "tuliobraga",
+      "name": "Túlio Braga",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/121316?v=4",
+      "profile": "https://github.com/tuliobraga",
+      "contributions": [
+        "whitelist"
+      ]
+    },
+    {
+      "login": "NeodiumNetwork",
+      "name": "NeodiumNetwork",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/39248042?v=4",
+      "profile": "https://github.com/NeodiumNetwork",
+      "contributions": [
+        "whitelist"
+      ]
+    },
+    {
+      "login": "pmizel",
+      "name": "Paul Mizel",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3003016?v=4",
+      "profile": "https://www.asure.io",
+      "contributions": [
+        "whitelist"
+      ]
+    },
+    {
+      "login": "shayanb",
+      "name": "Shayan Eskandari",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/309108?v=4",
+      "profile": "https://shayan.es/",
+      "contributions": [
+        "blacklist"
+      ]
+    },
+    {
+      "login": "dm500s",
+      "name": "dm500s",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/31702953?v=4",
+      "profile": "https://github.com/dm500s",
+      "contributions": [
+        "whitelist"
+      ]
+    },
+    {
+      "login": "crawfordleeds",
+      "name": "Crawford Leeds",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/25166339?v=4",
+      "profile": "https://cocoa.io",
+      "contributions": [
+        "whitelist"
       ]
     }
   ]

@@ -42,6 +42,7 @@
       "profile": "https://keybase.io/409H",
       "contributions": [
         "code",
+        "bug",
         "blacklist",
         "whitelist"
       ]
@@ -53,6 +54,7 @@
       "profile": "https://michaelhahntech.com",
       "contributions": [
         "code",
+        "bug",
         "design"
       ]
     },
@@ -137,6 +139,7 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/1669550?v=4",
       "profile": "http://www.litmas.me",
       "contributions": [
+        "bug",
         "blacklist"
       ]
     },
@@ -275,6 +278,42 @@
       "profile": "https://cocoa.io",
       "contributions": [
         "whitelist"
+      ]
+    },
+    {
+      "login": "abcoathup",
+      "name": "Andrew B Coathup",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/28278242?v=4",
+      "profile": "https://twitter.com/abcoathup",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "scsaba",
+      "name": "Csaba S",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3006955?v=4",
+      "profile": "https://github.com/scsaba",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "emiliocini",
+      "name": "emiliocini",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/8374881?v=4",
+      "profile": "https://github.com/emiliocini",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "steadramon",
+      "name": "steadramon",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/866195?v=4",
+      "profile": "https://github.com/steadramon",
+      "contributions": [
+        "bug"
       ]
     }
   ]

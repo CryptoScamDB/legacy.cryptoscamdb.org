@@ -1,6 +1,6 @@
 {
   "name": "@cryptoscamdb/web",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Keeping track of all current cryptocurrency scams in an open-source database",
   "keywords": [
     "crypto",
@@ -48,8 +48,8 @@
     }
   },
   "dependencies": {
-    "@cryptoscamdb/array-object-dictionary": "^1.0.2",
-    "@cryptoscamdb/graceful-dns": "^1.0.1",
+    "@cryptoscamdb/array-object-dictionary": "^1.1.0",
+    "@cryptoscamdb/graceful-dns": "^1.1.0",
     "bottleneck": "^2.6.0",
     "compression": "^1.7.3",
     "cross-env": "^5.2.0",

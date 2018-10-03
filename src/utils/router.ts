@@ -341,29 +341,25 @@ router.get('/api/v1/abusereport/:domain', (req, res) => {
 router.get('/api/v1/check/:search', (req, res) => {
     if (/^0x?[0-9A-Fa-f]{40,42}$/.test(req.params.search)) {
         /* Searched for an ethereum address */
-        const whitelistAddresses = db.read().index.whitelistAddresses[
-            Object.keys(db.read().index.whitelistAddresses).find(
-                address => req.params.search.toLowerCase() === address.toLowerCase()
-            )
-        ];
-        const blacklistAddresses = db.read().index.addresses[
-            Object.keys(db.read().index.addresses).find(
-                address => req.params.search.toLowerCase() === address.toLowerCase()
-            )
-        ];
-        if (whitelistAddresses.length > 0) {
+        const whitelistAddress = Object.keys(db.read().index.whitelistAddresses).find(
+            address => req.params.search.toLowerCase() === address.toLowerCase()
+        );
+        const blacklistAddress = Object.keys(db.read().index.addresses).find(
+            address => req.params.search.toLowerCase() === address.toLowerCase()
+        );
+        if (whitelistAddress) {
             res.json({
                 success: true,
                 result: 'whitelisted',
                 type: 'address',
-                entries: whitelistAddresses
+                entries: db.read().index.whitelistAddresses[whitelistAddress]
             });
-        } else if (blacklistAddresses.length > 0) {
+        } else if (blacklistAddress) {
             res.json({
                 success: true,
                 result: 'blocked',
                 type: 'address',
-                entries: blacklistAddresses
+                entries: db.read().index.addresses[blacklistAddress]
             });
         } else {
             res.json({

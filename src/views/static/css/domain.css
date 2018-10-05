@@ -50,3 +50,17 @@
 	font-style: italic;
 	margin-top: 7%;
 }
+
+#saftey-tips {
+  background: #f8f8f9;
+  border: 1px solid #222;
+  padding: 5px;
+  border-radius: 0.5em;
+  width: 100%;
+  font-size: 8pt;
+}
+
+#saftey-tips > ul > li > a {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}

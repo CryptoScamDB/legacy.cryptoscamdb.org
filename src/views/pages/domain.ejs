@@ -55,21 +55,26 @@
                         <button id="" class="domain-page"><i class=""></i> Abuse Report</button>
                         <% } %>
                         
-                        <button id="" class="domain-page">
-                            <a class="button-link" target="_blank" href="http://web.archive.org/web/*/<%= result.url %>" class=""><i class=""></i> Archive</a>
-                        </button>
+                        <a id="" target="_blank" href="http://web.archive.org/web/*/<%= result.url %>" class="domain-page">
+                          <button class="button-link"  class=""><i class=""></i> Archive</button>
+                        </a>
                         
-                        <button id="" class="domain-page">
-                            <a class="button-link" target="_blank" href="https://github.com/MrLuit/EtherScamDB/tree/master/_data" class="">
-                                <i class=""></i> Improve
-                            </a>
-                        </button>
+                        <a id="" target="_blank" href="https://github.com/MrLuit/EtherScamDB/tree/master/_data" class="domain-page">
+                          <button class="button-link" class="">
+                            <i class=""></i> Improve
+                          </button>
+                        </a>
                         
                         <button id="" class="domain-page">
                             <i class=""></i> Share
                         </button>
                     </div>
                 </div>
+                
+            </div>
+
+            <div class="right-bottom-content">
+              <% include ../partials/safety-tips %>
             </div>
 
             <div class="left-content">
@@ -105,17 +110,17 @@
                     else if(type == "neutral" && !metamask) color = "green";
                     else if(type == "scam" && !metamask) color = "red";
                     else if(type == "scam" && metamask) color = "green";%>
+                    <span style="color:<%= color %>"></span>
                     <b>MetaMask Status:</b>
                     <% if(color !== "undefined") { %>
-                        <span style="color:<%= color %>">
+                      
                             <% if(metamask) { %>
-                                Blocked
+                              Blocked
                             <% } else { %>
-                            Not yet blocked
+                              Not yet blocked
                             <% } %>
                         </span><br>
                     <% } else if(color == "undefined") { %>
-                        <span style="color:brown">
                         <% if(metamask) { %>
                             Blocked
                         <% } else { %>

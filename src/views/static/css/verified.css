@@ -121,7 +121,6 @@ tbody tr {
 }
 
 tbody tr:hover {
-	height: 75px;
 	font-weight: 600;
 }
 

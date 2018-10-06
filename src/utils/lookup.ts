@@ -139,7 +139,7 @@ export const lookup = limiter.wrap(url => {
     });
 });
 
-/* Retrieve latest VirusTotal report (no API key required) */
+/* Retrieve latest Urlscan report (no API key required) */
 export const getURLScan = (url: string): Promise<URLScanResponse> => {
     return new Promise<URLScanResponse>((resolve, reject) => {
         request(

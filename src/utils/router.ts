@@ -8,6 +8,8 @@ import * as url from 'url';
 import config from './config';
 import * as github from './github';
 import * as isIpPrivate from 'private-ip';
+import * as captcha from './gcaptcha';
+import * as slack from './slack';
 import { getGoogleSafeBrowsing, getURLScan, getVirusTotal } from './lookup';
 
 const router = express.Router();
@@ -30,15 +32,15 @@ router.get('/api/', (req, res) => res.render('api'));
 /* Report pages */
 router.get('/report/', (req, res) => res.render('report'));
 
-router.get('/report/domain/:domain', (req, res) =>
+router.get('/report/domain/:domain?', (req, res) =>
     res.render('report', {
-        domain: req.params.domain
+        domain: req.params.domain || true
     })
 );
 
-router.get('/report/address/:address', (req, res) =>
+router.get('/report/address/:address?', (req, res) =>
     res.render('report', {
-        address: req.params.address
+        address: req.params.address || true
     })
 );
 
@@ -439,6 +441,40 @@ router.get('/api/v1/check/:search', (req, res) => {
         res.json({
             success: false,
             message: 'Incorrect search type (must be ethereum address / ip address / URL)'
+        });
+    }
+});
+
+/* Incoming user reports */
+router.post('/api/v1/report/', async (req, res) => {
+    if (
+        config.apiKeys.Google_Captcha &&
+        config.apiKeys.Slack_Webhook &&
+        req.body &&
+        req.body.args &&
+        req.body.args.captcha
+    ) {
+        const isValidCaptcha = await captcha.verifyResponse(req.body.args.captcha);
+        if (isValidCaptcha) {
+            slack.sendReport(req.body);
+            res.json({
+                success: true
+            });
+        } else {
+            res.json({
+                success: false,
+                message: 'Invalid captcha response provided'
+            });
+        }
+    } else if (config.apiKeys.Slack_Webhook && req.body && req.body.args && req.body.args.captcha) {
+        slack.sendReport(req.body);
+        res.json({
+            success: true
+        });
+    } else {
+        res.json({
+            success: false,
+            message: 'No captcha response provided'
         });
     }
 });

@@ -57,6 +57,7 @@ export const serve = async (electronApp?: any): Promise<void> => {
     app.set('views', path.join(__dirname, 'views/pages'));
     app.locals.environment = process.env.NODE_ENV;
     app.locals.announcement = config.announcement;
+    app.locals.hasSlackWebhook = typeof config.apiKeys.Slack_Webhook === 'string';
 
     /* Compress pages */
     app.use(require('compression')());

@@ -82,16 +82,16 @@
 									
 									<% if("status" in scam && scam.status) { %>
 										<% if(scam.status == "Active") { %>
-											<td class="status-align"><div class="active status-container"><img src='/assets/symbols/exclamation.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Active </span></div></td>
+											<td><div class="active status-container"><img src='/assets/symbols/exclamation.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Active </span></div></td>
 										<% } else if(scam.status == "Inactive") { %>
-											<td class="status-align"><div class="suspended status-container"><img src='/assets/symbols/check.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Suspended</span></div></td>
+											<td><div class="suspended status-container"><img src='/assets/symbols/check.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Suspended</span></div></td>
 										<% } else if(scam.status == "Suspended") { %>
-											<td class="status-align"><div class="suspended status-container"><img src='/assets/symbols/x.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Suspended</span></div></td>
+											<td><div class="suspended status-container"><img src='/assets/symbols/x.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Suspended</span></div></td>
 										<% } else if(scam.status == "Offline") { %>
-											<td class="status-align"><div class="offline status-container"><img src='/assets/symbols/check.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Offline</span></div></td>
+											<td><div class="offline status-container"><img src='/assets/symbols/check.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Offline</span></div></td>
 										<% } %>
 									<% } else { %>
-										<td class="status-align">Unknown</td>
+										<td>Unknown</td>
 									<% } %>	
 							</tr>
 							

@@ -28,6 +28,7 @@
     text-align: center;
     align-items: center;
     font-size: 16px;
+    
 }
 
 .search-btn {
@@ -47,6 +48,7 @@
     box-shadow: inset 0 0 5px 0 rgba(124, 131, 141, 0.28);
     background-color: #ffffff;
     border: solid 1px rgba(105, 118, 133, 0.13);
+    font-style: italic;
 }
 
 .search-btn:hover {
@@ -94,6 +96,21 @@ a#details:hover {
     grid-row-start: center-two;
 }
 
+.search-msg {
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #697685;
+    padding-top: 10px;
+}
+.search-msg-link {
+    font-weight: 600;
+    color: #163150;
+}
+.search-msg-link:hover {
+    font-weight: 600;
+    color: #ffd166;
+}
+
 
 input {
     background-clip:border-box;
@@ -134,7 +151,6 @@ input {
     flex-shrink:0;
     font-size:16px;
     font-stretch:100%;
-    font-style:normal;
     font-variant-caps:normal;
     font-variant-east-asian:normal;
     font-variant-ligatures:normal;

@@ -4,8 +4,8 @@ body {
 }
 
 a {
-    text-decoration: none;
-    color: #4183c4;
+  text-decoration: none;
+  color: #4183c4;
 }
 
 .text-dark {
@@ -15,34 +15,38 @@ a {
 .verified-container-grid {
 	display: grid;
 	height: auto;
-	grid-template-columns: [one] 10% [two] 10% [three] 10% [four] 10% [five] 10% [six] 10% [seven] 10% [eight] 10% [nine] 10% [ten] 10%;
-	grid-template-rows: [navbar] 75px [pre-content-header] 99px [content] auto [footer] auto;
+	grid-template-columns: [one] 5% [content] auto [two] 5%;
+	grid-template-rows: [navbar] 75px [pre-content-header] 100px [content] auto [footer] auto;
 }
 
 .nav-container {
-    grid-column: one / -1;
-    height: 75px;
-    grid-row-start: navbar;
+  grid-column: one / -1;
+  height: 75px;
+  grid-row-start: navbar;
+}
+
+.navbar {
+  height: 100%;
 }
 
 .header-container {
-    font-weight: 600;
-    height: 36px;
+  font-weight: 600;
+  height: 36px;
 	font-size: 32px;
-	padding-bottom: 2%;
+	margin-bottom: 2%;
 	padding-left: 10%;
-	padding-top: 2%;
+	margin-top: 2%;
 	grid-column: one / -1;
 	grid-row-start: pre-content-header;
 }
 
 .content-container {
-	grid-column: one / -1;
+	grid-column: content;
 	grid-row-start: content;
 }
 
 .footer-container {
-    margin-top: 2%;
+  margin-top: 2%;
 	grid-column: one / -1;
 	grid-row-start: footer;
 }
@@ -142,6 +146,6 @@ thead th {
         height: 125px;
     }
     .verified-container-grid {
-        grid-template-rows: [navbar] 125px [pre-content-header] 75px [content] auto [footer] auto;
+        grid-template-rows: [navbar] auto [pre-content-header] 75px [content] auto [footer] auto;
     } 
 }

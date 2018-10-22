@@ -17,6 +17,7 @@
 
             <div class="header-content">
                 <div class=""><h1><%= domain %></h1></div>
+                <% include ../partials/sharing %>
             </div>
 
             <div class="right-content">
@@ -64,10 +65,6 @@
                             <i class=""></i> Improve
                           </button>
                         </a>
-                        
-                        <button id="" class="domain-page">
-                            <i class=""></i> Share
-                        </button>
                     </div>
                 </div>
                 
@@ -104,16 +101,16 @@
                 <% } %>
                 <br>
                 <% if(typeof metamask !== "undefined") {
-                    let color = "green";
+                    let color;
                     if(type == "neutral" && !metamask) color = "orange";
                     else if(type == "neutral" && metamask) color = "red";
                     else if(type == "neutral" && !metamask) color = "green";
                     else if(type == "scam" && !metamask) color = "red";
                     else if(type == "scam" && metamask) color = "green";%>
-                    <span style="color:<%= color %>"></span>
                     <b>MetaMask Status:</b>
                     <% if(color !== "undefined") { %>
-                      
+                      <% color = "orange" %>
+                      <span style="color: <%= color %>"></span>
                             <% if(metamask) { %>
                               Blocked
                             <% } else { %>
@@ -152,7 +149,7 @@
                     <% } %>
                 <% } %>
                 <% if(urlScan && urlScan.results && urlScan.results.length > 0) { %>
-                <b>Urlscan Scan Results</b>: <a href="https://urlscan.io/result/<%= urlScan.results[0].result.replace("https://urlscan.io/api/v1/result/","") %>" target="_blank">Link</a><br>
+                <b>Urlscan Scan Results</b>: <a href="https://urlscan.io/result/<%= urlScan.results[0].result.replace('https://urlscan.io/api/v1/result/','') %>" target="_blank">Link</a><br>
                 <% } %>
                         
                 <br>
@@ -181,8 +178,8 @@
                 <% if(urlScan && urlScan.results && urlScan.results.length > 0) { %>
                     <b>Urlscan Screenshot</b>: <br>
                     <div id="scam-screenshot">
-                        <a href="https://urlscan.io/result/<%= urlScan.results[0].result.replace("https://urlscan.io/api/v1/result/","") %>" target="_blank">
-                            <img class="urlscan-img" src="https://urlscan.io/screenshots/<%= urlScan.results[0].result.replace("https://urlscan.io/api/v1/result/","") %>.png" alt="Screenshot of website" style="width: 100%; height: 80%;">
+                        <a href="https://urlscan.io/result/<%= urlScan.results[0].result.replace('https://urlscan.io/api/v1/result/','') %>" target="_blank">
+                            <img class="urlscan-img" src="https://urlscan.io/screenshots/<%= urlScan.results[0].result.replace('https://urlscan.io/api/v1/result/','') %>.png" alt="Screenshot of website" style="width: 100%; height: 80%;">
                         </a>
                     </div><br />
                 <% } %>

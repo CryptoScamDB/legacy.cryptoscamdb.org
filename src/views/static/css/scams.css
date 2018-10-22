@@ -68,8 +68,7 @@
 
 .scams-table-grid-frame {
 	grid-row-start: scams-table;
-	grid-column-start: left-buffer;
-	grid-column-end: -1;
+	grid-column: page-content;
   height: auto;
   width: 100%;
 }
@@ -193,8 +192,8 @@ thead th {
     justify-content: center;
     align-items: center;
     background-clip: border-box;
-    color: #163150;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #163150;
     float: left;
     border: 1px solid #163150; 
     /* past here */  
@@ -241,6 +240,7 @@ thead th {
 
 .scams-nav-item:hover {
     background-color: #ffd166;
+    color: #163150;
     font-weight: 800;
 }
 

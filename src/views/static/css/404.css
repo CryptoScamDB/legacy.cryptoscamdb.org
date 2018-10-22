@@ -35,6 +35,7 @@
 .content-container {
     grid-column-start: page-content;
     grid-row-start: content;
+    height: 100%
 }
   
 .footer-container {

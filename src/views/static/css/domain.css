@@ -180,14 +180,15 @@ a:hover {
   overflow: hidden;
 }
 
-button{
+button {
   margin-top: 5%;
-  background-color: #163150;
+  background-color: #027796;
   color: #FFFFFF;
-  border-radius: 1px;
+  border-radius: 3px;
   padding: 11px;
   font-weight: 800;
   letter-spacing: 2px;
+  border: 1px solid #000000;
 }
 a.domain-page {
   color: #FFFFFF !important;

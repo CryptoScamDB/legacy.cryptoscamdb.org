@@ -263,7 +263,7 @@
             <div class="ui black label">
                 Domain:
             </div>
-			<% if(typeof domain !== "undefined") { %>
+			<% if(typeof domain === "string") { %>
 				<input type="text" id="gendomain" value="<%= domain %>">
 			<% } else { %>
             <input type="text" id="gendomain" placeholder="fake-mycrypto.com">
@@ -290,7 +290,7 @@
             <div class="ui black label">
                 Address:
             </div>
-			<% if(typeof address !== "undefined") { %>
+			<% if(typeof address === "string") { %>
 				<input type="text" id="address" value="<%= address %>" maxlength="42">
 			<% } else { %>
             <input type="text" id="address" placeholder="0x0000000000000000000000000000000000000000" maxlength="42">
@@ -391,10 +391,23 @@
     </div>
   </div>
 </div>
+	</div>
   <div class="footer-container">
-    <% include ../partials/footer %>
+	<% include ../partials/footer %>
   </div>
-	
+    <script>
+	<%
+	if(hasSlackWebhook) {
+	%>
+	const reportEndpoint = "/api/v1/report/";
+	<%
+	} else {
+	%>
+	const reportEndpoint = "https://cryptoscamdb.org/api/v1/report/";
+	<%
+	}
+	%>
+    </script>
 	<% if(typeof domain !== "undefined") { %>
 <script src="/js/reportdomain.js"></script>
 <% } else if(typeof address !== "undefined") { %>

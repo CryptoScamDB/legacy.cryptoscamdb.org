@@ -17,6 +17,8 @@ export interface Config {
         Google_SafeBrowsing: string;
         Github_WebHook: string;
         VirusTotal: string;
+        Google_Captcha: string;
+        Slack_Webhook: string;
     };
     autoPull: {
         enabled: boolean;
@@ -56,7 +58,9 @@ if (!fs.existsSync('./config.json')) {
         apiKeys: {
             Google_SafeBrowsing: undefined,
             Github_WebHook: undefined,
-            VirusTotal: undefined
+            VirusTotal: undefined,
+            Google_Captcha: undefined,
+            Slack_Webhook: undefined
         },
         autoPull: { enabled: false },
         lookups: {
@@ -76,6 +80,12 @@ if (!fs.existsSync('./config.json')) {
     }
     if (!config.apiKeys.VirusTotal) {
         debug('Warning: No VirusTotal API key found');
+    }
+    if (!config.apiKeys.Google_Captcha) {
+        debug('Warning: No Google Captcha secret found');
+    }
+    if (!config.apiKeys.Slack_Webhook) {
+        debug('Warning: No Slack Webhook found');
     }
     if (config.lookups.DNS.servers.length > 0) {
         dns.setServers(config.lookups.DNS.servers);

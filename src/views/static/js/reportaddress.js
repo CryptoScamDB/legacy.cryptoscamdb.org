@@ -3,7 +3,7 @@ var args = {};
 function finish() {
     $(".captcha").fadeOut('', function() {
         $(".loading").fadeIn('', function() {
-            $.post("https://lu1t.nl/report.php", {
+            $.post(reportEndpoint, {
                 reportType: 'generalAddressReport',
                 args: args
             }).done(function(data) {

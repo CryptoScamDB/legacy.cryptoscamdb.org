@@ -387,6 +387,7 @@
 </div>
 	</div>
 	<% include ../partials/footer %>
+    <script>
 	<%
 	if(hasSlackWebhook) {
 	%>
@@ -398,6 +399,7 @@
 	<%
 	}
 	%>
+    </script>
 	<% if(typeof domain !== "undefined") { %>
 <script src="/js/reportdomain.js"></script>
 <% } else if(typeof address !== "undefined") { %>

@@ -9,12 +9,13 @@
 			.safe-full-mode-options {
 				display: none;
 			}
-		</style>
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css" integrity="sha256-g4+HzlttFiqgeuCnx3m308o0ahuBZ+0CRxaRWfSL0BU=" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui-range@1.0.1/range.css" integrity="sha256-xULiRAbwu4Ev+LlFi9ggQaW6WZy9bh/J0ZVPspFB8PI=" crossorigin="anonymous">
 	</head>
-	<body>
-		<div class="ui body container">
-			<div class="ui segment" style="padding: 5%;">
+	<body class="config-grid">
+		<div class="config-content">
+			<div class="ui segment" style="padding: 20%;">
 				<h1>Configuration</h1>
 				<br>
 				<br>
@@ -197,8 +198,11 @@
 					</form>
 				<% } %>
 			</div>
-		</div>
-		<% include ../partials/footer.ejs %>
+    </div>
+    <div class='footer-grid'>
+      <% include ../partials/footer.ejs %>
+    </div>
+		  
 		<script src="https://cdn.jsdelivr.net/npm/semantic-ui-range@1.0.1/range.js" integrity="sha256-oVHoyWNIpdPJH1uvuFOo1L6KvEtGqgldlDsvAi4/ryM=" crossorigin="anonymous"></script>
 		<script>
 		$('.ui.radio.checkbox').checkbox();

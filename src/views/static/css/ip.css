@@ -1,31 +1,8 @@
-.title {
-	text-align: center;
-	font-size: 60px;
-	padding-top: 5%;
-}
-
-.message {
-	text-align: center;
-	padding-top: 5%;
-	font-size: 30pt;
-}
-
-.return {
-	text-align: center;
-	padding-top: 2.5%;
-	font-size: 20pt;
-}
-
-.ui.bulleted.list {
-  margin-top: 4px;
-  margin-bottom: 0;
-}
-
-.no-container {
+.ip-container {
     display: grid;
     grid-template-columns: [left-buffer] 10% [page-content] 80% [right-buffer] 10%;
     grid-template-rows: [navbar] auto [content] auto [footer] auto;
-}
+  }
   
 .nav-container{
     grid-column: left-buffer / -1;
@@ -35,7 +12,6 @@
 .content-container {
     grid-column-start: page-content;
     grid-row-start: content;
-    height: 100%
 }
   
 .footer-container {

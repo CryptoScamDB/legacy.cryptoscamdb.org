@@ -101,6 +101,7 @@ router.get('/domain/:url', async (req, res) => {
         .verified.find(verified => url.parse(verified.url).hostname === hostname);
 
     const urlScan = await getURLScan(hostname);
+    const domainurl = 'https://cryptoscamdb.org/domain/' + hostname;
     let googleSafeBrowsing;
     let virusTotal;
 
@@ -121,7 +122,8 @@ router.get('/domain/:url', async (req, res) => {
             googleSafeBrowsing,
             virusTotal,
             startTime,
-            dateFormat
+            dateFormat,
+            domainurl
         });
     } else if (scamEntry) {
         res.render('domain', {
@@ -134,7 +136,8 @@ router.get('/domain/:url', async (req, res) => {
             virusTotal,
             startTime,
             dateFormat,
-            abuseReport: generateAbuseReport(scamEntry)
+            abuseReport: generateAbuseReport(scamEntry),
+            domainurl
         });
     } else {
         res.render('domain', {
@@ -146,7 +149,8 @@ router.get('/domain/:url', async (req, res) => {
             googleSafeBrowsing,
             virusTotal,
             addresses: [],
-            startTime
+            startTime,
+            domainurl
         });
     }
 });

@@ -74,3 +74,28 @@ div.question {
 .question2a,.question2b,.question3,.question4a,.question4b,.question5,.question6,.question7a,.question7b,.question7c,.question8,.question9a,.question9b,.question9c,.question10,.loading,.captcha,.end {
   display: none;
 }
+
+
+.container-grid {
+	display: grid;
+	height: auto;
+	grid-template-columns: [one] 5% [content] auto [two] 5%;
+	grid-template-rows: [navbar] 75px [content] auto [footer] auto;
+}
+
+.nav-container {
+  grid-column: one / -1;
+  height: 75px;
+  grid-row-start: navbar;
+}
+
+.content-container {
+	grid-column: content;
+	grid-row-start: content;
+}
+
+.footer-container {
+  margin-top: 2%;
+	grid-column: one / -1;
+	grid-row-start: footer;
+}

@@ -10,11 +10,15 @@
 <% } else { %>
 <link rel="stylesheet" href="/css/report.css">
 <% } %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css" integrity="sha256-g4+HzlttFiqgeuCnx3m308o0ahuBZ+0CRxaRWfSL0BU=" crossorigin="anonymous">
 </head>
 
-<body>
-	<% include ../partials/navbar %>
-    <div class="ui body container">
+<body class="container-grid">
+  <div class="nav-container">
+      <% include ../partials/navbar %>
+  </div>
+	
+    <div class="ui body container content-container" style="height: 100%;">
 <div class="question1">
     <h2 class="report"><i class="flag outline icon"></i> Report</h2>
     <div class="ui centered grid">
@@ -384,9 +388,13 @@
             <h3 class="link">Install <a href="https://chrome.google.com/webstore/detail/ethersecuritylookup/bhhfhgpgmifehjdghlbbijjaimhmcgnf">EtherSecurityLookup</a> on Google Chrome</h3>
         </div>
     </div>
+    </div>
+  </div>
 </div>
 	</div>
+  <div class="footer-container">
 	<% include ../partials/footer %>
+  </div>
     <script>
 	<%
 	if(hasSlackWebhook) {

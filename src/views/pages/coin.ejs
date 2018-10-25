@@ -4,55 +4,19 @@
 <head>
 <% include ../partials/header %>
 <link rel="stylesheet" href="/css/scams.css">
+<link rel="stylesheet" href="/css/stats.css">
+<link rel="stylesheet" href="/css/search.css">
 </head>
 
-<body>
-	<% include ../partials/navbar %>
-    <div class="ui body container">
-<div class="ui grid">
-  <div class="four wide column">
-  <div class="ui tiny statistic">
-  <div class="value">
-    <%= total %>
-  </div>
-  <div class="label">
-    Total scams
-  </div>
-</div>
-  </div>
-  <div class="four wide column">
-  <div class="ui tiny statistic">
-  <div class="value">
-   <%= active %>
-  </div>
-  <div class="label">
-    Active scams
-  </div>
-</div>
-  </div>
-    <div class="four wide column">
-  <div class="ui tiny statistic">
-  <div class="value">
-    <%= total_addresses %>
-  </div>
-  <div class="label">
-    Addresses registered
-  </div>
-</div>
-  </div>
-    <div class="four wide column">
-  <div class="ui tiny statistic">
-  <div class="value">
-    <%= inactive %>
-  </div>
-  <div class="label">
-    Inactive scams
-  </div>
-</div>
-  </div>
-</div>
-<h1 class="scams"><i class="protect icon"></i> Scams</h1>
-<table class="ui sortable celled table">
+<body class="scams-container-grid">
+	<div class="navbar-grid-frame">
+			<% include ../partials/navbar %>
+	</div>
+	<div class="stats-grid-frame">
+			<% include ../partials/stats %>
+	</div>
+	<div class="scams-table-grid-frame">
+<table class="sortable">
   <thead>
     <tr>
 	<% if(sorting == "category") { %>
@@ -75,112 +39,123 @@
 	<% } else { %>
 		<th>Name</th>
 	<% } %>
-    <th id='info'>Info</th>
   </tr></thead>
   <tbody>
 		<% scams.forEach(scam => { %>
-			<tr>
-				<% if("category" in scam && scam.category) { %>
-					<% if(scam.category == "Phishing") { %>
-						<td><i class="address book icon"></i> Phishing</td>
-					<% } else if(scam.category == "Scamming") { %>
-						<td><i class="address book icon"></i> Scamming</td>
-					<% } else if(scam.category == "Fake ICO") { %>
-						<td><i class="address book icon"></i> Fake ICO</td>
-					<% } else { %>
-						<td><i class="address book icon"></i> <%= scam.category %></td>
-					<% } %>
-				<% } else { %>
-					<td><i class="remove icon"></i> None</td>
-				<% } %>
-				
-				<% if("subcategory" in scam && scam.subcategory) { %>
-					<% if(scam.subcategory == "Wallets") { %>
-						<td><i class="credit card alternative icon"></i> Wallets</td>
-					<% } else if(scam.subcategory == "Trust-Trading") { %>
-						<td><i class="handshake outline icon"></i> Trust-Trading</td>
-					<% } else { %>
-						<td><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.png' class='subcategoryicon' onerror="this.style.display='none'"> <%= scam.subcategory %></td>
-					<% } %>
-				<% } else { %>
-					<td><i class="remove icon"></i> None</td>
-				<% } %>
-				
-				<% if("status" in scam && scam.status) { %>
-					<% if(scam.status == "Active") { %>
-						<td class='offline'><i class='warning sign icon'></i> Active</td>
-					<% } else if(scam.status == "Inactive") { %>
-						<td class='suspended'><i class='remove icon'></i> Inactive</td>
-					<% } else if(scam.status == "Suspended") { %>
-						<td class='suspended'><i class='remove icon'></i> Suspended</td>
-					<% } else if(scam.status == "Offline") { %>
-						<td class='activ'><i class='checkmark icon'></i> Offline</td>
-					<% } %>
-				<% } else { %>
-					<td>Unknown</td>
-				<% } %>
-				
-				<% if(scam.getHostname().length > 40) { %>
-					<td><%= scam.getHostname().substring(0, 40) %>...</td>
-				<% } else { %>
-					<td><%= scam.getHostname() %></td>
-				<% } %>
-				
-				<td class='center'>
-					<a href='/domain/<%= scam.getHostname() %>'><i class='search icon'></i></a>
-				</td>
-			</tr>
-		<% }); %>
+		
+      <tr onclick="location.href='/domain/<%= scam.getHostname() %>'">
+          <% if(scam.getHostname().length > 40) { %>
+            <td><%= scam.getHostname().substring(0, 40) %>...</td>
+          <% } else { %>
+            <td><%= scam.getHostname() %></td>
+          <% } %>
+          <% if("category" in scam && scam.category) { %>
+            <% if(scam.category == "Phishing") { %>
+              <td><div class="cat-container"><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category.toLowerCase().replace(/\s/g, "") %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text">Phishing</span></div></td>
+            <% } else if(scam.category == "Scamming") { %>
+              <td><div class="cat-container"><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category.toLowerCase().replace(/\s/g, "") %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text">Scamming</span></div></td>
+            <% } else if(scam.category == "Fake ICO") { %>
+              <td><div class="cat-container"><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category.toLowerCase().replace(/\s/g, "") %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text">Fake ICO</span></div></td>
+            <% } else { %>
+              <td><div class="cat-container"><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category.toLowerCase().replace(/\s/g, "") %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text"><%= scam.category %></span></div></td>
+            <% } %>
+          <% } else { %>
+            <td><i class="remove icon"></i> None</td>
+          <% } %>
+          
+          <% if("subcategory" in scam && scam.subcategory) { %>
+            <% if(scam.subcategory == "Wallets") { %>
+              <td><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Wallets</td>
+            <% } else if(scam.subcategory == "Trust-Trading") { %>
+              <td><img src='/assets/symbols/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Trust-Trading</td>
+            <% } else if(scam.subcategory == "Ponzi") { %>
+              <td><img src='/assets/symbols/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Ponzi</td>
+            <% } else { %>
+              <td><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.png' alt='Icon - <%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <%= scam.subcategory %></td>
+            <% } %>
+          <% } else { %>
+            <td><i class="remove icon"></i> None</td>
+          <% } %>
+          
+          <% if("status" in scam && scam.status) { %>
+            <% if(scam.status == "Active") { %>
+              <td class="status-align"><div class="active status-container"><img src='/assets/symbols/exclamation.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Active </span></div></td>
+            <% } else if(scam.status == "Inactive") { %>
+              <td class="status-align"><div class="suspended status-container"><img src='/assets/symbols/check.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Suspended</span></div></td>
+            <% } else if(scam.status == "Suspended") { %>
+              <td class="status-align"><div class="suspended status-container"><img src='/assets/symbols/x.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Suspended</span></div></td>
+            <% } else if(scam.status == "Offline") { %>
+              <td class="status-align"><div class="offline status-container"><img src='/assets/symbols/check.svg' alt='Icon - Exclamation' class='statusicon' style="height:11.5px; width:11.5px;" onerror="this.style.display='none'" /> <span class="statustext"> Offline</span></div></td>
+            <% } %>
+          <% } else { %>
+            <td class="status-align">Unknown</td>
+          <% } %>	
+      </tr>
+      
+    <% }); %>
   </tbody>
 </table>
 <% if(page !== "all") { %>
-	<div class="ui pagination menu">
-		<% 
-		let strPagination = "";
-		let intCurrentPage = parseInt(page || 0);
-		let arrLoop = [-2, 3];
-		
-		if (intCurrentPage == 0) arrLoop = [1, 6];
-		else if (intCurrentPage == 1) arrLoop = [0, 5];
-		else if (intCurrentPage == 2) arrLoop = [-1, 4];
+  <div class="next-page">
+    <% 
+    let strPagination = "";
+    let intCurrentPage = parseInt(page || 0);
+    let arrLoop = [-2, 3];
+    
+    if (intCurrentPage == 0) {
+                    intCurrentPage == 1;
+                    arrLoop = [1, 6];
+                }
+    else if (intCurrentPage == 1) arrLoop = [0, 5];
+    else if (intCurrentPage == 2) arrLoop = [-1, 4];
 
-		for (var i = arrLoop[0]; i < arrLoop[1]; i++) {
-			var intPageNumber = intCurrentPage+i;
-			var strItemClass = "item";
-			var strHref = "/coin/" + coin + "/" + intPageNumber + "/";
-			
-			if (sorting) strHref += sorting + "/";
-			if ((intPageNumber > (scamsLength) / MAX_RESULTS_PER_PAGE) || (intPageNumber < 1)) {
-				strItemClass = "disabled item";
-				strHref = "#";
-			} else if (intCurrentPage == intPageNumber) {
-				strItemClass = "active item";
-			}
-			strPagination += "<a href='" + strHref + "' class='" + strItemClass + "'>" + intPageNumber + "</a>";
-		}
-		
-		if (intCurrentPage > 3) {
-			if (sorting) {
-				strPagination = "<a class='item' href='/coin/" + coin + "/1/" + sorting + "'><i class='angle double left icon'></i></a>" + strPagination;
-			} else {
-				strPagination = "<a class='item' href='/coin/" + coin + "/1/" + sorting + "'><i class='angle double left icon'></i></a>" + strPagination;
-			}
-		}
-		
-		if (intCurrentPage < Math.ceil(scamsLength / MAX_RESULTS_PER_PAGE) - 3) {
-			if (sorting) {
-				strPagination += "<a class='item' href='/coin/" + coin + "/" + (Math.ceil(scamsLength / MAX_RESULTS_PER_PAGE) - 1) + "/" + sorting + "'><i class='angle double right icon'></i></a>";
-			} else {
-				strPagination += "<a class='item' href='/coin/" + coin + "/" + (Math.ceil(scamsLength / MAX_RESULTS_PER_PAGE) - 1) + "'><i class='angle double right icon'></i></a>";
-			}
-		}
-		%>
-		<%- strPagination %>
-	</div>
+
+    
+    if (intCurrentPage > 3) {
+                    
+      if (sorting) {
+                        strPagination += "<a class='scams-nav-item' href='/scams/1/" + sorting + "'> << </a>";
+                        strPagination += "<a class='scams-nav-item' href='/scams/" + Math.ceil(intCurrentPage - 1) + "'> < </a>";
+      } else {
+                        strPagination += "<a class='scams-nav-item' href='/scams/1" + "'> << </a>";
+                        strPagination += "<a class='scams-nav-item' href='/scams/" + Math.ceil(intCurrentPage - 1) + "'> < </a>";
+      }
+                }
+                
+                for (var i = arrLoop[0]; i < arrLoop[1]; i++) {
+      var intPageNumber = intCurrentPage+i;
+      var strItemClass = "scams-nav-item";
+      var strHref = "/scams/" + intPageNumber + "/";
+      
+      if ((intPageNumber > (scamsLength) / MAX_RESULTS_PER_PAGE) || (intPageNumber < 1)) {
+        strItemClass = "disabled scams-nav-item";
+        strHref = "#";
+      } else if (intCurrentPage == intPageNumber) {
+        strItemClass = "active scams-nav-item";
+      }
+      strPagination += "<a href='" + strHref + "' class='" + strItemClass + "'>" + intPageNumber + "</a>";
+    }
+    
+    if (intCurrentPage < Math.ceil(scamsLength / MAX_RESULTS_PER_PAGE) - 3) {
+                    
+      if (sorting) {
+                        strPagination += "<a class='scams-nav-item' href='/scams/" + Math.ceil(intCurrentPage + 1) + "/" + sorting + "'> > </a>";
+        strPagination += "<a class='scams-nav-item' href='/scams/" + (Math.ceil(scamsLength / MAX_RESULTS_PER_PAGE) - 1) + "/" + sorting + "'> >> </a>";
+      } else {
+                        strPagination += "<a class='scams-nav-item' href='/scams/" + Math.ceil(intCurrentPage + 1) + "'> > </a>";
+        strPagination += "<a class='scams-nav-item' href='/scams/" + (Math.ceil(scamsLength / MAX_RESULTS_PER_PAGE) - 1) + "'> >> </a>";
+                    }
+                    
+    }
+    %>
+    <%- strPagination %>
+  </div>
 <% } %>
 </div>
 	</div>
-	<% include ../partials/footer %>
+  <div class="footer-grid-frame">
+    <% include ../partials/footer %>
+</div>
 	<script>const coin = "<%= coin %>";</script>
 	<script src="/js/coin.js"></script>
 </body>

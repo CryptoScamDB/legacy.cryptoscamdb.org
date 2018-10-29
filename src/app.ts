@@ -94,7 +94,7 @@ export const serve = async (): Promise<void> => {
             ip: req.params.ip,
             isPrivate: isIpPrivate(req.params.ip),
             related:
-                (await request('https://cryptoscamdb.org/api/v1/ips', { json: true })).result[
+                (await request('https://api.cryptoscamdb.org/v1/ips', { json: true })).result[
                     req.params.ip
                 ] || []
         });
@@ -102,11 +102,11 @@ export const serve = async (): Promise<void> => {
 
     /* Address pages */
     app.get('/address/:address', async (req, res) => {
-        const addresses = (await request('https://cryptoscamdb.org/api/v1/addresses', {
+        const addresses = (await request('https://api.cryptoscamdb.org/v1/addresses', {
             json: true
         })).result;
         const whitelistAddresses = createDictionary(
-            (await request('https://cryptoscamdb.org/api/v1/verified', { json: true })).result
+            (await request('https://api.cryptoscamdb.org/v1/verified', { json: true })).result
         ).addresses;
         if (whitelistAddresses[req.params.address]) {
             res.render('address', {
@@ -131,13 +131,13 @@ export const serve = async (): Promise<void> => {
 
     /* Scams index */
     app.get('/scams/:page?/:sorting?/', async (req, res) => {
-        const fullScams = (await request('https://cryptoscamdb.org/api/v1/scams', {
+        const fullScams = (await request('https://api.cryptoscamdb.org/v1/scams', {
             json: true
         })).result.map(scam => {
             scam.hostname = url.parse(scam.url).hostname;
             return scam;
         });
-        const fullAddresses = (await request('https://cryptoscamdb.org/api/v1/addresses', {
+        const fullAddresses = (await request('https://api.cryptoscamdb.org/v1/addresses', {
             json: true
         })).result;
 
@@ -213,13 +213,13 @@ export const serve = async (): Promise<void> => {
     app.get('/coin/:coin/:page?/:sorting?/', async (req, res) => {
         const MAX_RESULTS_PER_PAGE = 30;
         const scamList = [];
-        const fullScams = (await request('https://cryptoscamdb.org/api/v1/scams', {
+        const fullScams = (await request('https://api.cryptoscamdb.org/v1/scams', {
             json: true
         })).result.map(scam => {
             scam.hostname = url.parse(scam.url).hostname;
             return scam;
         });
-        const fullAddresses = (await request('https://cryptoscamdb.org/api/v1/addresses', {
+        const fullAddresses = (await request('https://api.cryptoscamdb.org/v1/addresses', {
             json: true
         })).result;
 
@@ -300,13 +300,13 @@ export const serve = async (): Promise<void> => {
         const { hostname } = url.parse(
             'http://' + req.params.url.replace('http://', '').replace('https://')
         );
-        const fullScams = (await request('https://cryptoscamdb.org/api/v1/scams', {
+        const fullScams = (await request('https://api.cryptoscamdb.org/v1/scams', {
             json: true
         })).result.map(scam => {
             scam.hostname = url.parse(scam.url).hostname;
             return scam;
         });
-        const fullVerified = (await request('https://cryptoscamdb.org/api/v1/verified', {
+        const fullVerified = (await request('https://api.cryptoscamdb.org/v1/verified', {
             json: true
         })).result.map(scam => {
             scam.hostname = url.parse(scam.url).hostname;
@@ -353,7 +353,7 @@ export const serve = async (): Promise<void> => {
                 startTime,
                 dateFormat,
                 abuseReport: (await request(
-                    'https://cryptoscamdb.org/api/v1/abusereport/' + encodeURIComponent(hostname),
+                    'https://api.cryptoscamdb.org/v1/abusereport/' + encodeURIComponent(hostname),
                     { json: true }
                 )).result,
                 domainurl
@@ -377,7 +377,7 @@ export const serve = async (): Promise<void> => {
     /* Verified pages */
     app.get('/verified/', async (req, res) =>
         res.render('verified', {
-            featured: (await request('https://cryptoscamdb.org/api/v1/verified', {
+            featured: (await request('https://api.cryptoscamdb.org/v1/verified', {
                 json: true
             })).result.filter(entry => entry.featured)
         })

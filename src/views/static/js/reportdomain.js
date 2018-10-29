@@ -4,7 +4,7 @@ var args = {};
 function finish() {
     $(".captcha").fadeOut('', function() {
         $(".loading").fadeIn('', function() {
-            $.post(reportEndpoint, {
+            $.post("https://cryptoscamdb.org/api/v1/report/", {
                 reportType: 'generalDomainReport',
                 args: args
             }).done(function(data) {

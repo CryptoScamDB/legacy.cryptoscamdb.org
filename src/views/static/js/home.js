@@ -1,6 +1,6 @@
 window.addEventListener("load", function() {
 	$("#github").click(function() {
-		window.open('https://github.com/CryptoScamDB/cryptoscamdb.org');
+		window.open('https://github.com/CryptoScamDB');
 	});
 	$("#scams").click(function() {
 		window.open('/scams');

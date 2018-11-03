@@ -3,7 +3,7 @@ var args = {};
 function finish() {
     $(".captcha").fadeOut('', function() {
         $(".loading").fadeIn('', function() {
-            $.post(reportEndpoint, {
+            $.post("https://api.cryptoscamdb.org/v1/report/", {
                 reportType: 'generalAddressReport',
                 args: args
             }).done(function(data) {

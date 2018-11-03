@@ -9,7 +9,7 @@ function hideEverything() {
 window.addEventListener("load", function() {
     $('.search-btn').click(function() {
         console.log('button click recorded')
-        $.getJSON("/api/v1/check/" + encodeURIComponent($("input").val().toLowerCase().replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]), function(result) {
+        $.getJSON("https://api.cryptoscamdb.org/v1/check/" + encodeURIComponent($("input").val().toLowerCase().replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]), function(result) {
             if (result.result === 'verified') {
                 hideEverything();
                 var strLinkVerified = '';

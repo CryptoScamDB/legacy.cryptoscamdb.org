@@ -377,9 +377,9 @@ export const serve = async (): Promise<void> => {
     /* Verified pages */
     app.get('/verified/', async (req, res) =>
         res.render('verified', {
-            featured: (await request('https://api.cryptoscamdb.org/v1/verified', {
+            featured: (await request('https://api.cryptoscamdb.org/v1/featured', {
                 json: true
-            })).result.filter(entry => entry.featured)
+            })).result
         })
     );
 

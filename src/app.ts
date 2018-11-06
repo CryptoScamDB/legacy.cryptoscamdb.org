@@ -379,7 +379,7 @@ export const serve = async (): Promise<void> => {
         res.render('verified', {
             featured: (await request('https://api.cryptoscamdb.org/v1/featured', {
                 json: true
-            })).result
+            })).result.sort((a, b) => a.name.localeCompare(b.name))
         })
     );
 

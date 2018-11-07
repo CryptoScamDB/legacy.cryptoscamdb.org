@@ -217,6 +217,9 @@ export const serve = async (): Promise<void> => {
             json: true
         })).result.map(scam => {
             scam.hostname = url.parse(scam.url).hostname;
+            if (scam.coin) {
+                scam.coin = scam.coin.toLowerCase();
+            }
             return scam;
         });
         const fullAddresses = (await request('https://api.cryptoscamdb.org/v1/addresses', {

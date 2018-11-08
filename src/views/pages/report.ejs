@@ -395,19 +395,6 @@
   <div class="footer-container">
 	<% include ../partials/footer %>
   </div>
-    <script>
-	<%
-	if(hasSlackWebhook) {
-	%>
-	const reportEndpoint = "/api/v1/report/";
-	<%
-	} else {
-	%>
-	const reportEndpoint = "https://cryptoscamdb.org/api/v1/report/";
-	<%
-	}
-	%>
-    </script>
 	<% if(typeof domain !== "undefined") { %>
 <script src="/js/reportdomain.js"></script>
 <% } else if(typeof address !== "undefined") { %>

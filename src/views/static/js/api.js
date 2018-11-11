@@ -1,62 +1,32 @@
 window.addEventListener("load", function() {
 	$.getJSON("https://api.cryptoscamdb.org/v1/check/0xDaa29859836D97C810c7F9D350D4A1B3E8CafC9a",function(data) {
-		data = JSON.stringify(data, null, 2);
-		$("#check_loader").remove();
+		$(".check.lds-dual-ring").remove();
 		$("#check_segment").css("overflow","scroll");
-		$(".check_response").html(data);
+		$(".check_response").html(JSON.stringify(data, null, 2));
 	});
 	$.getJSON("https://api.cryptoscamdb.org/v1/scams/",function(data) {
-		data = JSON.stringify(data, null, 2);
-		$("#scams_loader").remove();
+		$(".scams.lds-dual-ring").remove();
 		$("#scams_segment").css("overflow","scroll");
-		$(".scams_response").html(data);
+		$(".scams_response").html(JSON.stringify(data, null, 2));
 	});
 	$.getJSON("https://api.cryptoscamdb.org/v1/addresses/",function(data) {
-		data = JSON.stringify(data, null, 2);
-		$("#addresses_loader").remove();
+		$(".addresses.lds-dual-ring").remove();
 		$("#addresses_segment").css("overflow","scroll");
-		$(".addresses_response").html(data);
+		$(".addresses_response").html(JSON.stringify(data, null, 2));
 	});
 	$.getJSON("https://api.cryptoscamdb.org/v1/ips/",function(data) {
-		data = JSON.stringify(data, null, 2);
-		$("#ips_loader").remove();
+		$(".ips.lds-dual-ring").remove();
 		$("#ips_segment").css("overflow","scroll");
-		$(".ips_response").html(data);
+		$(".ips_response").html(JSON.stringify(data, null, 2));
 	});
 	$.getJSON("https://api.cryptoscamdb.org/v1/verified/",function(data) {
-		data = JSON.stringify(data, null, 2);
-		$("#verified_loader").remove();
+		$(".verified.lds-dual-ring").remove();
 		$("#verified_segment").css("overflow","scroll");
-		$(".verified_response").html(data);
+		$(".verified_response").html(JSON.stringify(data, null, 2));
 	});
-	$.getJSON("https://api.cryptoscamdb.org/v1/blacklist/",function(data) {
-		data = JSON.stringify(data, null, 2);
-		$("#blacklist_loader").remove();
-		$("#blacklist_segment").css("overflow","scroll");
-		$(".blacklist_response").html(data);
-	});
-	$.getJSON("https://api.cryptoscamdb.org/v1/whitelist/",function(data) {
-		data = JSON.stringify(data, null, 2);
-		$("#whitelist_loader").remove();
-		$("#whitelist_segment").css("overflow","scroll");
-		$(".whitelist_response").html(data);
-	});
-	$.getJSON("https://api.cryptoscamdb.org/v1/inactives/",function(data) {
-		data = JSON.stringify(data, null, 2);
-		$("#inactives_loader").remove();
-		$("#inactives_segment").css("overflow","scroll");
-		$(".inactives_response").html(data);
-	});
-	$.getJSON("https://api.cryptoscamdb.org/v1/actives/",function(data) {
-		data = JSON.stringify(data, null, 2);
-		$("#actives_loader").remove();
-		$("#actives_segment").css("overflow","scroll");
-		$(".actives_response").html(data);
-	});
-	$.getJSON("https://api.cryptoscamdb.org/v1/abusereport/changellyli.com",function(data) {
-		data = JSON.stringify(data, null, 2);
-		$("#abusereport_loader").remove();
-		$("#abusereport_segment").css("overflow","scroll");
-		$(".abusereport_response").html(data);
+	$.getJSON("https://cdn.cryptoscamdb.org/blacklist/urls.json",function(data) {
+		$(".raw.lds-dual-ring").remove();
+		$("#raw_segment").css("overflow","scroll");
+		$(".raw_response").html(JSON.stringify(data, null, 2));
 	});
 });

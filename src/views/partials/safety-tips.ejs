@@ -2,8 +2,8 @@
   <strong>Safety Tips:</strong>
   <ul>
       <!-- Category specific tips (phishing/scamming -->
-      <% if(result.category) {
-        switch(result.category.toLowerCase()) {
+      <% if(entry.category) {
+        switch(entry.category.toLowerCase()) {
           case 'scamming' : %>
               <li>Be careful of the links you click - <a href="https://medium.com/mycrypto/you-need-to-stop-trusting-links-10271f300ed2" target="_blank">You need to stop trusting links</a>!</li>
               <li>Read about <a href="https://medium.com/mycrypto/following-an-ethereum-phishing-scam-down-the-rabbit-hole-9790484c3431" target="_blank">scamming techniques and how to stay safer</a>.</li>
@@ -16,8 +16,8 @@
       %>
 
       <!-- Subcategory specific tips -->
-      <% if(result.category) {
-        switch(result.subcategory.toLowerCase()) {
+      <% if(entry.category) {
+        switch(entry.subcategory.toLowerCase()) {
           case 'hitbtc' :
           case 'coinbase' :
           case 'gemini' :

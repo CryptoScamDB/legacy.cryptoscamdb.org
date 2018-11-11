@@ -27,6 +27,11 @@
 							<% } else { %>
 								<th>Name</th>
 							<% } %>
+							<% if(sorting == "coin") { %>
+								<th class="sorted descending">Coin</th>
+							<% } else { %>
+								<th>Coin</th>
+							<% } %>
 							<% if(sorting == "category") { %>
 								<th class="sorted descending">Category</th>
 							<% } else { %>
@@ -46,21 +51,28 @@
 					<tbody>
 						<% scams.forEach(scam => { %>
 		
-							<tr onclick="location.href='/domain/<%= scam.hostname %>'">
-									<% if(scam.hostname.length > 40) { %>
-										<td><%= scam.hostname.substring(0, 40) %>...</td>
+							<tr onclick="location.href='/scam/<%= scam.id %>'">
+									<% if(scam.name.length > 40) { %>
+										<td><%= scam.name.substring(0, 40) %>...</td>
 									<% } else { %>
-										<td><%= scam.hostname %></td>
+										<td><%= scam.name %></td>
 									<% } %>
+									
+									<% if("coin" in scam && scam.coin) { %>
+										<td><div class="cat-container"><img src='/assets/coins/<%= scam.coin %>.svg' alt='Icon - <%= scam.coin %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text"><%= scam.coin %></span></div></td>
+									<% } else { %>
+										<td><i class="remove icon"></i> None</td>
+									<% } %>
+									
 									<% if("category" in scam && scam.category) { %>
 										<% if(scam.category == "Phishing") { %>
-											<td><div class="cat-container"><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category.toLowerCase().replace(/\s/g, "") %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text">Phishing</span></div></td>
+											<td><div class="cat-container"><img src='/assets/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text">Phishing</span></div></td>
 										<% } else if(scam.category == "Scamming") { %>
-											<td><div class="cat-container"><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category.toLowerCase().replace(/\s/g, "") %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text">Scamming</span></div></td>
+											<td><div class="cat-container"><img src='/assets/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text">Scamming</span></div></td>
 										<% } else if(scam.category == "Fake ICO") { %>
-											<td><div class="cat-container"><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category.toLowerCase().replace(/\s/g, "") %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text">Fake ICO</span></div></td>
+											<td><div class="cat-container"><img src='/assets/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text">Fake ICO</span></div></td>
 										<% } else { %>
-											<td><div class="cat-container"><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category.toLowerCase().replace(/\s/g, "") %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text"><%= scam.category %></span></div></td>
+											<td><div class="cat-container"><img src='/assets/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text"><%= scam.category %></span></div></td>
 										<% } %>
 									<% } else { %>
 										<td><i class="remove icon"></i> None</td>
@@ -68,13 +80,13 @@
 									
 									<% if("subcategory" in scam && scam.subcategory) { %>
 										<% if(scam.subcategory == "Wallets") { %>
-											<td><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Wallets</td>
+											<td><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.subcategory %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Wallets</td>
 										<% } else if(scam.subcategory == "Trust-Trading") { %>
-											<td><img src='/assets/symbols/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Trust-Trading</td>
+											<td><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.subcategory %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Trust-Trading</td>
 										<% } else if(scam.subcategory == "Ponzi") { %>
-											<td><img src='/assets/symbols/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Ponzi</td>
+											<td><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.subcategory %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  Ponzi</td>
 										<% } else { %>
-											<td><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.png' alt='Icon - <%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <%= scam.subcategory %></td>
+											<td><img src='/assets/<%= scam.subcategory.toLowerCase().replace(/\s/g, "") %>.png' alt='Icon - <%= scam.subcategory %>' class='subcategoryicon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <%= scam.subcategory %></td>
 										<% } %>
 									<% } else { %>
 										<td><i class="remove icon"></i> None</td>

@@ -10,10 +10,11 @@
 						</a>
 					</div>
 					<div class="item footer-cont">
-						<div class="medium-grey-txt powered-by-txt">
-							API Provided by: <a target="_blank" rel="noopener" class="white-txt accent-color" href="https://etherscan.io">Etherscan</a> <br />
-							Code found at: <a target="_blank" rel="noopener" class="white-txt accent-color" href="https://github.com/CryptoScamDB/cryptoscamdb.org">Github</a>
-						</div>
+						<a target="_blank" rel="noopener" href="https://twitter.com/CryptoScamDB"><img class="social-media-icon" src="/assets/branding/twitter.svg"></a>
+						<a target="_blank" rel="noopener" href="https://www.npmjs.com/org/cryptoscamdb"><img class="social-media-icon" src="/assets/branding/npm.svg"></a>
+						<a target="_blank" rel="noopener" href="https://medium.com/@CryptoScamDB"><img class="social-media-icon" src="/assets/branding/medium.svg"></a>
+						<a target="_blank" rel="noopener" href="https://github.com/CryptoScamDB"><img class="social-media-icon" src="/assets/branding/github.svg"></a>
+						<a target="_blank" rel="noopener" href="https://keybase.io/CryptoScamDB"><img class="social-media-icon" src="/assets/branding/keybase.svg"></a>
 					</div>
 				</div>
 			</div>		
@@ -47,15 +48,30 @@
 					</div>
                     <br><br>
                     <div class="donate-buttons">
-                        <a class="donate-btn donate-btn-grid" rel="noopener" id="center-content" target="_blank" href="https://etherscan.io/address/0x25a51b3a7163352d4f32d0ed4a012b73fc32c08a">
-                            <img src="/assets/symbols/eth.svg" class="donate-icon" alt="Ethereum logo - Donation Button" />
+                        <a class="donate-btn donate-btn-grid ethereum" id="center-content" href="javascript:void(0);">
+                            <img src="/assets/coins/ETH.svg" class="donate-icon" alt="Ethereum logo - Donation Button" />
                             <span class="donate-btn-text">Ethereum</span>
+							<span id="donation-address-ethereum" style="display: none;">0x25a51b3a7163352d4f32d0ed4a012b73fc32c08a</span>
                         </a>
-                        <a class="donate-btn donate-btn-grid" rel="noopener" id="center-content" target="_blank" href="https://etherscan.io/address/0x25a51b3a7163352d4f32d0ed4a012b73fc32c08a">
-                            <img src="/assets/symbols/btc.svg" class="donate-icon" alt="Bitcoin logo - Donation Button" />
+                        <a class="donate-btn donate-btn-grid bitcoin" id="center-content" href="javascript:void(0);">
+                            <img src="/assets/coins/BTC.svg" class="donate-icon" alt="Bitcoin logo - Donation Button" />
                             <span class="donate-btn-text">Bitcoin</span>
+							<span id="donation-address-bitcoin" style="display: none;">3KgPJg1ht8EQrCWPHMdYU6JVXadwPXeCQg</span>
                         </a>
-                    </div>		
+					</div>
+					<div class="donate-buttons">
+						<a class="donate-btn donate-btn-grid monero" id="center-content" href="javascript:void(0);">
+                            <img src="/assets/coins/XMR.svg" class="donate-icon" alt="Monero logo - Donation Button" />
+                            <span class="donate-btn-text">Monero</span>
+							<span id="donation-address-monero" style="display: none;">8BZ1f1L8reXN5G2kgLnWS3ZFQa8rPv2BHH898XkfH5qo6Cc7mYxsaiDRj8gJyqwrygESPG8MD7ZEXJ75rx66a7DQVcrjd7d</span>
+                        </a>
+						<a class="donate-btn donate-btn-grid bitcoincash" id="center-content" href="javascript:void(0);">
+                            <img src="/assets/coins/BCH.svg" class="donate-icon" alt="Bitcoin Cash logo - Donation Button" />
+                            <span class="donate-btn-text">Bitcoin Cash</span>
+							<span id="donation-address-bitcoincash" style="display: none;">qq4rtza8sdlj6ke5c5j6tqrns7uuatunduskuj0apg</span>
+                        </a>
+                    </div>
+					<p class="donation-address-copied"><span class="green-check">✓</span> Address Copied to Clipboard!</p>
 				</p>
 			</div>
 		</div>
@@ -63,6 +79,7 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.js" integrity="sha256-Wl7niWgEJX3PdPn8lBzIDCWO1FBCYExjQihbT4ldMok=" crossorigin="anonymous"></script>
+<script src="/js/donate.js"></script>
 <!-- Matomo -->
 <script type="text/javascript">
   var _paq = _paq || [];

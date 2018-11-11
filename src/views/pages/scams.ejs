@@ -59,7 +59,7 @@
 									<% } %>
 									
 									<% if("coin" in scam && scam.coin) { %>
-										<td><div class="cat-container"><img src='/assets/coins/<%= scam.coin %>.svg' alt='Icon - <%= scam.coin.toLowerCase().replace(/\s/g, "") %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text"><%= scam.coin %></span></div></td>
+										<td><div class="cat-container"><img src='/assets/coins/<%= scam.coin %>.svg' alt='Icon - <%= scam.coin %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text"><%= scam.coin %></span></div></td>
 									<% } else { %>
 										<td><i class="remove icon"></i> None</td>
 									<% } %>

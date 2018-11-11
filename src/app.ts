@@ -31,6 +31,8 @@ export const serve = async (): Promise<void> => {
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, 'views/pages'));
 
+    app.locals.announcement = config.announcement;
+
     /* Compress pages */
     app.use(require('compression')());
 
@@ -312,10 +314,12 @@ export const serve = async (): Promise<void> => {
         );
         const fullScams = (await request('https://api.cryptoscamdb.org/v1/scams', {
             json: true
-        })).result.map(scam => {
-            scam.hostname = url.parse(scam.url).hostname;
-            return scam;
-        });
+        })).result
+            .filter(scam => scam.url)
+            .map(scam => {
+                scam.hostname = url.parse(scam.url).hostname;
+                return scam;
+            });
         const fullVerified = (await request('https://api.cryptoscamdb.org/v1/verified', {
             json: true
         })).result.map(scam => {

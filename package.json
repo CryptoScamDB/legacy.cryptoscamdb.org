@@ -49,13 +49,11 @@
   },
   "dependencies": {
     "@cryptoscamdb/array-object-dictionary": "^1.1.0",
-    "@cryptoscamdb/graceful-dns": "^1.1.0",
     "bottleneck": "^2.6.0",
     "compression": "^1.7.3",
     "cross-env": "^5.2.0",
     "dateformat": "^3.0.3",
     "debug": "^4.0.1",
-    "download": "^7.1.0",
     "ejs": "^2.6.1",
     "eth-phishing-detect": "^1.1.12",
     "express": "^4.16.3",
@@ -65,7 +63,6 @@
     "private-ip": "^1.0.5",
     "request": "^2.87.0",
     "request-promise-native": "^1.0.5",
-    "serialijse": "^0.1.3",
     "ts-node": "^7.0.1",
     "typescript": "^3.1.1"
   },

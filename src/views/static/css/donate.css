@@ -3,9 +3,10 @@ body {
     font-size: 16px;
 }
 
-td,tr {
-	align: center;
+td,th,tr {
 	text-align: center;
+	vertical-align: middle;
+	padding: 5px;
 }
 
 .text-dark {

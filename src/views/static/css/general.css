@@ -439,6 +439,19 @@ span {
 	width: 24px;
 }
 
+.donation-address-copied {
+	opacity: 0;
+	text-align: center;
+}
+
+.green-check {
+    width: 14px;
+    height: 14px;
+    margin-right: 7px;
+    font-size: 14px;
+    color: #7ad832;
+}
+
 /* Mobile/Tablet view */
 
 @media only screen and (max-width: 768px) {

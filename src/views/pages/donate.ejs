@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <% include ../partials/header.ejs %>
+        <link rel="stylesheet" href="/css/donate.css">
+	</head>
+	<body class="donate-container-grid">
+
+        <div class="nav-container">
+            <% include ../partials/navbar %>
+        </div>
+
+        <div class="header-container">
+            Donate <img src="/assets/symbols/donate.svg" style="margin-left: 10px;" width="30px">
+        </div>
+                
+        <div class="content-container">
+			<table style="width: 100%;">
+				<tr>
+					<th>Coin</th>
+					<th>Address</th>
+					<th>Explorer</th>
+				</tr>
+				<tr>
+					<td><img src="/assets/coins/ETH.svg" width="16px" height="16px"> Ethereum</td>
+					<td><code>0x25a51b3a7163352d4f32d0ed4a012b73fc32c08a</code></td>
+					<td><a href="https://etherscan.io/address/0x25a51b3a7163352d4f32d0ed4a012b73fc32c08a"><img src="/assets/symbols/search.svg"></a></td>
+				</tr>
+				<tr>
+					<td><img src="/assets/coins/BTC.svg" width="16px" height="16px"> Bitcoin</td>
+					<td><code>3KgPJg1ht8EQrCWPHMdYU6JVXadwPXeCQg</code></td>
+					<td><a href="https://www.blockchain.com/btc/address/3KgPJg1ht8EQrCWPHMdYU6JVXadwPXeCQg"><img src="/assets/symbols/search.svg"></a></td>
+				</tr>
+				<tr>
+					<td><img src="/assets/coins/XMR.svg" width="16px" height="16px"> Monero</td>
+					<td><code>8BZ1f1L8reXN5G2kgLnWS3ZFQa8rPv2BHH898XkfH5qo6Cc7mYxsaiDRj8gJyqwrygESPG8MD7ZEXJ75rx66a7DQVcrjd7d</code></td>
+					<td><a href="https://xmrchain.net/search?value=8BZ1f1L8reXN5G2kgLnWS3ZFQa8rPv2BHH898XkfH5qo6Cc7mYxsaiDRj8gJyqwrygESPG8MD7ZEXJ75rx66a7DQVcrjd7d"><img src="/assets/symbols/search.svg"></a></td>
+				</tr>
+				<tr>
+					<td><img src="/assets/coins/BCH.svg" width="16px" height="16px"> Bitcoin Cash</td>
+					<td><code>qq4rtza8sdlj6ke5c5j6tqrns7uuatunduskuj0apg</code></td>
+					<td><a href="https://explorer.bitcoin.com/bch/address/bitcoincash:qq4rtza8sdlj6ke5c5j6tqrns7uuatunduskuj0apg"><img src="/assets/symbols/search.svg"></a></td>
+				</tr>
+				<tr>
+					<td><img src="/assets/coins/LTC.svg" width="16px" height="16px"> Litecoin</td>
+					<td><code>MN72bFQMYAhp6NbdJZeXGBCxH9Kfim2qYe</code></td>
+					<td><a href="https://insight.litecore.io/address/MN72bFQMYAhp6NbdJZeXGBCxH9Kfim2qYe"><img src="/assets/symbols/search.svg"></a></td>
+				</tr>
+			</table>
+			<br>
+			<br>
+			Click <a href="#" id="requestDonationTrigger">here</a> to make an Ethereum or ERC20 token donation using Request Network</a>.
+			<br><br><br><br>
+			<b>
+				Every donation will be highly appreciated! ♡
+			</b>
+        </div>
+
+		<div class="footer-container">
+            <% include ../partials/footer.ejs %>
+        </div>
+		<script type="text/javascript" src="https://donations.request.network/donate.js"></script>
+		<script type="text/javascript">
+			var requestDonations = new requestNetworkDonations({
+				address: '0x25a51b3a7163352d4f32d0ed4a012b73fc32c08a'
+			});
+			requestDonations.start();
+		</script>
+	</body>
+</html>

@@ -44,6 +44,7 @@ export const serve = async (): Promise<void> => {
     app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/wallets')));
     app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/favicon')));
     app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/branding')));
+    app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/symbols')));
 
     /* Configuration middleware */
     app.use(async (req, res, next) => {
@@ -60,8 +61,9 @@ export const serve = async (): Promise<void> => {
         } else if (req.path === '/config/' && req.method === 'POST' && !config.manual) {
             await writeConfig(req.body);
             res.render('config', { production: false, done: true });
+        } else {
+            next();
         }
-        next();
     });
 
     /* Homepage */
@@ -69,6 +71,9 @@ export const serve = async (): Promise<void> => {
 
     /* FAQ page */
     app.get('/faq/', (req, res) => res.render('faq'));
+
+    /* Donate page */
+    app.get('/donate/', (req, res) => res.render('donate'));
 
     /* API documentation page */
     app.get('/api/', (req, res) => res.render('api'));
@@ -133,10 +138,12 @@ export const serve = async (): Promise<void> => {
     app.get('/scams/:page?/:sorting?/', async (req, res) => {
         const fullScams = (await request('https://api.cryptoscamdb.org/v1/scams', {
             json: true
-        })).result.map(scam => {
-            scam.hostname = url.parse(scam.url).hostname;
-            return scam;
-        });
+        })).result
+            .filter(scam => scam.url)
+            .map(scam => {
+                scam.hostname = url.parse(scam.url).hostname;
+                return scam;
+            });
         const fullAddresses = (await request('https://api.cryptoscamdb.org/v1/addresses', {
             json: true
         })).result;

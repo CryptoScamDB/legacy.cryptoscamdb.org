@@ -111,34 +111,6 @@ export interface VirusTotalResponse {
     };
 }
 
-/* Create Bottleneck limiter for HTTP lookups with limits defined in config */
-const limiter = new Bottleneck({
-    minTime: config.lookups.HTTP.minTime,
-    maxConcurrent: config.lookups.HTTP.maxConcurrent
-});
-
-/* Do a URL lookup */
-export const lookup = limiter.wrap(url => {
-    return new Promise<request.Response | undefined>(resolve => {
-        debug('Requesting ' + url + '...');
-        request(
-            {
-                url,
-                timeout: config.lookups.HTTP.timeoutAfter,
-                followAllRedirects: true,
-                maxRedirects: 5
-            },
-            (err, response) => {
-                if (err) {
-                    resolve(undefined);
-                } else {
-                    resolve(response);
-                }
-            }
-        );
-    });
-});
-
 /* Retrieve latest Urlscan report (no API key required) */
 export const getURLScan = (url: string): Promise<URLScanResponse> => {
     return new Promise<URLScanResponse>((resolve, reject) => {

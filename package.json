@@ -48,8 +48,6 @@
     }
   },
   "dependencies": {
-    "@cryptoscamdb/array-object-dictionary": "^1.1.0",
-    "bottleneck": "^2.6.0",
     "compression": "^1.7.3",
     "cross-env": "^5.2.0",
     "dateformat": "^3.0.3",
@@ -57,9 +55,7 @@
     "ejs": "^2.6.1",
     "eth-phishing-detect": "^1.1.12",
     "express": "^4.16.3",
-    "fs-extra": "^7.0.0",
     "helmet": "^3.13.0",
-    "js-yaml": "^3.9.0",
     "private-ip": "^1.0.5",
     "request": "^2.87.0",
     "request-promise-native": "^1.0.5",
@@ -68,11 +64,8 @@
   },
   "devDependencies": {
     "@types/debug": "0.0.31",
-    "@types/download": "^6.2.2",
     "@types/express": "^4.16.0",
-    "@types/fs-extra": "^5.0.4",
     "@types/helmet": "0.0.42",
-    "@types/js-yaml": "^3.11.2",
     "@types/node": "^10.11.2",
     "@types/request": "^2.47.1",
     "all-contributors-cli": "^5.4.0",

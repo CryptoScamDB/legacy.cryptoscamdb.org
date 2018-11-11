@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<% include ../partials/header %>
+<link rel="stylesheet" href="/css/domain.css">
+</head>
+
+<body class="domain-container-grid">
+
+    <div class="navbar-container-grid">
+      <% include ../partials/navbar %>
+    </div>
+
+    <div class="content-container-grid">
+        <div class="domain-content-grid">
+
+            <div class="header-content">
+                <div class=""><h1><%= entry.id %></h1></div>
+                <% include ../partials/sharing %>
+            </div>
+
+            <div class="right-content">
+                <div id="" class="hide">
+                    <i class=""></i>
+                    <div class="">
+                        Share
+                    </div>
+                </div>
+                <div id="abusemodal" class="hide">
+                    <i class=""></i>
+                    <div class="">
+                        Abuse Report
+                    </div>
+                    <div class="">
+                        <div class="">
+                            <div class="">
+                                <textarea id="abuse"><%= entry.abusereport %></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="">
+                            <i class=""></i> Cancel
+                        </div>
+                        <div onclick="copyabuse()" class="">
+                            <i class=""></i> Copy
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div id="actions" class="">
+                        <button id="" class="domain-page"><i class=""></i> Abuse Report</button>
+                        
+                        <a id="" target="_blank" href="http://web.archive.org/web/*/<%= entry.url %>" class="domain-page">
+                          <button class="button-link"  class=""><i class=""></i> Archive</button>
+                        </a>
+                        
+                        <a id="" target="_blank" href="https://github.com/CryptoScamDB/blacklist/tree/master/data" class="domain-page">
+                          <button class="button-link" class="">
+                            <i class=""></i> Improve
+                          </button>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="right-bottom-content">
+              <% include ../partials/safety-tips %>
+            </div>
+
+            <div class="left-content">
+                <b>URL</b>: <a id="url" target="_blank" href="/redirect/<%= encodeURIComponent(entry.url) %>"><%= entry.url %></a><BR>
+                <% if(entry.category && entry.subcategory) { %>
+                <b>Category</b>: <%= entry.category %> - <%= entry.subcategory %><BR>
+                <% } else if(entry.category) { %>
+                <b>Category</b>: <%= entry.category %><BR>
+                <% } %>
+                <% if(entry.description) { %>
+                <b>Description</b>: <%= entry.description %><BR>
+                <% } %>
+                <% if(entry.status) { %>
+                <b>Status</b>: <span class="class_<%= entry.status.toLowerCase() %>"><%= entry.status %></span><BR>
+                <% } %>
+                <% if(entry.ip) { %>
+                <b>IP</b>: <a href="/ip/<%= entry.ip %>"><%= entry.ip %></a><BR>
+                <% } %>
+                <br>
+                   <b>MetaMask Status:</b>
+                    <% if(checkForPhishing(entry.url)) { %>
+                      <span style="color: green;">Blocked</span>
+					<% } else { %>
+					  <span style="color: red;">Not yet blocked</span>
+					<% } %>
+                      <br>
+                <% if(entry.lookups.Google_SafeBrowsing !== null) { %>
+                    <% if(entry.lookups.Google_SafeBrowsing === false) { %>
+                    <b>Google Safe Browsing Status</b>: <span class="red"> Not Blocked Yet</span> <a target="_blank" href="https://safebrowsing.google.com/safebrowsing/report_phish/"><i class=""></i></a><br>
+                    <% } else { %>
+                    <b>Google Safe Browsing Status</b>: <span class="green">Blocked for <%= entry.lookups.Google_SafeBrowsing.threatType %></span><br>
+                    <% } %>
+                <% } %>
+                        
+                <% if(entry.lookups.VirusTotal !== null) { %>
+                    <% if(entry.lookups.VirusTotal.positives == 0) { %>
+                    <b>VirusTotal Detections</b>: <span class='green'><%= entry.lookups.VirusTotal.positives %>/<%= entry.lookups.VirusTotal.total %></span><br>
+                    <% } else { %>
+                    <b>VirusTotal Detections</b>: <span class='red'><%= entry.lookups.VirusTotal.positives %>/<%= entry.lookups.VirusTotal.total %></span><i class=''></i><br>
+                    <% } %>
+                    <% if (entry.lookups.VirusTotal.scans.Phishtank.result == "clean site") { %>
+                    <b>Phishtank Detected</b>: <span class='green'>Clean Site</span><br>
+                    <% } else if(entry.lookups.VirusTotal.scans.Phishtank.result == "phishing site") { %>
+                    <b>Phishtank Detected</b>: <span class='red'>Phishing Site</span><br>
+                    <% } else { %>
+                    <b>Phishtank Detected</b>: <span class=''><%= entry.lookups.VirusTotal.scans.Phishtank.result %></span><br>
+                    <% } %>
+                <% } %>
+                <% if(entry.lookups.URLScan !== null && entry.lookups.URLScan.results && entry.lookups.URLScan.results.length > 0) { %>
+                <b>Urlscan Scan Results</b>: <a href="https://urlscan.io/result/<%= entry.lookups.URLScan.results[0].result.replace('https://urlscan.io/api/v1/result/','') %>" target="_blank">Link</a><br>
+                <% } %>
+                        
+                <br>
+                        
+                <% if(entry.nameservers) { %>
+                <b>Nameservers</b>:
+                <div class="">
+                    <% entry.nameservers.forEach(nameserver => { %>
+                    <div class=""><%= nameserver %></div>
+                    <% }); %>
+                </div>
+                <br>
+                <% } %>
+                <% if(entry.addresses && entry.addresses.length > 0) { %>
+                    <b>Related addresses</b>:
+                    <div class="">
+                        <% entry.addresses.forEach(address => { %>
+                        <div class="""><a href="/address/<%= address %>"><%= address %></a></div>
+                        <% }); %>
+                    </div>
+                    <br>
+                <% } %>                        
+            </div>
+            <br>
+            <div class="bottom-content">
+                <% if(entry.lookups.URLScan !== null && entry.lookups.URLScan.results && entry.lookups.URLScan.results.length > 0) { %>
+                    <b>Urlscan Screenshot</b>: <br>
+                    <div id="scam-screenshot">
+                        <a href="https://urlscan.io/result/<%= entry.lookups.URLScan.results[0].result.replace('https://urlscan.io/api/v1/result/','') %>" target="_blank">
+                            <img class="urlscan-img" src="https://urlscan.io/screenshots/<%= entry.lookups.URLScan.results[0].result.replace('https://urlscan.io/api/v1/result/','') %>.png" alt="Screenshot of website" style="width: 100%; height: 80%;">
+                        </a>
+                    </div><br />
+                <% } %>
+                <br />
+                <br>
+                <hr>
+                <br>        
+                <div id="disqus_thread">
+                    <% if(!entry) { %>
+                        <p class="built">This page was built in <b><%= Date.now()-startTime %></b>ms</p>
+                    <% } else if(entry.updated == "0") { %>
+                        <p class="built">This page was built in <b><%= Date.now()-startTime %></b>ms, and never updated</p>
+                    <% } else { %>
+                        <p class="built">This page was last updated at <b><%= dateFormat(entry.updated, "UTC:mmm dd yyyy, HH:MM") %> UTC</b></p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="footer-container-grid">
+        <% include ../partials/footer %>
+    </div>
+	
+	<script>
+        var disqus_config = function () {
+        this.page.identifier = "<%= ((entry || {}).id || domain) %>";
+        };
+        (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ethereum-scam-database.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	<script src="/js/domain.js"></script>
+</body>
+
+</html>

@@ -3,16 +3,11 @@
 import * as Debug from 'debug';
 import * as express from 'express';
 import * as path from 'path';
-import config from './utils/config';
-import writeConfig from './utils/writeConfig';
-import * as fs from 'fs';
 import * as url from 'url';
 import * as helmet from 'helmet';
 import * as isIpPrivate from 'private-ip';
 import * as checkForPhishing from 'eth-phishing-detect';
 import * as dateFormat from 'dateformat';
-import createDictionary from '@cryptoscamdb/array-object-dictionary';
-import { getGoogleSafeBrowsing, getURLScan, getVirusTotal } from './utils/lookup';
 import * as request from 'request-promise-native';
 
 const debug = Debug('app');
@@ -31,7 +26,10 @@ export const serve = async (): Promise<void> => {
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, 'views/pages'));
 
-    app.locals.announcement = config.announcement;
+    app.locals.announcement = null;
+    app.locals.isIpPrivate = isIpPrivate;
+    app.locals.checkForPhishing = checkForPhishing;
+    app.locals.dateFormat = dateFormat;
 
     /* Compress pages */
     app.use(require('compression')());
@@ -47,26 +45,6 @@ export const serve = async (): Promise<void> => {
     app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/favicon')));
     app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/branding')));
     app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/symbols')));
-
-    /* Configuration middleware */
-    app.use(async (req, res, next) => {
-        const { NODE_ENV } = process.env;
-        if (!config.manual && req.path !== '/config/' && NODE_ENV === 'development') {
-            res.render('config', { production: false, done: false });
-        } else if (!config.manual && req.path !== '/config/' && NODE_ENV === 'production') {
-            res.render('config', { production: true, done: false });
-        } else if (
-            req.path === '/config' &&
-            (req.method !== 'POST' || !req.body || config.manual)
-        ) {
-            res.status(403).end();
-        } else if (req.path === '/config/' && req.method === 'POST' && !config.manual) {
-            await writeConfig(req.body);
-            res.render('config', { production: false, done: true });
-        } else {
-            next();
-        }
-    });
 
     /* Homepage */
     app.get('/(/|index.html)?', (req, res) => res.render('index'));
@@ -99,7 +77,6 @@ export const serve = async (): Promise<void> => {
     app.get('/ip/:ip', async (req, res) => {
         await res.render('ip', {
             ip: req.params.ip,
-            isPrivate: isIpPrivate(req.params.ip),
             related:
                 (await request('https://api.cryptoscamdb.org/v1/ips', { json: true })).result[
                     req.params.ip
@@ -109,30 +86,19 @@ export const serve = async (): Promise<void> => {
 
     /* Address pages */
     app.get('/address/:address', async (req, res) => {
-        const addresses = (await request('https://api.cryptoscamdb.org/v1/addresses', {
-            json: true
-        })).result;
-        const whitelistAddresses = createDictionary(
-            (await request('https://api.cryptoscamdb.org/v1/verified', { json: true })).result
-        ).addresses;
-        if (whitelistAddresses[req.params.address]) {
+        const address = await request(
+            'https://api.cryptoscamdb.org/v1/check/' + encodeURIComponent(req.params.address),
+            {
+                json: true
+            }
+        );
+        if (address.success) {
             res.render('address', {
                 address: req.params.address,
-                related: whitelistAddresses[req.params.address],
-                type: 'verified'
-            });
-        } else if (addresses[req.params.address]) {
-            res.render('address', {
-                address: req.params.address,
-                related: addresses[req.params.address] || [],
-                type: 'scam'
+                result: address.result
             });
         } else {
-            res.render('address', {
-                address: req.params.address,
-                related: addresses[req.params.address] || [],
-                type: 'neutral'
-            });
+            res.render('404');
         }
     });
 
@@ -140,12 +106,7 @@ export const serve = async (): Promise<void> => {
     app.get('/scams/:page?/:sorting?/', async (req, res) => {
         const fullScams = (await request('https://api.cryptoscamdb.org/v1/scams', {
             json: true
-        })).result
-            .filter(scam => scam.url)
-            .map(scam => {
-                scam.hostname = url.parse(scam.url).hostname;
-                return scam;
-            });
+        })).result;
         const fullAddresses = (await request('https://api.cryptoscamdb.org/v1/addresses', {
             json: true
         })).result;
@@ -224,13 +185,7 @@ export const serve = async (): Promise<void> => {
         const scamList = [];
         const fullScams = (await request('https://api.cryptoscamdb.org/v1/scams', {
             json: true
-        })).result.map(scam => {
-            scam.hostname = url.parse(scam.url).hostname;
-            if (scam.coin) {
-                scam.coin = scam.coin.toLowerCase();
-            }
-            return scam;
-        });
+        })).result;
         const fullAddresses = (await request('https://api.cryptoscamdb.org/v1/addresses', {
             json: true
         })).result;
@@ -306,41 +261,37 @@ export const serve = async (): Promise<void> => {
         }
     });
 
+    /* Entry pages */
+    app.get('/entry/:id', async (req, res) => {
+        const startTime = Date.now();
+
+        const entry = await request(
+            'https://api.cryptoscamdb.org/v1/entry/' + encodeURIComponent(req.params.id),
+            {
+                json: true
+            }
+        );
+
+        if (entry.success) {
+            res.render('entry', {
+                entry: entry,
+                startTime: startTime
+            });
+        } else {
+            res.render('404');
+        }
+    });
+
     /* Domain pages */
-    app.get('/domain/:url', async (req, res) => {
+    /*app.get('/domain/:url', async (req, res) => {
         const startTime = Date.now();
         const { hostname } = url.parse(
             'http://' + req.params.url.replace('http://', '').replace('https://')
         );
-        const fullScams = (await request('https://api.cryptoscamdb.org/v1/scams', {
+		
+        const result = (await request('https://api.cryptoscamdb.org/v1/domain/' + encodeURIComponent(req.params.url), {
             json: true
-        })).result
-            .filter(scam => scam.url)
-            .map(scam => {
-                scam.hostname = url.parse(scam.url).hostname;
-                return scam;
-            });
-        const fullVerified = (await request('https://api.cryptoscamdb.org/v1/verified', {
-            json: true
-        })).result.map(scam => {
-            scam.hostname = url.parse(scam.url).hostname;
-            return scam;
-        });
-
-        const scamEntry = fullScams.find(scam => scam.hostname === hostname);
-        const verifiedEntry = fullVerified.find(verified => verified.hostname === hostname);
-
-        const urlScan = await getURLScan(hostname);
-        const domainurl = 'https://cryptoscamdb.org/domain/' + hostname;
-        let googleSafeBrowsing;
-        let virusTotal;
-
-        if ((scamEntry || !verifiedEntry) && config.apiKeys.Google_SafeBrowsing) {
-            googleSafeBrowsing = await getGoogleSafeBrowsing(hostname);
-        }
-        if ((scamEntry || !verifiedEntry) && config.apiKeys.VirusTotal) {
-            virusTotal = await getVirusTotal(hostname);
-        }
+        })).result;
 
         if (verifiedEntry) {
             res.render('domain', {
@@ -352,8 +303,7 @@ export const serve = async (): Promise<void> => {
                 googleSafeBrowsing,
                 virusTotal,
                 startTime,
-                dateFormat,
-                domainurl
+                dateFormat
             });
         } else if (scamEntry) {
             res.render('domain', {
@@ -369,8 +319,7 @@ export const serve = async (): Promise<void> => {
                 abuseReport: (await request(
                     'https://api.cryptoscamdb.org/v1/abusereport/' + encodeURIComponent(hostname),
                     { json: true }
-                )).result,
-                domainurl
+                )).result
             });
         } else {
             res.render('domain', {
@@ -382,11 +331,10 @@ export const serve = async (): Promise<void> => {
                 googleSafeBrowsing,
                 virusTotal,
                 addresses: [],
-                startTime,
-                domainurl
+                startTime
             });
         }
-    });
+    });*/
 
     /* Verified pages */
     app.get('/verified/', async (req, res) =>
@@ -404,7 +352,7 @@ export const serve = async (): Promise<void> => {
     app.get('*', (req, res) => res.status(404).render('404'));
 
     /* Listen to port (defined in config */
-    app.listen(config.port, () => debug('Content served on http://localhost:%s', config.port));
+    app.listen(80, () => debug('Content served on http://localhost:80'));
 };
 
 if (!module.parent) {

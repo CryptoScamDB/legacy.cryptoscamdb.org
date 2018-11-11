@@ -106,8 +106,8 @@ export const serve = async (): Promise<void> => {
     app.get('/scams/:page?/:sorting?/', async (req, res) => {
         const fullScams = (await request('https://api.cryptoscamdb.org/v1/scams', {
             json: true
-        })).result;
-        const fullAddresses = (await request('https://api.cryptoscamdb.org/v1/addresses', {
+        })).result.filter(scam => scam.url);
+        const stats = (await request('https://api.cryptoscamdb.org/v1/stats', {
             json: true
         })).result;
 
@@ -164,14 +164,10 @@ export const serve = async (): Promise<void> => {
             res.render('scams', {
                 page: req.params.page,
                 sorting: req.params.sorting,
-                total: scams.length.toLocaleString('en-US'),
-                active: Object.keys(
-                    scams.filter(scam => scam.status === 'Active')
-                ).length.toLocaleString('en-US'),
-                total_addresses: Object.keys(fullAddresses).length.toLocaleString('en-US'),
-                inactive: Object.keys(
-                    scams.filter(scam => scam.status === 'Inactive')
-                ).length.toLocaleString('en-US'),
+                total: stats.scams.toLocaleString('en-US'),
+                active: stats.actives.toLocaleString('en-US'),
+                total_addresses: stats.addresses.toLocaleString('en-US'),
+                inactive: stats.inactives.toLocaleString('en-US'),
                 scams: scamList,
                 MAX_RESULTS_PER_PAGE,
                 scamsLength: scams.length
@@ -262,7 +258,7 @@ export const serve = async (): Promise<void> => {
     });
 
     /* Entry pages */
-    app.get('/entry/:id', async (req, res) => {
+    app.get('/scam/:id', async (req, res) => {
         const startTime = Date.now();
 
         const entry = await request(
@@ -274,7 +270,8 @@ export const serve = async (): Promise<void> => {
 
         if (entry.success) {
             res.render('entry', {
-                entry: entry,
+                entry: entry.result,
+                domainurl: 'https://cryptoscamdb.org/scam/' + encodeURIComponent(req.params.id),
                 startTime: startTime
             });
         } else {
@@ -283,58 +280,26 @@ export const serve = async (): Promise<void> => {
     });
 
     /* Domain pages */
-    /*app.get('/domain/:url', async (req, res) => {
+    app.get('/domain/:url', async (req, res) => {
         const startTime = Date.now();
         const { hostname } = url.parse(
             'http://' + req.params.url.replace('http://', '').replace('https://')
         );
-		
-        const result = (await request('https://api.cryptoscamdb.org/v1/domain/' + encodeURIComponent(req.params.url), {
-            json: true
-        })).result;
 
-        if (verifiedEntry) {
-            res.render('domain', {
-                type: 'verified',
-                result: verifiedEntry,
-                domain: hostname,
-                urlScan,
-                metamask: false,
-                googleSafeBrowsing,
-                virusTotal,
-                startTime,
-                dateFormat
-            });
-        } else if (scamEntry) {
-            res.render('domain', {
-                type: 'scam',
-                result: scamEntry,
-                domain: hostname,
-                urlScan,
-                metamask: checkForPhishing(hostname),
-                googleSafeBrowsing,
-                virusTotal,
-                startTime,
-                dateFormat,
-                abuseReport: (await request(
-                    'https://api.cryptoscamdb.org/v1/abusereport/' + encodeURIComponent(hostname),
-                    { json: true }
-                )).result
-            });
-        } else {
-            res.render('domain', {
-                type: 'neutral',
-                domain: hostname,
-                result: false,
-                urlScan,
-                metamask: checkForPhishing(hostname),
-                googleSafeBrowsing,
-                virusTotal,
-                addresses: [],
-                startTime
-            });
-        }
-    });*/
+        const result = (await request(
+            'https://api.cryptoscamdb.org/v1/domain/' + encodeURIComponent(hostname),
+            {
+                json: true
+            }
+        )).result;
+
+        res.render('domain', {
+            domain: hostname,
+            entries: result,
+            domainurl: 'https://cryptoscamdb.org/domain/' + encodeURIComponent(req.params.url),
+            startTime
+        });
+    });
 
     /* Verified pages */
     app.get('/verified/', async (req, res) =>

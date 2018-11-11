@@ -209,3 +209,7 @@ button:hover {
   font-size: 12pt;
   float: right;
 }
+
+.navbar {
+	height: inherit !important;
+}

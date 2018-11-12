@@ -156,7 +156,7 @@ table td {
 	font-family: Lato;
 	text-align: center;
 	font-size: 16px;
-	color: #163150;
+  color: #163150;
 }
 
 tbody tr {
@@ -165,7 +165,8 @@ tbody tr {
 	height: 61px;
 	font-size: 16px;
 	color: #163150;
-	font-weight: 500;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 tbody tr:hover {

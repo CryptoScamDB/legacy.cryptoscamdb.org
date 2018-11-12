@@ -41,7 +41,7 @@
 						</tr>
 						<% entries.filter(entry => entry.type == "verified").forEach(entry => { %>
 						<tr>
-							<td><div class="featured-name"><img class="project-icon" src="/assets/<%= entry.name %>.png"> <%= entry.name %></div></td>
+							<td><div class="featured-name"><img class="project-icon" src="/assets/<%= entry.name.toLowerCase() %>.png"> <%= entry.name %></div></td>
 							<td><%= entry.url %></td> 
 							<td><%= entry.description %></td>
 						</tr>

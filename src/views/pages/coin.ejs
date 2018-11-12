@@ -43,11 +43,11 @@
   <tbody>
 		<% scams.forEach(scam => { %>
 		
-      <tr onclick="location.href='/domain/<%= scam.hostname %>'">
-          <% if(scam.hostname.length > 40) { %>
-            <td><%= scam.hostname.substring(0, 40) %>...</td>
+      <tr onclick="location.href='/domain/<%= scam.name %>'">
+          <% if(scam.name.length > 40) { %>
+            <td><%= scam.name.substring(0, 40) %>...</td>
           <% } else { %>
-            <td><%= scam.hostname %></td>
+            <td><%= scam.name %></td>
           <% } %>
           <% if("category" in scam && scam.category) { %>
             <% if(scam.category == "Phishing") { %>

@@ -9,7 +9,7 @@ function hideEverything() {
 window.addEventListener("load", function() {
     $('.search-btn').click(function() {
         console.log('button click recorded')
-        $.getJSON("https://api.cryptoscamdb.org/v1/check/" + encodeURIComponent($("input").val().toLowerCase().replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]), function(result) {
+        $.getJSON("https://api.cryptoscamdb.org/v1/check/" + encodeURIComponent($("input").val().replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]), function(result) {
             if (result.result.status === 'verified') {
                 hideEverything();
                 var strLinkVerified = '';
@@ -21,8 +21,8 @@ window.addEventListener("load", function() {
                 hideEverything();
                 var strLinkNeutral = '';
                 if(result.result.type === 'address'){
-                    $("#neutralmessage").html('<b>' + encodeURI($("input").val().toLowerCase().replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]) + '</b> wasn\'t a recognized ETH address.');
-                    strLinkNeutral = '<a id="details" href="https://etherscan.io/address/' + encodeURI($("input").val()) + '">View this address on Etherscan <i class="chevron right small icon"></i></a>';
+                    $("#neutralmessage").html('<b>' + encodeURI($("input").val().toLowerCase().replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]) + '</b> wasn\'t a recognized address.');
+                    strLinkNeutral = '<a id="details" href="/address/' + encodeURI($("input").val()) + '">Details on this address <i class="chevron right small icon"></i></a>';
                     $("#neutralmessage").html($("#neutralmessage").html() + ' ' + strLinkNeutral);
                     $("#neutral").css('display', 'flex');
                 }

@@ -186,9 +186,10 @@ export const serve = async (): Promise<void> => {
             json: true
         })).result;
 
-        let scams = [...fullScams.filter(scam => scam.coin === req.params.coin)].reverse();
+        let scams = [
+            ...fullScams.filter(scam => scam.coin === req.params.coin.toUpperCase())
+        ].reverse();
         let index = [0, MAX_RESULTS_PER_PAGE];
-
         if (
             req.params.page &&
             req.params.page !== 'all' &&
@@ -272,7 +273,7 @@ export const serve = async (): Promise<void> => {
             res.render('entry', {
                 entry: entry.result,
                 domainurl: 'https://cryptoscamdb.org/scam/' + encodeURIComponent(req.params.id),
-                startTime: startTime
+                startTime
             });
         } else {
             res.render('404');

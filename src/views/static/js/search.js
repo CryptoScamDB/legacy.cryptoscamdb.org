@@ -10,6 +10,7 @@ window.addEventListener("load", function() {
     $('.search-btn').click(function() {
         console.log('button click recorded')
         $.getJSON("https://api.cryptoscamdb.org/v1/check/" + encodeURIComponent($("input").val().replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]), function(result) {
+          if (result.success) {
             if (result.result.status === 'verified') {
                 hideEverything();
                 var strLinkVerified = '';
@@ -56,6 +57,18 @@ window.addEventListener("load", function() {
                 $("#blacklistmessage").html($("#blacklistmessage").html() + ' ' + strLinkBlocked);
                 $("#blocked").css('display', 'flex');
             }
+          } else {
+            hideEverything();
+            var strLinkNeutral = '';
+            $("#neutralmessage").html('<b>' + encodeURI($("input").val().toLowerCase().replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]) + '</b> wasn\'t resolveable.');
+            if (result.message) {
+              strLinkNeutral = 'Error: ' + result.message;
+            } else {
+              strLinkNeutral = 'Sorry, we are not able to display any data about this input.';
+            }
+            $("#neutralmessage").html($("#neutralmessage").html() + ' ' + strLinkNeutral);
+            $("#neutral").css('display', 'flex');
+          }
         });
     });
 });

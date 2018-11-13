@@ -43,12 +43,20 @@
   <tbody>
 		<% scams.forEach(scam => { %>
 		
-      <tr onclick="location.href='/domain/<%= scam.name %>'">
+      <tr onclick="location.href='/domain/<%= scam.hostname %>'">
+        <% if(scam.hostname) { %>
+          <% if(scam.hostname.length > 40) { %>
+            <td><%= scam.hostname.substring(0, 40) %>...</td>
+          <% } else { %>
+            <td><%= scam.hostname %></td>
+          <% } %>
+        <% } else { %>
           <% if(scam.name.length > 40) { %>
             <td><%= scam.name.substring(0, 40) %>...</td>
           <% } else { %>
             <td><%= scam.name %></td>
           <% } %>
+        <% } %>  
           <% if("category" in scam && scam.category) { %>
             <% if(scam.category == "Phishing") { %>
               <td><div class="cat-container"><img src='/assets/symbols/<%= scam.category.toLowerCase().replace(/\s/g, "") %>.svg' alt='Icon - <%= scam.category.toLowerCase().replace(/\s/g, "") %>' class='categoryicon cat-icon' style="height:24px; width:24px;" onerror="this.style.display='none'" />  <span class="cat-text">Phishing</span></div></td>

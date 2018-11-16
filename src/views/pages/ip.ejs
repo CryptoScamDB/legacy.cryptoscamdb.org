@@ -33,18 +33,9 @@
                 <b>URLScan: </b> <span id="urlscanip" class="flex-cent"><a href="https://urlscan.io/ip/<%= ip %>" target="_blank" class="flex-cent">View Report</a></span> <br /> <br />
             </div>
             <div>
-                <b>Related to the following domains (<%= related.length %>): </b>
-                <% if(related.length > 0) { %>
-                    <div class="ui bulleted list flex-cent">
-                        <% related.forEach(entry => { %>
-                            <div class='item'>
-                                <a href='/domain/<%= entry.name %>/'><%= entry.name %>
-                            </div>
-                        <% }); %>
-                    </div>
-                <% } else { %>
-                    <i>(none)</i>
-                <% } %>
+                <b>Related to the following malicious entries<i id="related-count"></i>: </b>
+                <div id="related-list">Loading...</div>
+				<br>
             </div>
 			
 			<div id="map"></div>

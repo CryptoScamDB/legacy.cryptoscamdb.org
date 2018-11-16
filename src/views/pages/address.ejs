@@ -12,27 +12,12 @@
 
 		<div class="content-container">
 			<h1><%= address %></h1>
-			<% if(result.status == "neutral") { %>
-				<div class="ui mini brown message"><i class="warning sign icon"></i>This is an unclassified address. <br> This does not mean that it is safe. It simply means that it hasn't been classified.</div>
-			<% } else if(result.status == "blocked") { %>
-				<div class="ui mini red message"><i class="warning sign icon"></i> Warning: Do not send money to this address</div>
-			<% } else if(result.status == "whitelisted"){ %>
-				<div class="ui mini green message">This is a verified address</div>
-			<% } %>
+			<div id="notice"></div>
+			<br>
 			<b>Balance</b>: <span id="balance">loading...</span><BR>
 			<b>USD Value</b>: <span id="value">loading...</span><BR>
-			<b>Related to the following domains (<%= result.entries.length %>)</b>:
-			<% if(result.entries.length > 0) { %>
-				<div class="ui bulleted list">
-					<% result.entries.forEach(entry => { %>
-						<div class='item'>
-							<a href='/domain/<%= entry.name %>/'><%= entry.name %></a>
-						</div>
-					<% }); %>
-				</div>
-			<% } else { %>
-				<i>(none)</i>
-			<% } %>
+			<b>Related to the following entries<i id="related-count"></i></b>:
+			<div id="related-list">Loading...</div>
             <br>
 			<a target="_blank" id="explorer" href="https://etherscan.io/address/<%= address %>"><i class="external icon"></i> View address information</a><BR>
             <br>

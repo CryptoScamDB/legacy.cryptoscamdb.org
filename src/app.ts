@@ -76,183 +76,31 @@ export const serve = async (): Promise<void> => {
     /* IP pages */
     app.get('/ip/:ip', async (req, res) => {
         await res.render('ip', {
-            ip: req.params.ip,
-            related:
-                (await request('https://api.cryptoscamdb.org/v1/ips', { json: true })).result[
-                    req.params.ip
-                ] || []
+            ip: req.params.ip
         });
     });
 
     /* Address pages */
     app.get('/address/:address', async (req, res) => {
-        const address = await request(
-            'https://api.cryptoscamdb.org/v1/check/' + encodeURIComponent(req.params.address),
-            {
-                json: true
-            }
-        );
-        if (address.success) {
-            res.render('address', {
-                address: req.params.address,
-                result: address.result
-            });
-        } else {
-            res.render('404');
-        }
+        res.render('address', {
+            address: req.params.address
+        });
     });
 
     /* Scams index */
     app.get('/scams/:page?/:sorting?/', async (req, res) => {
-        const fullScams = (await request('https://api.cryptoscamdb.org/v1/scams', {
-            json: true
-        })).result.filter(scam => scam.url);
-        const stats = (await request('https://api.cryptoscamdb.org/v1/stats', {
-            json: true
-        })).result;
-
-        const MAX_RESULTS_PER_PAGE = 30;
-        const scamList = [];
-        let scams = [...fullScams].reverse();
-        let index = [0, MAX_RESULTS_PER_PAGE];
-
         if (
             req.params.page &&
-            req.params.page !== 'all' &&
             (!isFinite(parseInt(req.params.page, 10)) ||
                 isNaN(parseInt(req.params.page, 10)) ||
                 parseInt(req.params.page, 10) < 1)
         ) {
             res.status(404).render('404');
         } else {
-            if (req.params.sorting === 'oldest') {
-                scams = fullScams;
-            } else if (req.params.sorting === 'status') {
-                scams = [...fullScams].sort((a, b) =>
-                    (a.status || '').localeCompare(b.status || '')
-                );
-            } else if (req.params.sorting === 'category') {
-                scams = [...fullScams].sort((a, b) =>
-                    (a.category || '').localeCompare(b.category || '')
-                );
-            } else if (req.params.sorting === 'subcategory') {
-                scams = [...fullScams].sort((a, b) =>
-                    (a.subcategory || '').localeCompare(b.subcategory || '')
-                );
-            } else if (req.params.sorting === 'name') {
-                scams = [...fullScams].sort((a, b) =>
-                    a.getHostname().localeCompare(b.getHostname())
-                );
-            }
-
-            if (req.params.page === 'all') {
-                index = [0, scams.length - 1];
-            } else if (req.params.page) {
-                index = [
-                    (req.params.page - 1) * MAX_RESULTS_PER_PAGE,
-                    req.params.page * MAX_RESULTS_PER_PAGE
-                ];
-            }
-
-            for (let i = index[0]; i <= index[1]; i++) {
-                if (scams.hasOwnProperty(i) === false) {
-                    continue;
-                }
-                scamList.push(scams[i]);
-            }
-
             res.render('scams', {
-                page: req.params.page,
-                sorting: req.params.sorting,
-                total: stats.scams.toLocaleString('en-US'),
-                active: stats.actives.toLocaleString('en-US'),
-                total_addresses: stats.addresses.toLocaleString('en-US'),
-                inactive: stats.inactives.toLocaleString('en-US'),
-                scams: scamList,
-                MAX_RESULTS_PER_PAGE,
-                scamsLength: scams.length
-            });
-        }
-    });
-
-    /* Coin pages */
-    app.get('/coin/:coin/:page?/:sorting?/', async (req, res) => {
-        const MAX_RESULTS_PER_PAGE = 30;
-        const scamList = [];
-        const fullScams = (await request('https://api.cryptoscamdb.org/v1/scams', {
-            json: true
-        })).result;
-        const fullAddresses = (await request('https://api.cryptoscamdb.org/v1/addresses', {
-            json: true
-        })).result;
-
-        let scams = [...fullScams.filter(scam => scam.coin === req.params.coin)].reverse();
-        let index = [0, MAX_RESULTS_PER_PAGE];
-
-        if (
-            req.params.page &&
-            req.params.page !== 'all' &&
-            (!isFinite(parseInt(req.params.page, 10)) ||
-                isNaN(parseInt(req.params.page, 10)) ||
-                parseInt(req.params.page, 10) < 1)
-        ) {
-            res.status(404).render('404');
-        } else {
-            if (req.params.sorting === 'oldest') {
-                scams = fullScams.filter(scam => scam.coin === req.params.coin);
-            } else if (req.params.sorting === 'status') {
-                scams = [...fullScams.filter(scam => scam.coin === req.params.coin)].sort((a, b) =>
-                    (a.status || '').localeCompare(b.status || '')
-                );
-            } else if (req.params.sorting === 'category') {
-                scams = [...fullScams.filter(scam => scam.coin === req.params.coin)].sort((a, b) =>
-                    (a.category || '').localeCompare(b.category || '')
-                );
-            } else if (req.params.sorting === 'subcategory') {
-                scams = [...fullScams.filter(scam => scam.coin === req.params.coin)].sort((a, b) =>
-                    (a.subcategory || '').localeCompare(b.subcategory || '')
-                );
-            } else if (req.params.sorting === 'name') {
-                scams = [...fullScams.filter(scam => scam.coin === req.params.coin)].sort((a, b) =>
-                    a.getHostname().localeCompare(b.getHostname())
-                );
-            }
-
-            if (req.params.page === 'all') {
-                index = [0, scams.length - 1];
-            } else if (req.params.page) {
-                index = [
-                    (req.params.page - 1) * MAX_RESULTS_PER_PAGE,
-                    req.params.page * MAX_RESULTS_PER_PAGE
-                ];
-            }
-
-            for (let i = index[0]; i <= index[1]; i++) {
-                if (scams.hasOwnProperty(i) === false) {
-                    continue;
-                }
-                scamList.push(scams[i]);
-            }
-
-            res.render('coin', {
-                coin: req.params.coin,
-                page: req.params.page,
-                sorting: req.params.sorting,
-                total: scams.length.toLocaleString('en-US'),
-                active: Object.keys(
-                    scams.filter(scam => scam.status === 'Active')
-                ).length.toLocaleString('en-US'),
-                total_addresses: Object.keys(fullAddresses)
-                    .filter(address =>
-                        fullAddresses[address].some(scam => scam.coin === req.params.coin)
-                    )
-                    .length.toLocaleString('en-US'),
-                inactive: Object.keys(
-                    scams.filter(scam => scam.status === 'Inactive')
-                ).length.toLocaleString('en-US'),
-                scams: scamList,
-                MAX_RESULTS_PER_PAGE,
-                scamsLength: scams.length
+                page: req.params.page || 1,
+                sorting: req.params.sorting || null,
+                query: req.query
             });
         }
     });
@@ -269,7 +117,8 @@ export const serve = async (): Promise<void> => {
         );
 
         if (entry.success) {
-            res.render('entry', {
+            res.render('scam', {
+                id: req.params.id,
                 entry: entry.result,
                 domainurl: 'https://cryptoscamdb.org/scam/' + encodeURIComponent(req.params.id),
                 startTime: startTime
@@ -302,13 +151,7 @@ export const serve = async (): Promise<void> => {
     });
 
     /* Verified pages */
-    app.get('/verified/', async (req, res) =>
-        res.render('verified', {
-            featured: (await request('https://api.cryptoscamdb.org/v1/featured', {
-                json: true
-            })).result.sort((a, b) => a.name.localeCompare(b.name))
-        })
-    );
+    app.get('/verified/', async (req, res) => res.render('verified'));
 
     /* Safe redirect pages */
     app.get('/redirect/:url', (req, res) => res.render('redirect', { url: req.params.url }));

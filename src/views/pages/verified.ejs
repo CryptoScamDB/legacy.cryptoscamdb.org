@@ -23,21 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% featured.forEach(entry => { %>
-                        <tr>
-                            <td>
-                                <div class="featured-name">
-                                    <img class='project-icon' src='/assets/<%= entry.name.toLowerCase().replace(/ /g, "") %>.png'><%= entry.name %>
-                                </div>
-                            </td>
-                            <td class="featured-url">
-                                <a target='_blank' href='<%= entry.url %>'><%= entry.url %></a>
-                            </td>
-                            <td class="featured-description">
-                                <%= entry.description %>
-                            </td>
-                        </tr>
-                    <% }); %>
+                    
                 </tbody>
             </table>
         </div>
@@ -45,6 +31,7 @@
         <div class="footer-container">
             <% include ../partials/footer.ejs %>
         </div>   
-    
+		
+		<script src="/js/verified.js"></script>
     </body>
 </html>

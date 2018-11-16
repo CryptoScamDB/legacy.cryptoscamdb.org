@@ -35,16 +35,51 @@ export const serve = async (): Promise<void> => {
     app.use(require('compression')());
 
     /* Serve static content*/
-    app.use(express.static(path.join(__dirname, 'views/static')));
+    app.use(express.static(path.join(__dirname, 'views/static'), { extensions: ['svg', 'png'] }));
 
     /* Seperately re-serve various other brand logos to flatten nested paths */
-    app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/coins')));
-    app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/exchanges')));
-    app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/explorers')));
-    app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/wallets')));
-    app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/favicon')));
-    app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/branding')));
-    app.use('/assets', express.static(path.join(__dirname, 'views/static/assets/symbols')));
+    app.use(
+        '/assets',
+        express.static(path.join(__dirname, 'views/static/assets/coins'), {
+            extensions: ['svg', 'png']
+        })
+    );
+    app.use(
+        '/assets',
+        express.static(path.join(__dirname, 'views/static/assets/exchanges'), {
+            extensions: ['svg', 'png']
+        })
+    );
+    app.use(
+        '/assets',
+        express.static(path.join(__dirname, 'views/static/assets/explorers'), {
+            extensions: ['svg', 'png']
+        })
+    );
+    app.use(
+        '/assets',
+        express.static(path.join(__dirname, 'views/static/assets/wallets'), {
+            extensions: ['svg', 'png']
+        })
+    );
+    app.use(
+        '/assets',
+        express.static(path.join(__dirname, 'views/static/assets/favicon'), {
+            extensions: ['svg', 'png']
+        })
+    );
+    app.use(
+        '/assets',
+        express.static(path.join(__dirname, 'views/static/assets/branding'), {
+            extensions: ['svg', 'png']
+        })
+    );
+    app.use(
+        '/assets',
+        express.static(path.join(__dirname, 'views/static/assets/symbols'), {
+            extensions: ['svg', 'png']
+        })
+    );
 
     /* Homepage */
     app.get('/(/|index.html)?', (req, res) => res.render('index'));

@@ -100,19 +100,19 @@ function renderScams() {
 		}
 		
 		if(scam.coin) {
-			row.append("<td><div class='cat-container'><img src='/assets/coins/" + scam.coin + ".svg' alt='Icon - " + scam.coin + "' class='categoryicon cat-icon' style='height:24px; width:24px;' onerror='this.style.display=\"none\"' />  <span class='cat-text'>" + scam.coin + "</span></div></td>");
+			row.append("<td><div class='cat-container'><img src='/assets/coins/" + scam.coin + "' alt='Icon - " + scam.coin + "' class='categoryicon cat-icon' style='height:24px; width:24px;' onerror='this.style.display=\"none\"' />  <span class='cat-text'>" + scam.coin + "</span></div></td>");
 		} else {
 			row.append("<td>None</td>");
 		}
 		
 		if(scam.category) {
-			row.append("<td><div class='cat-container'><img src='/assets/" + scam.category.toLowerCase().replace(/\s/g, "") + ".svg' alt='Icon - " + scam.category + "' class='categoryicon cat-icon' style='height:24px; width:24px;' onerror='this.style.display=\"none\"' />  <span class='cat-text'>" + scam.category + "</span></div></td>");
+			row.append("<td><div class='cat-container'><img src='/assets/" + scam.category.toLowerCase().replace(/\s/g, "") + "' alt='Icon - " + scam.category + "' class='categoryicon cat-icon' style='height:24px; width:24px;' onerror='this.style.display=\"none\"' />  <span class='cat-text'>" + scam.category + "</span></div></td>");
 		} else {
 			row.append("<td>None</td>");
 		}
 		
 		if(scam.subcategory) {
-			row.append("<td><img src='/assets/" + scam.subcategory.toLowerCase().replace(/\s/g, "") + ".svg' alt='Icon - " + scam.subcategory + "' class='subcategoryicon' style='height:24px; width:24px;' onerror='this.style.display=\"none\"' /> " + scam.subcategory + "</td>");
+			row.append("<td><img src='/assets/" + scam.subcategory.toLowerCase().replace(/\s/g, "") + "' alt='Icon - " + scam.subcategory + "' class='subcategoryicon' style='height:24px; width:24px;' onerror='this.style.display=\"none\"' /> " + scam.subcategory + "</td>");
 		} else {
 			row.append("<td>None</td>");
 		}

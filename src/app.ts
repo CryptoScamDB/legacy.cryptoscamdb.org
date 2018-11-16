@@ -117,7 +117,7 @@ export const serve = async (): Promise<void> => {
         );
 
         if (entry.success) {
-            res.render('scam', {
+            res.render('entry', {
                 id: req.params.id,
                 entry: entry.result,
                 domainurl: 'https://cryptoscamdb.org/scam/' + encodeURIComponent(req.params.id),

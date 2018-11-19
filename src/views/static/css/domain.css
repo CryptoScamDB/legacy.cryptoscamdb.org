@@ -4,6 +4,10 @@ body {
   color: #282138 !important;
 }
 
+td {
+	cursor: pointer;
+}
+
 div a {
   color: #4183c4;
   text-decoration: none;

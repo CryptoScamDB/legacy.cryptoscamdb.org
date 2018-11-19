@@ -1,6 +1,28 @@
 window.addEventListener("load", function() {
-    $.getJSON("https://api.cryptoscamdb.org/v1/check/" + $("h1").html(), function(data) {
-        $.getJSON("https://api.cryptoscamdb.org/v1/balance/" + data.coin + "/" + $("h1").html(), function(val) {
+	const address = $("h1").html();
+    $.getJSON("https://api.cryptoscamdb.org/v1/check/" + encodeURIComponent(address), function(data) {
+		if(data.result.status == "neutral") {
+			$("#notice").html("<div class='ui mini brown message'><i class='warning sign icon'></i>This is an unclassified address. <br> This does not mean that it is safe. It simply means that it hasn't been classified.</div>");
+		} else if(data.result.status == "blocked") {
+			$("#notice").html("<div class='ui mini red message'><i class='warning sign icon'></i> Warning: Do not send money to this address</div>");
+		} else if(data.result.status == "whitelisted") {
+			$("#notice").html("<div class='ui mini green message'>This is a verified address</div>");
+		}
+		if(data.result.entries.length > 0) {
+			const list = $("<div class='ui bulleted list flex-cent'></div>");
+			data.result.entries.forEach(function(entry) {
+				if(entry.type == "verified") {
+					list.append("<div class='item'><a href='" + entry.url + "'>" + entry.name + "</a> (verified)</div>");
+				} else {
+					list.append("<div class='item'><a href='/scam/" + entry.id + "/'>" + entry.name + "</a></div>");
+				}
+			});
+			$("#related-list").html(list);
+			$("#related-count").html(" (" + data.result.entries.length + ")");
+		} else {
+			$("#related-list").html("<i>(none)</i>");
+		}
+        $.getJSON("https://api.cryptoscamdb.org/v1/balance/" + data.coin + "/" + encodeURIComponent(address), function(val) {
             $("#balance").html(val.balance.toFixed(2) + " " + data.coin.toUpperCase());
             $("#value").html("$"+ val.usdvalue.toFixed(2) + " ($" + (val.usdvalue / val.balance).toFixed(2) + " USD/" + data.coin.toUpperCase() + ")");
             $("#explorer").attr("href", val.blockexplorer);

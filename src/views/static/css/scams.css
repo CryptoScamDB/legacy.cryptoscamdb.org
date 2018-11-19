@@ -1,3 +1,7 @@
+th,td {
+	cursor: pointer;
+}
+
 .center {
   text-align: center !important;
 }

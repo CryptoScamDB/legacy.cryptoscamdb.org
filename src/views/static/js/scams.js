@@ -70,9 +70,9 @@ function sortScams() {
 function changePage(newPage) {
 	page = newPage;
 	if(sorting) {
-		history.replaceState({},"",'/scams/' + page + '/' + sorting);
+		history.replaceState({},"",'/scams/' + page + '/' + sorting + location.search);
 	} else {
-		history.replaceState({},"",'/scams/' + page);
+		history.replaceState({},"",'/scams/' + page + location.search);
 	}
 	renderScams();
 	renderPagination();
@@ -81,7 +81,7 @@ function changePage(newPage) {
 function changeSorting(newSorting) {
 	page = 1;
 	sorting = newSorting;
-	history.replaceState({},"",'/scams/1/' + sorting);
+	history.replaceState({},"",'/scams/1/' + sorting + location.search);
 	sortScams();
 	renderScams();
 	renderPagination();

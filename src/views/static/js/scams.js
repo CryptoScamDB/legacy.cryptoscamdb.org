@@ -79,8 +79,9 @@ function changePage(newPage) {
 }
 
 function changeSorting(newSorting) {
+	page = 1;
 	sorting = newSorting;
-	history.replaceState({},"",'/scams/' + page + '/' + sorting);
+	history.replaceState({},"",'/scams/1/' + sorting);
 	sortScams();
 	renderScams();
 	renderPagination();

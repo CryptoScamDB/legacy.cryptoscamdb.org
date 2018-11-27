@@ -14,13 +14,6 @@ th,td {
   align-items: center;
 }
 
-.active {
-	color: white;
-	font-weight: bold;
-	border-radius: 13px;
-	background-color: red;
-}
-
 .cat-container {
   display: flex;
   justify-content: center;
@@ -254,7 +247,7 @@ thead th {
     align-items: center;
 }
 
-#results-table,.search-grid-frame,.scams-zero-entries,.scams-no-query-results {
+#results-table,.search-grid-frame,.scams-zero-entries,.scams-no-query-results,.next-page {
   display: none;
 }
 
@@ -262,6 +255,23 @@ thead th {
   text-align: center;
   font-weight: bold;
   margin-bottom: 100px;
+}
+
+.active {
+	color: white;
+	font-weight: bold;
+	background-color: #ffd166;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: lightgrey;
+}
+
+.disabled:hover {
+  background-color: #163150;
+  color: lightgrey;
+  font-weight: 600;
 }
 
 .lds-dual-ring {

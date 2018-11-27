@@ -170,6 +170,7 @@ window.addEventListener("load", function() {
 	setInterval(loadStats,20*1000);
 	loadScams(function() {
 		filterScams();
+		$(".lds-dual-ring").hide();
 		if(scams.length > 0) {
 			sortScams();
 			renderScams();

@@ -23,22 +23,22 @@ function loadScams(callback) {
 function filterScams() {
 	if(query.coin) {
 		scams = scams.filter(function(scam) {
-			return scam.coin == query.coin;
+			return scam.coin.toUpperCase() == query.coin.toUpperCase();
 		});
 	}
 	if(query.category) {
 		scams = scams.filter(function(scam) {
-			return scam.category == query.category;
+			return scam.category.toLowerCase() == query.category.toLowerCase();
 		});
 	}
 	if(query.subcategory) {
 		scams = scams.filter(function(scam) {
-			return scam.subcategory == query.subcategory;
+			return scam.subcategory.toLowerCase() == query.subcategory.toLowerCase();
 		});
 	}
 	if(query.status) {
 		scams = scams.filter(function(scam) {
-			return scam.status == query.status;
+			return scam.status.toLowerCase() == query.status.toLowerCase();
 		});
 	}
 }

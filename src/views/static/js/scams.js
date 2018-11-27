@@ -23,22 +23,22 @@ function loadScams(callback) {
 function filterScams() {
 	if(query.coin) {
 		scams = scams.filter(function(scam) {
-			return scam.coin.toUpperCase() == query.coin.toUpperCase();
+			return scam.coin && scam.coin.toUpperCase() == query.coin.toUpperCase();
 		});
 	}
 	if(query.category) {
 		scams = scams.filter(function(scam) {
-			return scam.category.toLowerCase() == query.category.toLowerCase();
+			return scam.category && scam.category.toLowerCase() == query.category.toLowerCase();
 		});
 	}
 	if(query.subcategory) {
 		scams = scams.filter(function(scam) {
-			return scam.subcategory.toLowerCase() == query.subcategory.toLowerCase();
+			return scam.subcategory && scam.subcategory.toLowerCase() == query.subcategory.toLowerCase();
 		});
 	}
 	if(query.status) {
 		scams = scams.filter(function(scam) {
-			return scam.status.toLowerCase() == query.status.toLowerCase();
+			return scam.status && scam.status.toLowerCase() == query.status.toLowerCase();
 		});
 	}
 }
@@ -170,8 +170,18 @@ window.addEventListener("load", function() {
 	setInterval(loadStats,20*1000);
 	loadScams(function() {
 		filterScams();
-		sortScams();
-		renderScams();
-		renderPagination();
+		if(scams.length > 0) {
+			sortScams();
+			renderScams();
+			renderPagination();
+			$(".search-grid-frame").show();
+			$("#results-table").show();
+		} else if(Object.keys(query).length > 0) {
+			$("table").hide();
+			$(".scams-no-query-results").show();
+		} else {
+			$("table").hide();
+			$(".scams-zero-entries").show();
+		}
 	});
 });

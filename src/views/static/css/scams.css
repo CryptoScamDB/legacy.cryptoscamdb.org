@@ -253,3 +253,13 @@ thead th {
     justify-content: center;
     align-items: center;
 }
+
+#results-table,.search-grid-frame,.scams-zero-entries,.scams-no-query-results {
+  display: none;
+}
+
+.scams-zero-entries,.scams-no-query-results {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 100px;
+}

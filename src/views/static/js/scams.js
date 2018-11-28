@@ -160,7 +160,7 @@ function renderPagination() {
 		if ((intPageNumber > Math.ceil(scams.length / MAX_RESULTS_PER_PAGE)) || (intPageNumber < 1)) {
 			strPagination += "<a class='disabled scams-nav-item'>" + intPageNumber + "</a>";
 		} else if (page == intPageNumber) {
-			strPagination += "<a onclick='changePage(" + intPageNumber + ")' class='active scams-nav-item'>" + intPageNumber + "</a>";
+			strPagination += "<a onclick='changePage(" + intPageNumber + ")' class='btn-active scams-nav-item'>" + intPageNumber + "</a>";
 		} else {
 			strPagination += "<a onclick='changePage(" + intPageNumber + ")' class='scams-nav-item'>" + intPageNumber + "</a>";
 		}

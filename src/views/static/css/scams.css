@@ -258,8 +258,14 @@ thead th {
 }
 
 .active {
+  border-radius: 13px;
 	color: white;
 	font-weight: bold;
+	background-color: red;
+}
+.btn-active {
+  color: #163150;
+	font-weight: 800;
 	background-color: #ffd166;
 }
 

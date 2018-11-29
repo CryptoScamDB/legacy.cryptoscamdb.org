@@ -19,7 +19,8 @@
 			<% include ../partials/search %>
 	</div>
 	<div class="scams-table-grid-frame">
-			<table class="sortable">
+			<div class="lds-dual-ring"></div>
+			<table class="sortable" id="results-table">
 					<thead>
 						<tr>
 							<th onclick='changeSorting("name")'>Name</th>
@@ -34,8 +35,17 @@
 					</tbody>
 				</table>
 				<br>
-				<div class="next-page">
+				<div class="scams-zero-entries">
+					<h1>No entries found.</h1>
+					<br>
+					<h3>You might be running an empty fork of CSDB, or your adblocker could be preventing the scams from loading.</h3>
 				</div>
+				<div class="scams-no-query-results">
+					<h1>Sorry, it looks like no results matched your query.</h1>
+					<br>
+					<h3><a href="/scams">&larr; View all scams</a></h3>
+				</div>
+				<div class="next-page"></div>
 	</div>
 	<div class="footer-grid-frame">
 			<% include ../partials/footer %>

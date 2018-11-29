@@ -14,13 +14,6 @@ th,td {
   align-items: center;
 }
 
-.active {
-	color: white;
-	font-weight: bold;
-	border-radius: 13px;
-	background-color: red;
-}
-
 .cat-container {
   display: flex;
   justify-content: center;
@@ -252,4 +245,68 @@ thead th {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#results-table,.search-grid-frame,.scams-zero-entries,.scams-no-query-results,.next-page {
+  display: none;
+}
+
+.scams-zero-entries,.scams-no-query-results {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 100px;
+}
+
+.active {
+  border-radius: 13px;
+	color: white;
+	font-weight: bold;
+	background-color: red;
+}
+.btn-active {
+  color: #163150;
+	font-weight: 800;
+	background-color: #ffd166;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: lightgrey;
+}
+
+.disabled:hover {
+  background-color: #163150;
+  color: lightgrey;
+  font-weight: 600;
+}
+
+.lds-dual-ring {
+  display: block;
+  width: 64px;
+  height: 64px;
+  padding: 3%;
+  margin-bottom: -3%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lds-dual-ring:after {
+	content: " ";
+	display: block;
+	width: 46px;
+	height: 46px;
+	margin: 1px;
+	border-radius: 50%;
+	border: 5px solid #163150;
+	border-color: #163150 transparent #163150 transparent;
+	animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }

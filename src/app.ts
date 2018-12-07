@@ -156,7 +156,7 @@ export const serve = async (): Promise<void> => {
                 id: req.params.id,
                 entry: entry.result,
                 domainurl: 'https://cryptoscamdb.org/scam/' + encodeURIComponent(req.params.id),
-                startTime: startTime
+                startTime
             });
         } else {
             res.render('404');

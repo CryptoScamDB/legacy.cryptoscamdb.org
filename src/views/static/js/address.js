@@ -9,12 +9,12 @@ window.addEventListener("load", function() {
 			$("#notice").html("<div class='ui mini green message'>This is a verified address</div>");
 		}
 		if(data.result.entries.length > 0) {
-			const list = $("<div class='ui bulleted list flex-cent'></div>");
+			const list = $("<ul class='ui bulleted list'></li>");
 			data.result.entries.forEach(function(entry) {
 				if(entry.type == "verified") {
-					list.append("<div class='item'><a href='" + entry.url + "'>" + entry.name + "</a> (verified)</div>");
+					list.append("<li class='item'><a href='" + entry.url + "'>" + entry.name + "</a> (verified)</li>");
 				} else {
-					list.append("<div class='item'><a href='/scam/" + entry.id + "/'>" + entry.name + "</a></div>");
+					list.append("<li class='item'><a href='/scam/" + entry.id + "/'>" + entry.name + "</a></li>");
 				}
 			});
 			$("#related-list").html(list);

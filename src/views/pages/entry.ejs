@@ -134,9 +134,15 @@
                 <% if(entry.addresses && entry.addresses.length > 0) { %>
                     <b>Related addresses</b>:
                     <div class="">
-                        <% entry.addresses.forEach(address => { %>
-                        <div class="""><a href="/address/<%= address %>"><%= address %></a></div>
-                        <% }); %>
+                        <% Object.entries(entry.addresses).forEach(([chain_symbol, addresses]) => { %>
+                            <img src="/assets/coins/<%= chain_symbol %>" alt="Icon - %= chain_symbol %>" class="cat-icon" />
+                            <strong><%= chain_symbol %></strong> <br />
+                            <ul>
+                            <% Object.entries(addresses).forEach(([key, addr]) => { %>
+                                <li><%= addr %></li>    
+                            <% }); %>
+                            </ul>
+                         <% }); %>
                     </div>
                     <br>
                 <% } %>                        

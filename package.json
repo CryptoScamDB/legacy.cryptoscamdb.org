@@ -68,7 +68,7 @@
     "@types/node": "10.12.11",
     "@types/request": "2.48.1",
     "all-contributors-cli": "5.4.1",
-    "husky": "1.2.0",
+    "husky": "3.0.1",
     "lint-staged": "8.1.0",
     "nodemon": "1.18.7",
     "prettier": "1.15.3",
